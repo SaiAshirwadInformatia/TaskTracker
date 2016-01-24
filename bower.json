@@ -1,0 +1,23 @@
+{
+  "name": "TaskTracker",
+  "version": "1.0.0",
+  "homepage": "https://github.com/SaiAshirwadInformatia/TaskTracker",
+  "authors": [
+    "Akshay Mane <mane.akshay1997@gmail.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "application/third_party/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AdminLTE": "admin-lte#~2.3.2"
+  }
+}
