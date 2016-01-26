@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 26, 2016 at 05:38 PM
+-- Generation Time: Jan 26, 2016 at 10:56 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -23,6 +23,47 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `projects`
+--
+
+CREATE TABLE IF NOT EXISTS `projects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `description` text NOT NULL,
+  `key` varchar(128) NOT NULL,
+  `color` varchar(64) NOT NULL,
+  `start_date` date NOT NULL,
+  `access_token` varchar(256) NOT NULL,
+  `is_active` int(1) NOT NULL,
+  `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lastmodified_ts` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `releases`
+--
+
+CREATE TABLE IF NOT EXISTS `releases` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `description` text NOT NULL,
+  `start_date` date NOT NULL,
+  `estimated_release_date` date NOT NULL,
+  `actual_release_date` date NOT NULL,
+  `key` varchar(64) NOT NULL,
+  `access_token` varchar(256) NOT NULL,
+  `is_active` int(1) NOT NULL,
+  `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lastmodified_ts` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tasks`
 --
 
@@ -32,6 +73,8 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `description` text,
   `type` varchar(32) NOT NULL,
   `state` varchar(32) NOT NULL DEFAULT 'OPEN',
+  `relese_id` int(11) NOT NULL,
+  `due_date` int(11) NOT NULL,
   `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastmodified_ts` timestamp NULL DEFAULT NULL,
   `start_ts` timestamp NULL DEFAULT NULL,
@@ -39,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `user_id` int(11) NOT NULL,
   `assignee_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tasks`
@@ -58,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `tasks_comments` (
   `comment` text NOT NULL,
   `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -90,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `tasks_relations` (
   `type` text NOT NULL,
   `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -116,6 +159,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `phone` (`phone`),
   UNIQUE KEY `access_token` (`access_token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
