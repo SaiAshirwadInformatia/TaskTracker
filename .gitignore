@@ -6,3 +6,4 @@
 !*/cache/.htaccess
 application/third_party
 assets
+application/config/database.php
