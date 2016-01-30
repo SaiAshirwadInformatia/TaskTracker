@@ -18,6 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "AdminLTE": "admin-lte#~2.3.2"
+    "AdminLTE": "admin-lte#~2.3.2",
+    "font-awesome": "fontawesome#~4.5.0"
   }
 }
