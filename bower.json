@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "homepage": "https://github.com/SaiAshirwadInformatia/TaskTracker",
   "authors": [
-    "Akshay Mane <mane.akshay1997@gmail.com>"
+    "Akshay Mane <mane.akshay1997@gmail.com>",
+    "Brian Munis <brayanmunis2@gmail.com>",
+    "Anuj Khairnar <anujkhairnar5@gmail.com>"
   ],
   "moduleType": [
     "amd"
@@ -18,8 +20,9 @@
     "tests"
   ],
   "dependencies": {
+    "jquery": "~1.10.2",
     "AdminLTE": "admin-lte#~2.3.2",
     "font-awesome": "^4.5.0",
-	 "jquery": "~1.10.2"
+    "Ionicons": "ionicons#~2.0.1"
   }
 }
