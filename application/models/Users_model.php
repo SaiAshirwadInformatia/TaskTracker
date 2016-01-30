@@ -6,6 +6,7 @@ class Users_model extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->database();
 
 	}
 
@@ -14,10 +15,10 @@ class Users_model extends CI_Model
 		$user = $this->get_by_username($username);
 		if($user and isset($user['password']))
 		{
-			if(password_verify($password, $user['password']))
+			if(/*password_verify($password, $user['password'])*/$password == $user['password'])
 			{
 				$this->session->logged = true;
-				$this->session->set_userdata($user);
+				//$this->session->set_userdata($user);
 				return true;
 			}
 		}

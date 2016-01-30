@@ -16,9 +16,9 @@ class Auth extends CI_Controller
 		$password = $this->input->post('password');
 		if($this->users_model->authenticate($username, $password))
 		{
-			redirect(base_url('Dashboard'));
+			redirect(site_url('Dashboard'));
 		}else{
-			redirect(base_url('Login/failed'));
+			redirect(site_url('Login/failed'));
 		}
 	}
 
