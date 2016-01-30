@@ -19,6 +19,10 @@
   ],
   "dependencies": {
     "AdminLTE": "admin-lte#~2.3.2",
+<<<<<<< HEAD
     "font-awesome": "^4.5.0"
+=======
+    "font-awesome": "fontawesome#~4.5.0"
+>>>>>>> b6d36a23425d07abb31735bcf5b7c8ceabbd311d
   }
 }
