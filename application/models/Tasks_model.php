@@ -20,6 +20,11 @@ class Tasks_model extends CI_Model
 		$this->db->get($this->table)->result_array();
 	}
 
+	public function get_by_id($user_id = 1){
+		$this->db->where('user_id',$user_id);
+		return $this->db->get('tasks')->result_array();
+	}
+
 	/**
 	 *	$data => ['title' => 'Hello', 'description' => 'World']
 	 */

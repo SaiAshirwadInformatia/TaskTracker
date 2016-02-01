@@ -16,6 +16,12 @@ class Tasks extends CI_Controller
 		$this->load->view('tasks_list', $data);
 	}
 
+	public function mytasks($id = 1){
+		$mytasks_list = $this->tasks_model->get_by_id($id);
+		$data['mytasks_list'] = $mytasks_list;
+		$this->load->view('mytasks_list',$data);
+	}
+
 	public function create()
 	{
 		$this->load->view('tasks_form');
