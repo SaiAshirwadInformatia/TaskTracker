@@ -43,7 +43,7 @@
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <a href="<?php echo base_url('Releases/add_release')?>">
+                    <a href="<?php echo base_url('Releases/create')?>">
                         <i class="fa fa-plus-square-o"></i> Add Release
                     </a>
                 </li>
@@ -53,7 +53,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li>   
 
 
         <!--
