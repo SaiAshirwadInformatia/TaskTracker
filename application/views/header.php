@@ -20,9 +20,52 @@ $this->load->view('head');
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
+      <?php
 
+        $projects = $this->session->userdata('projects');
+        $currentProject = $this->session->userdata('currentProject');
+        $projectName = '';
+        $projectKey = '';
+        if($currentProject)
+        {
+            $projectName = $currentProject['name'];
+            $projectKey = $currentProject['key'];
+        }
+      ?>
       <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">      
+        <ul class="nav navbar-nav">
+        <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-rocket"></i>
+              <?php if($projectKey):?>
+              <span class="label label-warning"><?php echo $projectKey?></span>
+            <?php endif; ?>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                    <?php 
+                    foreach ($projects as $proj) {
+                        echo '<li>';
+                        
+                        echo '<a href="';
+                        echo base_url("Projects/setCurrent/" . $proj['id']) . '">';
+                        echo '<span class="projectColorBlock" style="background: ' . $proj['color'] . '"></span>';
+                        echo $proj['name'];
+
+                        if($projectName == $proj['name'] && $projectKey == $proj['key']){
+                            echo ' <small><i>(Active)</i></small>';
+                        }
+                        echo '</a>';
+                        echo '</li>';
+                    }
+                    ?>
+                </ul>
+              </li>
+              <li class="footer"><a href="<?php echo base_url('Projects')?>">View all Projects</a></li>
+            </ul>
+          </li>      
     
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
@@ -46,7 +89,7 @@ $this->load->view('head');
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url('Logout')?>" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

@@ -53,7 +53,39 @@
                     </a>
                 </li>
             </ul>
-        </li>   
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-tasks"></i> Tasks<i class=" fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="<?php base_url('Tasks/create') ?>">
+                        <i class="fa fa-plus-square-o"></i> Add Task
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php base_url('Tasks/create') ?>">
+                        <i class="fa fa-plus-square-o"></i> View Task
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php base_url('Tasks/create') ?>">
+                        <i class="fa fa-plus-square-o"></i> Open Task
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php base_url('Tasks/create') ?>">
+                        <i class="fa fa-plus-square-o"></i> Unassigned Task
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php base_url('Tasks/create') ?>">
+                        <i class="fa fa-plus-square-o"></i> Close Task
+                    </a>
+                </li>
+            </ul>
+        </li>
 
 
         <!--

@@ -24,4 +24,33 @@ class Projects_model extends CI_Model
 		$this->db->where('id', $id);
 		return $this->db->get('projects')->row_array();
 	}
+
+	public function insert($data){
+		$status = $this->db->insert('projects',$data);
+		if($status){
+			$ret = [
+				'status' => OK,
+				'id' => $this->db->insert_id()
+			];
+		}else{
+			$ret = [
+				'status' => KO,
+				'error' => $this->db->error()
+			];
+		}
+		return $ret;
+	}
+
+	public function update($data, $id){
+		if($this->db->update('projects',$data,['id' => $id])){
+			return [
+				'status' => OK
+			];
+		}else{
+			return [
+				'status' => KO,
+				'error' => $this->db->error()
+			];
+		}
+	}
 }

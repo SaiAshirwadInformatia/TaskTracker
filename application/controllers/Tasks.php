@@ -1,6 +1,6 @@
 <?php
 
-class Tasks extends CI_Controller
+class Tasks extends TT_Controller
 {
 	public function __construct()
 	{

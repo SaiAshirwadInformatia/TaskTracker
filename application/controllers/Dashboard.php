@@ -1,15 +1,16 @@
 <?php
 
-class Dashboard extends CI_Controller
+class Dashboard extends TT_Controller
 {
-	public function __contruct()
+	public function __construct()
 	{
-		parent::__construct();
+		parent::__construct(false);
 	}
 
 	public function index()
 	{
-		$this->load->view('head');	
+		$this->load->view('header');	
 		$this->load->view('dashboard');
+		$this->load->view('footer');
 	}
 }
