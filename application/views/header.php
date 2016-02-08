@@ -21,7 +21,6 @@ $this->load->view('head');
         <span class="icon-bar"></span>
       </a>
       <?php
-
         $projects = $this->session->userdata('projects');
         $currentProject = $this->session->userdata('currentProject');
         $projectName = '';
@@ -53,7 +52,6 @@ $this->load->view('head');
                         echo base_url("Projects/setCurrent/" . $proj['id']) . '">';
                         echo '<span class="projectColorBlock" style="background: ' . $proj['color'] . '"></span>';
                         echo $proj['name'];
-
                         if($projectName == $proj['name'] && $projectKey == $proj['key']){
                             echo ' <small><i>(Active)</i></small>';
                         }
@@ -98,4 +96,5 @@ $this->load->view('head');
       </div>
     </nav>
   </header>
-  <?php $this->load->view('nav')?>
+
+<?php $this->load->view('nav')?>

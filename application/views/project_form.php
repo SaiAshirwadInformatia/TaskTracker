@@ -1,9 +1,9 @@
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>Create Project</h1>
-		<?php $this->load->view('inc_bootstrap_alert');?>
 	</section>
 	<div class="content">
+	<?php $this->load->view('inc_bootstrap_alerts');?>
 		<form action="<?php echo base_url('Projects/' . $action);?>" method="POST">
 			<div class="box box-default">
 				<div class="box-body">
@@ -13,27 +13,34 @@
 								<label class="control-label">Name</label>
 								<input type="text" class="form-control" name="name" id="name" <?php echo isset($name)?'value = "'.$name.'"':'';?>/>
 							</div>
-							<div class="col-sm-2">
+							<div class="col-sm-1">
 								<label class="control-label">Key</label> 							
 								<input type="text" <?php echo isset($key)?'value="'.$key.'"':''?>
 								class="form-control" name="key" id="key" />
 							</div>
 							<div class="col-sm-2">
 				                <label>Color</label>
-
 				                <div class="input-group projectColorPicker colorpicker-element">
-				                  <input type="text" class="form-control" autocomplete="off">
+				                  <input type="text" class="form-control" name="color" id="color" <?php echo isset($color)?'value="'.$color.'"':'' ?> autocomplete="off">
 
 				                  <div class="input-group-addon">
 				                    <i style="background-color: rgb(112, 65, 65);"></i>
 				                  </div>
 				                </div>
-				                <!-- /.input group -->
 				              </div>
+				              <div class="col-sm-3">
+								<label class="control-label">Start Date</label>
+								<div class="input-group date  dateTimePicker">
+									<input type="text" class="form-control" name="start_date" id="start_date" <?php echo isset($start_date)?'value="'.$start_date.'"':''?> />
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
+									</span>
+								</div>
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Description</label>
-							<textarea name="description" id="desription" class="form-control"></textarea>
+							<textarea name="description" id="desription" class="form-control"><?php echo isset($description)?$description:'' ?></textarea>
 						</div>
 					</div>
 				</div>
@@ -45,15 +52,17 @@
 						<button type="submit" name="save" id="save" class="btn btn-success">
 							<i class="fa fa-save"></i> Save
 						</button>
-						<button type="submit" name="saveAddNew" id="saveAddNew" class="btn btn-success">
+						<?php if(!isset($id)):?>
+						<button type="submit" name="save" id="saveAddNew" value="saveAddNew" class="btn btn-success">
 							<i class="fa fa-retweet"></i> Save &amp; Add New
 						</button>
-						<button type="submit" name="saveAddRelease" id="saveAddRelease" class="btn btn-success">
+						<button type="submit" name="save" id="saveAddRelease"  value="saveAddRelease" class="btn btn-success">
 							<i class="fa fa-arrow-up"></i> Save &amp; Add Release
 						</button>
-						<button type="submit" name="saveExit" id="saveExit" class="btn btn-success">
+						<button type="submit" name="save" value="saveExit" id="saveExit" class="btn btn-success">
 							<i class="glyphicon glyphicon-floppy-saved"></i> Save &amp; Exit
 						</button>
+					<?php endif;?>
 					</div>
 				</div>
 			</div>
@@ -64,5 +73,8 @@
 	$(function(){
 		CKEDITOR.replace('description');
 		$('.projectColorPicker').colorpicker();
+		$('.dateTimePicker').datetimepicker({
+			format : 'YYYY-MM-DD'
+		});
 	});
 </script>

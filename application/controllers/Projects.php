@@ -34,14 +34,36 @@ class Projects extends TT_Controller
 	public function create_action(){
 		$name = $this->input->post('name');
 		$color = $this->input->post('color');
-		if($name and $color){
+		$key = $this->input->post('key');
+		if($name and $color and $key and $start_date){
 			$description = $this->input->post('description');
 			$insert = [
 				'name' => $name,
 				'color' => $color,
+				'key' => $key,
+				'start_date' => $start_date,
 				'description' => $description
 			];
-			$this->projects_model->insert($insert);
+			$ret = $this->projects_model->insert($insert);
+			if($ret['status'] == 'OK'){
+				loadProjectsSession();
+				$id = $ret[id];
+				$save = $this->input->post('save');
+				switch($save){
+					case 'saveAddNew' :
+						redirect(base_url('Projects/create'));
+						break;
+					case 'saveAddRelease' :
+						$this->setCurrent($id);
+						redirect(base_url('Releases/create'));
+						break;
+					case 'saveExit' :
+						redirect(base_url('Projects'));
+						break;
+					default :
+						redirect(base_url('Projects/update/'.$id));
+				}
+			}
 		}else{
 			$this->create();
 		}
@@ -59,14 +81,26 @@ class Projects extends TT_Controller
 		$project = $this->projects_model->get_by_id($id);
 		$name = $this->input->post('name');
 		$color = $this->input->post('color');
-		if($name and $color and $id){
+		$description = $this->input->post('description');
+		$key = $this->input->post('key');
+		$start_date = $this->input->post('start_date');
+		if($name and $color and $id and $key and $start_date){
 			$update = [
 				'name' => $name,
-				'color' => $color
+				'color' => $color,
+				'key' => $key,
+				'start_date' => $start_date,
+				'description' => $description
 			];
-			$this->projects_model->update($update, $id);
+			$ret = $this->projects_model->update($update, $id);
+			loadProjectsSession();
+			$message = "Release sucessfully Saved";
+			setMessage($message,'success');
+			redirect(base_url('Projects'));
 		}else{
-			$this->update();
+			$message = "Please fill all fields.";
+			setMessage($message , 'error');
+			redirect(base_url('Projects/update/'.$id));
 		}
 	}
 
@@ -77,4 +111,4 @@ class Projects extends TT_Controller
 		redirect('Dashboard');
 	}
 
-}
+}	

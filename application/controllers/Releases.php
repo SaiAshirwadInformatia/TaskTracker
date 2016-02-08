@@ -63,7 +63,7 @@ class Releases extends TT_Controller
 				'is_active' => $is_active
 			];
 			$ret = $this->releases_model->insert($insert);
-				if($ret['status'] === OK){
+			if($ret['status'] === OK){
 				setMessage('Added new release data successfully');
 				$save = $this->input->post('save');
 				switch ($save) {

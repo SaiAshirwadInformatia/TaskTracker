@@ -7,7 +7,7 @@ if($this->session->userdata('message')):
 
 ?>
 
-<div class="alert alert-<?php echo $message_type?> alert-dismissible" role="alert">
+<div <?php echo 'class="alert alert-'.lcfirst($message_type).' alert-dismissible"' ?> role="alert">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong><?php echo ucfirst($message_type)?>!</strong> <?php echo $message?>
 </div>
