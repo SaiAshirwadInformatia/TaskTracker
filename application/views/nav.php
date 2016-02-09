@@ -66,7 +66,7 @@
                 </li>
                 <li>
                     <a href="<?php base_url('Tasks/create') ?>">
-                        <i class="fa fa-plus-square-o"></i> View Task
+                        <i class="fa fa-plus-square-o"></i> View All Task
                     </a>
                 </li>
                 <li>
@@ -81,7 +81,7 @@
                 </li>
                 <li>
                     <a href="<?php base_url('Tasks/create') ?>">
-                        <i class="fa fa-plus-square-o"></i> Close Task
+                        <i class="fa fa-plus-square-o"></i> Closed Task
                     </a>
                 </li>
             </ul>

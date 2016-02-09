@@ -20,9 +20,14 @@ class Tasks_model extends CI_Model
 		$this->db->get($this->table)->result_array();
 	}
 
-	public function get_by_id($user_id = 1){
+	public function get_by_user_id($user_id = 1){
 		$this->db->where('user_id',$user_id);
 		return $this->db->get('tasks')->result_array();
+	}
+
+	public function get_by_id($id){
+		$this->db->where('id',$id);
+		return $this->db->get('tasks')->row_array();
 	}
 
 	/**

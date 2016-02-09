@@ -42,6 +42,7 @@ class Projects_model extends CI_Model
 	}
 
 	public function update($data, $id){
+		$data['lastmodified_ts'] = date('Y/m/d h:m:s');
 		if($this->db->update('projects',$data,['id' => $id])){
 			return [
 				'status' => OK

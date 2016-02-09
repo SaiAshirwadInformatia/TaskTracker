@@ -3,6 +3,7 @@
 		<h1><?php echo isset($id) ? 'Update': 'Create'?> Release</h1>
 	</section>
 	<div class="content">
+		<?php $this->load->view('inc_bootstrap_alerts') ?>
 		<form action="<?php echo base_url('Releases/' . $action);?>" method="POST">
 			<div class="box box-default">
 				<div class="box-body">
@@ -16,7 +17,7 @@
 							</div>
 							<div class="col-sm-4">
 								<label class="control-label">Project</label>
-								<p class="form-control-static">Task Tracker</p>
+								<p class="form-control-static"><?php echo $currentProject['name']?></p>
 							</div>
 						</div>
 					</div>
@@ -49,8 +50,9 @@
 				</div>
 				<div class="box-footer">
 					<?php if(isset($id)): ?>
-					<input type="hidden" name="id" id="id" value="<?php echo $id?>" />
+					<input type="hidden" name="id" id="id" <?php echo 'value="'.$id.'"'?> />
 					<?php endif; ?>
+					<input type="hidden" name="project_id" id="project_id" <?php echo 'value="'.$currentProject['id'].'"' ?> />
 					<div class="btn-group">
 						<button type="submit" value="save" name="save" id="save" class="btn btn-success">
 							<i class="fa fa-save"></i> Save

@@ -6,8 +6,12 @@ function loadProjectsSession()
 	$CI->load->model('projects_model');
 	$projects = $CI->projects_model->get_all();
 	$CI->session->set_userdata('projects', $projects);
-	if(isset($projects[0])){
-		$CI->session->set_userdata('currentProject', $projects[0]);
+	if(!$CI->session->userdata('flag')){
+		if(isset($projects[0])){
+			$CI->session->set_userdata('currentProject', $projects[0]);
+		}
+		$flag = 1;
+		$CI->session->set_userdata('flag',$flag);
 	}
 }
 

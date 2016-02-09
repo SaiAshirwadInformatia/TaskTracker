@@ -63,8 +63,7 @@ $this->load->view('head');
               </li>
               <li class="footer"><a href="<?php echo base_url('Projects')?>">View all Projects</a></li>
             </ul>
-          </li>      
-    
+          </li> 
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
