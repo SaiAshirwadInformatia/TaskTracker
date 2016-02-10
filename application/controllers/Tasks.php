@@ -17,9 +17,8 @@ class Tasks extends TT_Controller
 	public function index()
 	{
 		$project = $this->session->userdata('currentProject');
-		$releases = $this->releases_model->get_by_project_id($project['id']);
-		//$tasksList = $this->tasks_model->get_by_releases($releases);
-		$tasksList = $this->tasks_model->get_all();
+		$tasksList = $this->tasks_model->get_by_project_id($project['id']);
+		//$tasksList = $this->tasks_model->get_all();
 		$data = [
 			'tasksList' => $tasksList
 		];

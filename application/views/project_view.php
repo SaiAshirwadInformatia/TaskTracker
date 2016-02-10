@@ -21,6 +21,10 @@
 					<dt>Start Date</dt>
 					<dd><?php echo $project['start_date']?></dd>
 				</dl>
+				<dl class="dl-horizontal">
+					<dt>Upcoming Release</dt>
+					<dd><?php echo $release?></dd>
+				</dl>
 			</div>
 			<div class="box-footer">
 				<a href="<?php echo base_url('Projects')?>" class="btn btn-primary btn-sm">Back</a>

@@ -9,7 +9,9 @@ class Releases extends TT_Controller
 	{
 		parent::__construct();
 		$this->load->model([
-			'releases_model'
+			'releases_model',
+			'tasks_model',
+			'projects_model'
 		]);
 		$this->load->library([
 			'form_validation'
@@ -29,6 +31,18 @@ class Releases extends TT_Controller
 		$data = ['releasesList' => $releases];
 		$this->load->view('releases_list', $data);
 		$this->load->view('footer');
+	}
+
+	public function view($id){
+		$release = $this->releases_model->get_by_id($id);
+		$task = $this->tasks_model->release_count_tasks($id);
+		$project = $this->projects_model->get_by_id($release['project_id']);
+		$data = [
+			'release' => $release,
+			'task' => $task,
+			'project' => $project
+		];
+		$this->load->view('release_view',$data);
 	}
 
 	public function create()

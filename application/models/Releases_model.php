@@ -20,6 +20,13 @@ class Releases_model extends CI_Model
 		return $this->db->get('releases')->result_array();
 	}
 
+	public function project_count_releases($project_id){
+		$this->db->where('project_id',$project_id);
+		$this->db->where('is_released','0');
+		$this->db->from('releases');
+		return $this->db->count_all_results();
+	}
+
 	public function get_by_id($id)
 	{
 		$this->db->where('id', $id);

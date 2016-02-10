@@ -6,7 +6,10 @@ class Projects extends TT_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('projects_model');
+		$this->load->model([
+				'projects_model',
+				'releases_model'
+			]);
 		$this->load->view('header');
 		loadProjectsSession();
 	}
@@ -22,7 +25,11 @@ class Projects extends TT_Controller
 	{
 		$projectData = $this->projects_model->get_by_id($id);
 		// Array index in $data below becomes variable to be accessed in view
-		$data = ['project' => $projectData];
+		$release = $this->releases_model->project_count_releases($id);
+		$data = [
+			'project' => $projectData,
+			'release' => $release
+		];
 		$this->load->view('project_view', $data);
 	}
 
