@@ -18,7 +18,7 @@
 						echo '<tr>';
 						echo '<td>' . $project['name'] . '</td>';
 						echo '<td>' . $project['key'] . '</td>';
-						echo '<td>' . $project['color'] . '</td>';
+						echo '<td style="width:45px"><span class="projectColorBlock" style="margin-left:10px;background:' . $project['color'] . '"><span></td>';
 						echo '<td>' . $project['start_date'] . '</td>';
 						echo '<td>';
 						echo '<span class="btn-group">';

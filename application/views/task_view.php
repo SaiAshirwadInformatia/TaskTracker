@@ -27,7 +27,7 @@
 				</dl>
 			</div>
 			<div class="box-footer">
-				<a href="<?php echo base_url('Projects')?>" class="btn btn-primary btn-sm">Back</a>
+				<a href="<?php echo base_url('Tasks')?>" class="btn btn-primary btn-sm">Back</a>
 			</div>
 		</div>
 	</div>

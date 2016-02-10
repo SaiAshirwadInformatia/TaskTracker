@@ -119,13 +119,17 @@ class Releases extends TT_Controller
 				'lastmodified_ts' => $lastmodified_ts,
 				'project_id' => $project_id
 			];
-			$this->releases_model->update($update, $id);
-			setMessage('Successfully updated release data');
-			redirect(base_url('Releases',$release));
+			$ret = $this->releases_model->update($update, $id);
+			if($ret['status'] == 'OK'){
+				setMessage('Successfully updated release data');
+				redirect(base_url('Releases'));
+			}else{
+					$message = "Error({$ret['error']['code']}): " . $ret['error']['message'];
+					setMessage($message, 'error');
+					$this->update($id);
+			}
 		}else{
-			//////We need to pass parameter in update function
-			setMessage('Something went wrong while updating release data', 'error');
-			$this->update($id);
+			setMessage('Please fill all fields','error');
 		}
 	}
 }

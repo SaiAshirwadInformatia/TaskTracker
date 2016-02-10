@@ -79,6 +79,9 @@ class Projects extends TT_Controller
 						redirect(base_url('Projects/update/'.$id));
 						break;
 				}
+			}else{	
+				$message = "Error({$ret['error']['code']}): " . $ret['error']['message'];
+				setMessage($message, 'error');
 			}
 		}else{
 			$message = 'Please fill all fields.';
@@ -115,9 +118,15 @@ class Projects extends TT_Controller
 				'access_token' => $access_token
 			];
 			$ret = $this->projects_model->update($update, $id);
-			$message = "Release sucessfully Saved";
-			setMessage($message,'success');
-			redirect(base_url('Projects'));
+			if($ret['status'] == 'OK'){
+				$message = "Release sucessfully Saved";
+				setMessage($message,'success');
+				redirect(base_url('Projects'));
+			}else{	
+				$message = "Error({$ret['error']['code']}): " . $ret['error']['message'];
+				setMessage($message, 'error');
+				$this->update($id);
+			}
 		}else{
 			$message = "Please fill all fields.";
 			setMessage($message , 'error');

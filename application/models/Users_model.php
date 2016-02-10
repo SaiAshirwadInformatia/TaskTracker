@@ -24,6 +24,10 @@ class Users_model extends CI_Model
 		}
 		return false;
 	}
+	
+	public function get_all(){
+		return $this->db->get('users')->result_array();
+	}
 
 	public function get_by_id($id)
 	{

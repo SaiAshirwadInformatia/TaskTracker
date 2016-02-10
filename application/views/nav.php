@@ -60,27 +60,27 @@
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <a href="<?php base_url('Tasks/create') ?>">
+                    <a href="<?php echo base_url('Tasks/create/') ?>">
                         <i class="fa fa-plus-square-o"></i> Add Task
                     </a>
                 </li>
                 <li>
-                    <a href="<?php base_url('Tasks/create') ?>">
+                    <a href="<?php echo  base_url('Tasks') ?>">
                         <i class="fa fa-plus-square-o"></i> View All Task
                     </a>
                 </li>
                 <li>
-                    <a href="<?php base_url('Tasks/create') ?>">
+                    <a href="<?php echo base_url('Tasks/open_task') ?>">
                         <i class="fa fa-plus-square-o"></i> Open Task
                     </a>
                 </li>
                 <li>
-                    <a href="<?php base_url('Tasks/create') ?>">
+                    <a href="<?php echo base_url('Tasks/unassigned_task') ?>">
                         <i class="fa fa-plus-square-o"></i> Unassigned Task
                     </a>
                 </li>
                 <li>
-                    <a href="<?php base_url('Tasks/create') ?>">
+                    <a href="<?php echo base_url('Tasks/close_task') ?>">
                         <i class="fa fa-plus-square-o"></i> Closed Task
                     </a>
                 </li>

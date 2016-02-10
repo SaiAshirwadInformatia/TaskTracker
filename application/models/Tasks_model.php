@@ -17,7 +17,7 @@ class Tasks_model extends CI_Model
 	public function get_all()
 	{
 		$this->db->order_by($this->id, $this->order);
-		$this->db->get($this->table)->result_array();
+		return $this->db->get($this->table)->result_array();
 	}
 
 	public function get_by_user_id($user_id = 1){
@@ -30,12 +30,37 @@ class Tasks_model extends CI_Model
 		return $this->db->get('tasks')->row_array();
 	}
 
-	/**
-	 *	$data => ['title' => 'Hello', 'description' => 'World']
-	 */
-	public function create($data)
-	{
-		$this->db->insert($this->table, $data);
-		return $this->db->insert_id();
+	public function insert($data){
+		if($this->db->insert($this->table,$data)){
+			return [
+				'status' => OK,
+				'id' => $this->db->insert_id()
+			];
+		}else{
+			return [
+				'status' => KO,
+				'error' => $this->db->error()
+			];
+		}
+	}
+	////////////////////////////////////
+	public function get_by_releases($releases){
+		$this->db->where('release_id',$releases);
+		return $this->db->get('tasks')->result_array();
+	}
+	////////////////////////////////////
+	public function update($data,$id){
+		$data['lastmodified_ts'] = date('Y-m-d h:m:s a');
+		if($this->db->update('tasks',$data,['id' => $id])){
+			return [
+				'status' => OK,
+				'id' => $id
+			];
+		}else{
+			return [
+				'status' => KO,
+				'error' => $this->db->error()
+			];
+		}
 	}
 }

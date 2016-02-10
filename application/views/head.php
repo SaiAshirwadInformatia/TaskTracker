@@ -25,8 +25,8 @@
     <script src="<?php echo base_url('assets/vendor/AdminLTE/bootstrap/js/bootstrap.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/AdminLTE/dist/js/app.min.js'); ?>" ></script>
     <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins//colorpicker/bootstrap-colorpicker.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins//colorpicker/bootstrap-colorpicker.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/colorpicker/bootstrap-colorpicker.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/ckeditor/ckeditor.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/select2/select2.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/moment/moment.js') ?>"></script>
     <script src="<?php echo base_url('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') ?>"></script>
