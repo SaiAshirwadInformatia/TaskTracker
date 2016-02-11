@@ -3,7 +3,6 @@
 class Projects extends TT_Controller
 {
 
-	private $project = $this->session->userdata('currentProject');
 	public function __construct()
 	{
 		parent::__construct();
