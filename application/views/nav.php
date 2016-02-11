@@ -70,17 +70,17 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url('Tasks/open_task') ?>">
+                    <a href="<?php echo base_url('Tasks/open') ?>">
                         <i class="fa fa-plus-square-o"></i> Open Task
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url('Tasks/unassigned_task') ?>">
-                        <i class="fa fa-plus-square-o"></i> Unassigned Task
+                    <a href="<?php echo base_url('Tasks/assigned') ?>">
+                        <i class="fa fa-plus-square-o"></i> Assigned Task
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url('Tasks/close_task') ?>">
+                    <a href="<?php echo base_url('Tasks/closed') ?>">
                         <i class="fa fa-plus-square-o"></i> Closed Task
                     </a>
                 </li>

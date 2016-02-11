@@ -33,7 +33,7 @@
 										echo '<option value="';
 										echo $release['id'];
 										echo '"';
-										if(isset($release_id)): if($release['id'] = $release_id): echo 'selected'; endif;endif;
+										if(isset($release_id)): if($release['id'] == $release_id): echo 'selected'; endif;endif;
 										echo '>';
 										echo $release['name'];
 										echo '</option>';
@@ -75,18 +75,9 @@
 								<?php }	?>
 							</div>
 							<div class="col-sm-3">
-								<label class="control-label">Start Date</label>
+								<label class="control-label">Due Date</label>
 								<div class="input-group date  dateTimePicker">
-									<input type="text" class="form-control" name="start_ts" id="start_ts" <?php echo isset($start_ts)?'value="'.$start_ts.'"':''?> />
-									<span class="input-group-addon">
-										<span class="glyphicon glyphicon-calendar"></span>
-									</span>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<label class="control-label">End Date</label>
-								<div class="input-group date  dateTimePicker">
-									<input type="text" class="form-control" name="end_ts" id="end_ts" <?php echo isset($end_ts)?'value="'.$end_ts.'"':''?> />
+									<input type="text" class="form-control" name="due_date" id="due_date" <?php echo isset($due_date)?'value="'.$due_date	.'"':''?> />
 									<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
 									</span>
@@ -98,7 +89,8 @@
 				<div class="box-footer">
 					<?php if(isset($id)): ?>
 						<input type="hidden" name="id" id="id" value="<?php echo $id ?>" />
-					<?php endif; ?>
+
+					<?php 	endif; ?>
 					<div class="btn-group">
 						<button type="submit" name="save" id="save" class="btn btn-success">
 							<i class="fa fa-save"></i> Save

@@ -88,7 +88,8 @@ class Releases extends TT_Controller
 						redirect(base_url('Releases/create'));
 						break;
 					case 'saveAddTask':
-						redirect(base_url('Tasks/create/' . $ret['id']));
+							$release_id = $ret['id'];
+						redirect(base_url('Tasks/create/'.$release_id));
 						break;
 					case 'saveExit':
 						redirect(base_url('Releases'));

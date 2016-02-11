@@ -25,6 +25,16 @@ class Tasks_model extends CI_Model
 		return $this->db->get('tasks')->result_array();
 	}
 
+	public function get_by_state($project_id,$state){
+		$this->db->select("T.*, R.name AS release_name, R.id AS release_id, P.name AS project_name, P.id AS project_id");
+		$this->db->from("tasks T");
+		$this->db->join("releases R", "R.id = T.release_id");
+		$this->db->join("projects P", "P.id = R.project_id");
+		$this->db->where("P.id", $project_id);
+		$this->db->where("T.state", $state);
+		return $this->db->get()->result_array();
+	}
+
 	public function get_by_id($id){
 		$this->db->where('id',$id);
 		return $this->db->get('tasks')->row_array();

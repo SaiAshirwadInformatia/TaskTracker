@@ -18,7 +18,6 @@ class Tasks extends TT_Controller
 	{
 		$project = $this->session->userdata('currentProject');
 		$tasksList = $this->tasks_model->get_by_project_id($project['id']);
-		//$tasksList = $this->tasks_model->get_all();
 		$data = [
 			'tasksList' => $tasksList
 		];
@@ -31,24 +30,64 @@ class Tasks extends TT_Controller
 		$this->load->view('mytasks_list',$data);
 	}
 
+
+
+	public function open(){
+		$project = $this->session->userdata('currentProject');
+		$tasksList = $this->tasks_model->get_by_state($project['id'],'open');
+		$data = [
+			'tasksList' => $tasksList
+		];
+		$this->load->view('tasks_list', $data);
+	}
+
+	public function assigned(){
+		$project = $this->session->userdata('currentProject');
+		$tasksList = $this->tasks_model->get_by_state($project['id'],'assigned');
+		$data = [
+			'tasksList' => $tasksList
+		];
+		$this->load->view('tasks_list', $data);
+	}
+
+	public function closed(){
+		$project = $this->session->userdata('currentProject');
+		$tasksList = $this->tasks_model->get_by_state($project['id'],'closed');
+		$data = [
+			'tasksList' => $tasksList
+		];
+		$this->load->view('tasks_list', $data);
+	}
+
 	public function view($id){
 		$task = $this->tasks_model->get_by_id($id);
-		$data = ['task' => $task ];
+		$user = $this->users_model->get_by_id($task['user_id']);
+		$assigned_user = $this->users_model->get_by_id($task['assigned_id']);
+		$data = [
+			'task' => $task,
+			'user' => $user,
+			'assigned_user' => $assigned_user
+		 ];
 		$this->load->view('task_view',$data);
 	}
 
-	public function create()
+
+	public function create($release_id = 0)
 	{
 		$project = $this->session->userdata('currentProject');
 		$releasesList = $this->releases_model->get_by_project_id($project['id']);
 		$usersList = $this->users_model->get_all();
+		if(!isset($release_id) and $release_id == 0){
+			$release_id = $this->input->post('release_id');
+		}
 		$data= [
 			'action' => 'create_action',
 			'releasesList' => $releasesList,
 			'usersList' => $usersList,
 			'title' => $this->input->post('title'),
-			'release_id' => $this->input->post('release_id'),
+			'release_id' => $release_id,
 			'type' => $this->input->post('type'),
+			'due_date' => $this->input->post('due_date'),
 			'description' => $this->input->post('description'),
 			'assigned_id' => $this->input->post('assigned_id'),
 			];
@@ -60,9 +99,8 @@ class Tasks extends TT_Controller
 		$type = $this->input->post('type');
 		$release_id = $this->input->post('release_id');
 		$assigned_id = $this->input->post('assigned_id');
-		$start_ts = $this->input->post('start_ts');
-		$end_ts = $this->input->post('end_ts');
-		if($title and $type and $release_id){
+		$due_date = $this->input->post('due_date');
+		if($title and $type and $release_id and $due_date){
 			$description = $this->input->post('description');
 			$data= 
 			[
@@ -71,8 +109,7 @@ class Tasks extends TT_Controller
 				'release_id' => $release_id,
 				'assigned_id' => $assigned_id,
 				'description' => $description,
-				'start_ts' => $start_ts,
-				'end_ts' => $end_ts
+				'due_date' => $due_date
 			];
 			$ret = $this->tasks_model->insert($data);
 
@@ -93,6 +130,7 @@ class Tasks extends TT_Controller
 			}else{	
 				$message = "Error({$ret['error']['code']}): " . $ret['error']['message'];
 				setMessage($message, 'error');
+				$this->create();
 			}
 		}else{
 			setMessage('Please fill all fields.','error');
@@ -118,9 +156,8 @@ class Tasks extends TT_Controller
 		$type = $this->input->post('type');
 		$release_id = $this->input->post('release_id');
 		$assigned_id = $this->input->post('assigned_id');
-		$start_ts = $this->input->post('start_ts');
-		$end_ts = $this->input->post('end_ts');
-		if($title and $type and $release_id){
+		$due_date = $this->input->post('due_date');
+		if($title and $type and $release_id and $due_date){
 			$description = $this->input->post('description');
 			$lastmodified_ts = date('Y-m-d h:m:s a');
 			$data= 
@@ -130,8 +167,7 @@ class Tasks extends TT_Controller
 				'release_id' => $release_id,
 				'assigned_id' => $assigned_id,
 				'description' => $description,
-				'start_ts' => $start_ts,
-				'end_ts' => $end_ts,
+				'due_date' => $due_date,
 				'lastmodified_ts' => $lastmodified_ts
 			];
 			$ret = $this->tasks_model->update($data,$id);
@@ -140,15 +176,12 @@ class Tasks extends TT_Controller
 			}else{	
 				$message = "Error({$ret['error']['code']}): " . $ret['error']['message'];
 				setMessage($message, 'error');
+				$this->update();
 			}
 		}else{
 			setMessage('Please fill all fields.','error');
-			$this->create();
+			$this->update($id);
 		}
 	}
 
-	public function read()
-	{
-
-	}
 }

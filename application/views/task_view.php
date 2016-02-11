@@ -18,6 +18,18 @@
 					<dd><?php echo $task['description']?></dd>
 				</dl>
 				<dl class="dl-horizontal">
+					<dt>Created By</dt>
+					<dd><?php echo $user['fname'].' '.$user['lname']?></dd>
+				</dl>
+				<dl class="dl-horizontal">
+					<dt>Assigned To</dt>
+					<dd><?php if($assigned_user == NULL){ 
+						echo 'This task is not assigned to any user';
+					}else{
+						echo $assigned_user['fname'].' '.$assigned_user['lname'];
+					}?></dd>
+				</dl>
+				<dl class="dl-horizontal">
 					<dt>Start Date</dt>
 					<dd><?php echo $task['start_ts']?></dd>
 				</dl>
