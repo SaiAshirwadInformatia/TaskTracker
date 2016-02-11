@@ -8,18 +8,23 @@ class Auth extends CI_Controller
 		parent::__construct();
 		$this->load->model('users_model');
 		$this->load->library('form_validation');
+		loadProjectsSession();
 	}
 
 	public function login()
 	{
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		if($this->users_model->authenticate($username, $password))
-		{
-			loadProjectsSession();
-			redirect(site_url('Dashboard'));
+		$login = $this->input->post('login');
+		if($login){
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+			if($this->users_model->authenticate($username, $password))
+			{
+				redirect(site_url('Dashboard'));
+			}else{
+				redirect(site_url('Login/failed'));
+			}
 		}else{
-			redirect(site_url('Login/failed'));
+			redirect(base_url('Login'));
 		}
 	}
 

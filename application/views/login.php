@@ -6,7 +6,7 @@
 			</div>
 			<div class="login-box-body">
 				<p class="login-box-msg">Login only Authorized users</p>
-				<form action="<?php echo base_url('Auth/login');?>" method="post">
+				<form action="<?php echo base_url('Auth/login');?>" method="POST">
 					<div class="form-group has-feedback">
 						<input type="text" name="username" class="form-control" placeholder="(ex. smith@gmail.com)" />
         				<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -14,18 +14,31 @@
 					<div class="form-group has-feedback">
 						<input type="password" name="password" placeholder="(ex. ********)" class="form-control" />
 						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-						<div class="row">
-							<div class="col-xs-8">
-								<div class="checkbox icheck">
-            						<label>
-              							<input type="checkbox"> Remember Me
-            						</label>
-          						</div>
-							</div>
-							<div class="col-xs-4">
-		         				<button type="submit" class="btn btn-primary btn-flat">Login</button>
-	        			</div>		
+					</div>
+					<div class="row">
+						<div class="col-xs-9">
+							<div class="checkbox icheck">
+        						<label>
+          							<input type="checkbox"> Remember Me
+        						</label>
+      						</div>
+						</div>
+						<div class="col-xs-3">
+	         				<button type="submit" class="btn btn-primary btn-flat" name="login" id="login" value="login">Login</button>
+        				</div>	
 					</div>
 				</form>
+				<a href="<?php echo base_url('Login/forgotpassword')?>">I forgot my password</a><br>
+			    <a href="<?php echo base_url('Register')?>" class="text-center">Register a new membership</a>
 			</div>
 		</div>
+
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>

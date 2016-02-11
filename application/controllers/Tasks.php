@@ -4,14 +4,14 @@ class Tasks extends TT_Controller
 {
 	public function __construct()
 	{
-		parent::__construct();
+		parent::__construct();	
+		loadProjectsSession();
 		$this->load->model([
 				'tasks_model',
 				'releases_model',
 				'users_model'
 			]);
 		$this->load->view('header');
-		loadProjectsSession();
 	}
 
 	public function index()

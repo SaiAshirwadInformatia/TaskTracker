@@ -65,10 +65,13 @@ $this->load->view('head');
             </ul>
           </li> 
           <!-- User Account: style can be found in dropdown.less -->
+          <?php 
+            $user = $this->session->userdata('user');
+          if(isset($user)):   ?>
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo base_url('assets/images/tiger.jpg');?>" class="user-image" alt="User Image">
-              <span class="hidden-xs">Akshay Mane</span>
+              <span class="hidden-xs"><?php echo $user['fname'].' '.$user['lname']?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -76,8 +79,8 @@ $this->load->view('head');
                 <img src="<?php echo base_url('assets/images/tiger.jpg');?>" class="img-circle" alt="User Image">
 
                 <p>
-                  Akshay Mane- Web Developer
-                  <small>Member since Nov. 2013</small>
+                  <?php echo $user['fname'].' '.$user['lname']?>
+                  <small><?php echo 'Email Id - '.$user['email'] ?></small>
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -91,6 +94,7 @@ $this->load->view('head');
               </li>
             </ul>
           </li>
+        <?php endif;?>
         </ul>
       </div>
     </nav>
