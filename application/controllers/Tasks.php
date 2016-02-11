@@ -2,6 +2,7 @@
 
 class Tasks extends TT_Controller
 {
+	private $currentUser; 	
 	public function __construct()
 	{
 		parent::__construct();	
@@ -12,6 +13,7 @@ class Tasks extends TT_Controller
 				'users_model'
 			]);
 		$this->load->view('header');
+		$this->currentUser = $this->session->userdata('user');
 	}
 
 	public function index()
@@ -24,8 +26,8 @@ class Tasks extends TT_Controller
 		$this->load->view('tasks_list', $data);
 	}
 
-	public function mytasks($user_id = 1){
-		$mytasks_list = $this->tasks_model->get_by_user_id($id);
+	public function mytasks(){
+		$mytasks_list = $this->tasks_model->get_by_user_id($this->currentUser['id']);
 		$data['mytasks_list'] = $mytasks_list;
 		$this->load->view('mytasks_list',$data);
 	}
