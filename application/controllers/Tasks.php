@@ -110,9 +110,15 @@ class Tasks extends TT_Controller
 				'type' => $type,
 				'release_id' => $release_id,
 				'assigned_id' => $assigned_id,
+				'user_id' => $this->currentUser['id'],
 				'description' => $description,
 				'due_date' => $due_date
 			];
+			if($assigned_id and $assigned_id != 0){
+				$data['state'] = 'assigned';
+			}else{
+				$data['state'] = 'Open';
+			}
 			$ret = $this->tasks_model->insert($data);
 
 			if($ret['status'] == 'OK'){
@@ -170,8 +176,14 @@ class Tasks extends TT_Controller
 				'assigned_id' => $assigned_id,
 				'description' => $description,
 				'due_date' => $due_date,
+				'user_id' => $this->currentUser['id'],
 				'lastmodified_ts' => $lastmodified_ts
 			];
+			if($assigned_id and $assigned_id != 0){
+				$data['state'] = 'assigned';
+			}else{
+				$data['state'] = 'Open';
+			}
 			$ret = $this->tasks_model->update($data,$id);
 			if($ret['status'] == 'OK'){
 					redirect(base_url('Tasks'));

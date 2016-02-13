@@ -6,7 +6,7 @@
         <li class="header">MAIN NAVIGATION</li>
         <li>
             <a href="<?php echo base_url('Dashboard') ?>">
-                <i class="fa fa-rocket"></i> Dashboard
+                <i class="fa fa-rocket"></i>  Dashboard
             </a>
         </li>
         <li>

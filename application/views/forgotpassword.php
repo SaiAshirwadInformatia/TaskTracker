@@ -1,5 +1,5 @@
 </head>
-<body>
+<body class="sidebar-mini`">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8">
@@ -11,7 +11,9 @@
 							<input type="email" class="form-control" placeholder="(ex. johnsmith@gmail.com)" name="email" id="email" />
 							<span class="fa fa-envelope form-control-feedback"></span>
 						</div>
-						<button class="btn btn-success">Recover Password</button>
+						<button class="btn btn-success btn-left">Recover Password</button>
+						<a href="<?php echo base_url('Login')?>" class="btn btn-info pull-right">Login</a> 
+						<a href="<?php echo base_url('Login')?>" class="btn btn-info pull-right">Sign In</a>
 					</form>
 				</div>
 			</div>

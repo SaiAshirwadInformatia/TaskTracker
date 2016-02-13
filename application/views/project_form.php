@@ -72,9 +72,13 @@
 <script>
 	$(function(){
 		CKEDITOR.replace('description');
+		$('.date').focus(function(){ 
+			$(this).next().next().click();
+		});
 		$('.projectColorPicker').colorpicker();
 		$('.dateTimePicker').datetimepicker({
 			format : 'YYYY-MM-DD'
 		});
 	});
+
 </script>
