@@ -8,3 +8,4 @@ application/third_party
 assets
 application/config/database.php
 *.sublime-workspace
+application/vendor
