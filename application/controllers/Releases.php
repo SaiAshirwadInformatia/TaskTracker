@@ -23,12 +23,35 @@ class Releases extends TT_Controller
 			redirect('Projects/create');
 		}
 		$this->load->view('header');
+		$this->load->library('pagination');
 	}
 
-	public function index()
+	public function index($start = 0)
 	{
-		$releases = $this->releases_model->get_by_project_id($this->currentProject['id']);
-		$data = ['releasesList' => $releases];
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] ="</ul>";
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+		$config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+		$config['next_tag_open'] = "<li>";
+		$config['next_tagl_close'] = "</li>";
+		$config['prev_tag_open'] = "<li>";
+		$config['prev_tagl_close'] = "</li>";
+		$config['first_tag_open'] = "<li>";
+		$config['first_tagl_close'] = "</li>";
+		$config['last_tag_open'] = "<li>";
+		$config['last_tagl_close'] = "</li>";
+		$config['per_page'] = 6;
+		$config['uri_segment'] = 3;
+		$config['base_url'] = base_url('Releases/index');
+		$config['total_rows'] = $this->releases_model->project_count_releases($this->currentProject['id']);
+		$this->pagination->initialize($config);
+		$releasesList = $this->releases_model->fetch_releases($config['per_page'],$start);
+		$data = [
+			'links' => $this->pagination->create_links(),
+			'releasesList' => $releasesList
+		];
 		$this->load->view('releases_list', $data);
 		$this->load->view('footer');
 	}
@@ -43,6 +66,7 @@ class Releases extends TT_Controller
 			'project' => $project
 		];
 		$this->load->view('release_view',$data);
+		$this->load->view('footer');
 	}
 
 	public function create()

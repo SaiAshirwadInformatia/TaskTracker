@@ -12,7 +12,7 @@ class ReleasesV1_model extends MY_Model
 			'project_id' => 'Project ID required',
 			'start_data' => 'Release start date required'
 		];
-		$this->all = [
+		$this->fields = [
 			'id',
 			'name',
 			'description',
@@ -20,11 +20,7 @@ class ReleasesV1_model extends MY_Model
 			'start_date',
 			'estimated_release_date',
 			'actual_release_date',
-			'is_released',
-			'access_token',
-			'is_active',
-			'creation_ts',
-			'lastmodified_ts'
+			'is_released'
 		];
 
 		parent::__construct(); 

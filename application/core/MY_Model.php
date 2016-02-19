@@ -22,7 +22,7 @@ class MY_Model extends CI_Model implements IRestManager{
 	var $id;
 	var $string_key;
 	var $required;
-	var $all;
+	var $fields;
 
 	public function __construct() 
 	{
@@ -126,34 +126,22 @@ class MY_Model extends CI_Model implements IRestManager{
 	public function search($post_data = []){
 		$ret = [];
 		$error = [];
-		$isValid = false;
+		$isValid = true;
 		if($post_data){
 			foreach ($post_data as $post_key => $post_value) {
-				foreach($this->all as $key){
-					if($post_key == $key){
-						$isValid = true;
-						break;
-					}else{
-						$isValid = false;
-					}
-				}
-				if(!$isValid){
-					$error[] = 'Invalid key '.$post_key;
+				if(!in_array($post_key, $this->fields)){
+					$isValid = false;
+					$error[] = "Invalid key : $post_key";
 				}
 			}
-		}else{
-			$ret = [
-				'error_msg' => 'parameter required'
-			];
-		}
-		if($error){
-			$ret = [
-				'error_msgs' => $error
-			];
 		}
 		if($isValid and isset($post_data)){
 			foreach ($post_data as $post_key => $post_value) {
-				$this->db->like($post_key,$post_value,'after');
+				if(is_numeric($post_value) or is_bool($post_value)){
+					$this->db->where($post_key,$post_value);
+				}else{
+					$this->db->like($post_key,$post_value,'after');
+				}
 			}
 			$ret = $this->db->get($this->table)->result_array();
 			if(!$ret and count($ret) === 0){
@@ -162,6 +150,10 @@ class MY_Model extends CI_Model implements IRestManager{
 					'error_code' => 2005
 				];
 			}
+		}else{
+			$ret = [
+				'error_msgs' => $error
+			];
 		}
 		return $ret;
 	}

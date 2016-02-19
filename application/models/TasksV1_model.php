@@ -13,7 +13,7 @@ class TasksV1_model extends MY_Model
 			'release_id' => 'Release ID required',
 			'user_id' => 'User ID required'
 		];
-		$this->all = [
+		$this->fields = [
 			'id',
 			'title',
 			'description',
@@ -23,9 +23,7 @@ class TasksV1_model extends MY_Model
 			'assigned_id',
 			'due_date',
 			'strat_ts',
-			'end_ts',
-			'creation_ts',
-			'lastmodified_ts'
+			'end_ts'
 		];
 
 		parent::__construct(); 

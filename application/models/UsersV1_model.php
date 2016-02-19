@@ -14,18 +14,14 @@ class UsersV1_model extends MY_Model
 			'username' => 'Username required',
 			'email' => 'Email ID required'
 		];
-		$this->all = [
+		$this->fields = [
 			'id',
 			'fname',
 			'lname',
 			'email',
 			'username',
 			'password',
-			'phone',
-			'creation_ts',
-			'lastmodified_ts',
-			'is_active',
-			'access_token'
+			'phone'
 
 		];
 		parent::__construct();

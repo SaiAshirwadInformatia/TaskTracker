@@ -13,17 +13,12 @@ class ProjectsV1_model extends MY_Model
 			'key' => 'Project key required',
 			'color' => 'Project color required'
 		];
-		$this->all = [
+		$this->fields = [
 			'id',
 			'name',
 			'description',
 			'key',
-			'color',
-			'start_ts',
-			'access_token',
-			'is_active',
-			'creation_ts',
-			'lastmodified_ts'
+			'color'
 		];
 		parent::__construct();
 	}
