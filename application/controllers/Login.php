@@ -19,6 +19,7 @@ class Login extends CI_Controller
 	{
 		$this->load->view('head');
 		$this->load->view('forgotpassword');
+
 	}
 
 	public function failed()
