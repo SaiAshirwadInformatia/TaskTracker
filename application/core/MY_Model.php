@@ -22,6 +22,7 @@ class MY_Model extends CI_Model implements IRestManager{
 	var $id;
 	var $string_key;
 	var $required;
+	var $all;
 
 	public function __construct() 
 	{
@@ -122,9 +123,47 @@ class MY_Model extends CI_Model implements IRestManager{
 		$this->db->delete($this->table);
 	}
 
-	public function search($param = []){
-		$this->db->where($param);
-		return $this->db->get($this->table)->result_array();
+	public function search($post_data = []){
+		$ret = [];
+		$error = [];
+		$isValid = false;
+		if($post_data){
+			foreach ($post_data as $post_key => $post_value) {
+				foreach($this->all as $key){
+					if($post_key == $key){
+						$isValid = true;
+						break;
+					}else{
+						$isValid = false;
+					}
+				}
+				if(!$isValid){
+					$error[] = 'Invalid key '.$post_key;
+				}
+			}
+		}else{
+			$ret = [
+				'error_msg' => 'parameter required'
+			];
+		}
+		if($error){
+			$ret = [
+				'error_msgs' => $error
+			];
+		}
+		if($isValid and isset($post_data)){
+			foreach ($post_data as $post_key => $post_value) {
+				$this->db->like($post_key,$post_value,'after');
+			}
+			$ret = $this->db->get($this->table)->result_array();
+			if(!$ret and count($ret) === 0){
+				$ret = [
+					'error_msg' => 'Row doesn\'t exists',
+					'error_code' => 2005
+				];
+			}
+		}
+		return $ret;
 	}
 
 	public function meta(){
