@@ -2,7 +2,7 @@
 $this->load->view('head');
 ?>
 </head>
-<body class="hold-transition skin-blue sidebar-mini ">
+<body class="hold-transition skin-blue sidebar-mini">
 	<header class="main-header">
     <!-- Logo -->
     <a href="../../index2.html" class="logo">
@@ -99,5 +99,6 @@ $this->load->view('head');
       </div>
     </nav>
   </header>
+  <div class="wrapper">
 
 <?php $this->load->view('nav')?>

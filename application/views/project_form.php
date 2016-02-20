@@ -1,6 +1,6 @@
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Create Project</h1>
+		<h1><?php echo isset($id) ? 'Update' : 'Create'; ?> Project</h1>
 	</section>
 	<div class="content">
 	<?php $this->load->view('inc_bootstrap_alerts');?>

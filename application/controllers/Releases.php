@@ -28,26 +28,11 @@ class Releases extends TT_Controller
 
 	public function index($start = 0)
 	{
-		$config['full_tag_open'] = "<ul class='pagination'>";
-		$config['full_tag_close'] ="</ul>";
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
-		$config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
-		$config['next_tag_open'] = "<li>";
-		$config['next_tagl_close'] = "</li>";
-		$config['prev_tag_open'] = "<li>";
-		$config['prev_tagl_close'] = "</li>";
-		$config['first_tag_open'] = "<li>";
-		$config['first_tagl_close'] = "</li>";
-		$config['last_tag_open'] = "<li>";
-		$config['last_tagl_close'] = "</li>";
-		$config['per_page'] = 6;
-		$config['uri_segment'] = 3;
-		$config['base_url'] = base_url('Releases/index');
-		$config['total_rows'] = $this->releases_model->project_count_releases($this->currentProject['id']);
-		$this->pagination->initialize($config);
-		$releasesList = $this->releases_model->fetch_releases($config['per_page'],$start);
+		$this->paginationConfig['base_url'] = base_url('Releases/index');
+		$this->paginationConfig['total_rows'] = $this->releases_model->project_count_releases($this->currentProject['id']);
+		$this->pagination->initialize($this->paginationConfig);
+		$releasesList = $this->releases_model->fetch_releases_by_project($this->currentProject['id'], 
+			$this->paginationConfig['per_page'], $start);
 		$data = [
 			'links' => $this->pagination->create_links(),
 			'releasesList' => $releasesList

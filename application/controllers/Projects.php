@@ -17,26 +17,10 @@ class Projects extends TT_Controller
 
 	public function index($start = 0)
 	{
-		$config['full_tag_open'] = "<ul class='pagination'>";
-		$config['full_tag_close'] ="</ul>";
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
-		$config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
-		$config['next_tag_open'] = "<li>";
-		$config['next_tagl_close'] = "</li>";
-		$config['prev_tag_open'] = "<li>";
-		$config['prev_tagl_close'] = "</li>";
-		$config['first_tag_open'] = "<li>";
-		$config['first_tagl_close'] = "</li>";
-		$config['last_tag_open'] = "<li>";
-		$config['last_tagl_close'] = "</li>";
-		$config['total_rows'] = $this->projects_model->records_count();
-		$config['per_page'] = 5;
-		$config['uri_segment'] = 3;
-		$config['base_url'] = base_url('Projects/index');
-		$this->pagination->initialize($config);
-		$projectsList = $this->projects_model->fetch_projects($config['per_page'],$start);
+		$this->paginationConfig['base_url'] = base_url('Projects/index');
+		$this->paginationConfig['total_rows'] = $this->projects_model->records_count();
+		$this->pagination->initialize($this->paginationConfig);
+		$projectsList = $this->projects_model->fetch_projects($this->paginationConfig['per_page'],$start);
 		$data = [
 			'projectsList' => $projectsList,
 			'links' => $this->pagination->create_links()

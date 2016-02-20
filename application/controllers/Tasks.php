@@ -13,14 +13,19 @@ class Tasks extends TT_Controller
 				'users_model'
 			]);
 		$this->load->view('header');
+		$this->load->library('pagination');
 		$this->currentUser = $this->session->userdata('user');
 	}
 
-	public function index()
+	public function index($start = 0)
 	{
+		$this->paginationConfig['base_url'] = base_url('Tasks/index');
 		$project = $this->session->userdata('currentProject');
-		$tasksList = $this->tasks_model->get_by_project_id($project['id']);
+		$this->paginationConfig['total_rows'] = $this->tasks_model->project_count_tasks($project['id']);
+		$this->pagination->initialize($this->paginationConfig);
+		$tasksList = $this->tasks_model->fetch_tasks($project['id'], $this->paginationConfig['per_page'],$start);
 		$data = [
+			'links' => $this->pagination->create_links(),
 			'tasksList' => $tasksList
 		];
 		$this->load->view('tasks_list', $data);
