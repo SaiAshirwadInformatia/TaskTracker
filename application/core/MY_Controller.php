@@ -27,7 +27,7 @@ class TT_Controller extends CI_Controller
 	       'first_tagl_close' => '</li>',
 	       'last_tag_open' => '<li>',
 	       'last_tagl_close' => '</li>',
-	       'per_page' => 3,
+	       'per_page' => 1,
 	       'uri_segment' => 3
 		];
 	}

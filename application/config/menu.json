@@ -6,7 +6,7 @@
 	},
 	"my-task" : {
 		"label" : "My Task",
-		"url" : "#baseurl#mytasks",
+		"url" : "#baseurl#Tasks/mytasks",
 		"icon" : "fa fa-tasks" 
 	},
 	"project-board" : {

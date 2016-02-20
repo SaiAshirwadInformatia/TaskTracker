@@ -47,7 +47,6 @@ $this->load->view('head');
                     <?php 
                     foreach ($projects as $proj) {
                         echo '<li>';
-                        
                         echo '<a href="';
                         echo base_url("Projects/setCurrent/" . $proj['id']) . '">';
                         echo '<span class="projectColorBlock" style="background: ' . $proj['color'] . '"></span>';

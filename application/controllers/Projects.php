@@ -2,7 +2,7 @@
 
 class Projects extends TT_Controller
 {
-
+	protected $currentUser;
 	public function __construct()
 	{
 		parent::__construct();
@@ -13,14 +13,17 @@ class Projects extends TT_Controller
 		$this->load->view('header');
 		$this->load->library('pagination');
 		loadProjectsSession();
+		if($this->session->userdata('user')){
+			$this->currentUser = $this->session->userdata('user');
+		}
 	}
 
 	public function index($start = 0)
 	{
 		$this->paginationConfig['base_url'] = base_url('Projects/index');
-		$this->paginationConfig['total_rows'] = $this->projects_model->records_count();
+		$this->paginationConfig['total_rows'] = $this->projects_model->records_count($start,$this->currentUser['id']);
 		$this->pagination->initialize($this->paginationConfig);
-		$projectsList = $this->projects_model->fetch_projects($this->paginationConfig['per_page'],$start);
+		$projectsList = $this->projects_model->fetch_projects($this->paginationConfig['per_page'],$start,$this->currentUser['id']);
 		$data = [
 			'projectsList' => $projectsList,
 			'links' => $this->pagination->create_links()
@@ -148,6 +151,10 @@ class Projects extends TT_Controller
 			setMessage($message , 'error');
 			redirect(base_url('Projects/update/'.$id));
 		}
+	}
+
+	public function board(){
+		
 	}
 
 	public function setCurrent($project_id)

@@ -41,7 +41,6 @@ class Users_model extends CI_Model
 		return $this->db->get('users')->row_array();
 	}
 
-
 	public function insert($data)
 	{
 		$password = rand(1000, 9999);

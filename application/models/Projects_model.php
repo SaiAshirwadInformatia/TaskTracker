@@ -19,21 +19,35 @@ class Projects_model extends CI_Model
 		//2. array $project['name']
 	}
 
-	public function records_count(){
-		return $this->db->count_all('projects');
+	public function get_by_team_member($user_id){
+		$this->db->select("P.*");
+		$this->db->from("projects P");
+		$this->db->join("team_members T","T.team_id = P.team_id");
+		$this->db->join("users U","U.id = T.user_id");
+		$this->db->where("U.id",$user_id);
+		return $this->db->get()->result_array();
+
 	}
 
-	public function fetch_projects($limit, $start) {
-        $this->db->limit($limit, $start);
-        $query = $this->db->get("projects");
+	public function records_count($user_id){
+		$this->db->select("count(*) as total");
+		$this->db->from("projects P");
+		$this->db->join("team_members T","T.team_id = P.team_id");
+		$this->db->join("users U","U.id = T.user_id");
+		$this->db->where("U.id",$user_id);
+		$count = $this->db->get()->row_array();
+		return $count['total'];
+	}
 
-        if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
-                $data[] = $row;
-            }
-            return $data;
-        }
-        return false;
+	public function fetch_projects($limit, $start, $user_id) {
+		$this->db->select("P.*");
+		$this->db->from("projects P");
+		$this->db->join("team_members T","T.team_id = P.team_id");
+		$this->db->join("users U","U.id = T.user_id");
+		$this->db->where("U.id",$user_id);
+        $this->db->limit($limit, $start);
+        return $this->db->get()->result_array();
+        
    }
 
 	public function get_by_id($id)
