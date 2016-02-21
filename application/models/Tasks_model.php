@@ -20,8 +20,11 @@ class Tasks_model extends CI_Model
 		return $this->db->get($this->table)->result_array();
 	}
 
-	public function get_by_user_id($user_id = 0){
-		$this->db->where('user_id',$user_id);
+	public function get_by_user_id($user_id = 0, $limit = null, $start = null){
+		$this->db->where('assigned_id',$user_id);
+		if($limit and $start >= 0){
+			$this->db->limit($limit,$start);
+		}
 		return $this->db->get('tasks')->result_array();
 	}
 
@@ -74,12 +77,15 @@ class Tasks_model extends CI_Model
 		return $result['total'];
 	}
 
-	public function get_by_project_id($project_id){
+	public function get_by_project_id($project_id, $limit = null, $start = null){
 		$this->db->select("T.*, R.name AS release_name, R.id AS release_id, P.name AS project_name, P.id AS project_id");
 		$this->db->from("tasks T");
 		$this->db->join("releases R", "R.id = T.release_id");
 		$this->db->join("projects P", "P.id = R.project_id");
 		$this->db->where("P.id", $project_id);
+		if($limit and $start >= 0){
+			$this->db->limit($limit, $start);
+		}
 		return $this->db->get()->result_array();
 	}
 

@@ -33,10 +33,17 @@ class Tasks extends TT_Controller
 		$this->load->view('footer');
 	}
 
-	public function mytasks(){
-		$mytasks_list = $this->tasks_model->get_by_user_id($this->currentUser['id']);
+	public function mytasks($start = 0){
+		$count = $this->tasks_model->get_by_user_id($this->currentUser['id']);
+		$this->paginationConfig['total_rows'] = count($count);
+		$this->paginationConfig['base_url'] = base_url('Tasks/mytasks');
+		$this->pagination->initialize($this->paginationConfig);
+		$mytasks_list = $this->tasks_model->get_by_user_id($this->currentUser['id'],$this->paginationConfig['per_page'],$start);
 
-		$data['mytasks_list'] = $mytasks_list;
+		$data = [
+			'mytasks_list' => $mytasks_list,
+			'links' => $this->pagination->create_links()
+		];
 		$this->load->view('mytasks_list',$data);
 		$this->load->view('footer');
 	}

@@ -28,7 +28,12 @@
 						}
 					?>
 				</table>
-			<div>
+			</div>
+			<div class="boc-footer">
+				<?php
+					echo $links;
+				?>
+			</div>
 		</div>
 	</div>
 </div>
