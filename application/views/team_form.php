@@ -101,7 +101,6 @@
 	            if (name[1] !== undefined) {
 	                lname = name[1];
 	            }
-	            console.log(fname);
 				$.ajax({
 					async: true,
 					cache: false,
@@ -140,7 +139,6 @@
 				}
 			}
 		}).autocomplete('instance')._renderItem = function(ul, item){
-			console.log(item);
 			return $("<li>")
 				.append('<a href="#">'+item.fname + ' ' + item.lname + '</a>')
 				.appendTo(ul);

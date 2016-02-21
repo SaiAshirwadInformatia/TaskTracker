@@ -117,5 +117,8 @@
 		$('.dateTimePicker').datetimepicker({
 			format : 'YYYY-MM-DD'	
 		});
+		$('#due_date').focus(function(){
+			$(this).next().click();
+		})
 	});
 </script>

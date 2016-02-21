@@ -82,5 +82,11 @@
 		$('.dateTimePicker').datetimepicker({
 			format: 'YYYY-MM-DD'
 		});
+		$('#start_date').focus(function(){
+			$(this).next().click();
+		});
+		$('#estimated_release_date').focus(function(){
+			$(this).next().click();
+		});
 	});
 </script>
