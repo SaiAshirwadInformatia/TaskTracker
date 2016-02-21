@@ -11,7 +11,7 @@ function loadProjectsSession()
         $projects = $CI->projects_model->get_by_team_member($user['id']);
     }
 	$CI->session->set_userdata('projects', $projects);
-	if(!$CI->session->userdata('flag')){
+    if(!$CI->session->userdata('flag') and $CI->session->userdata('logged')){
         if(isset($projects[0])){
             $CI->session->set_userdata('currentProject', $projects[0]);
         }
