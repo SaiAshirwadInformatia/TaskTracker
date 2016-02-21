@@ -21,6 +21,7 @@ class ProjectsV1_model extends MY_Model
 			'color'
 		];
 		parent::__construct();
+		$this->load->database();
 	}
 	/*
 	public function get($param = null)
@@ -32,5 +33,41 @@ class ProjectsV1_model extends MY_Model
 		return ['output' => $ret];
 	}
 	*/
+
+	public function checkKey($param){
+		$this->db->where('key',$param['key']);
+		$project = $this->db->get('projects')->row_array();
+		$ret = [];
+		$error = [];
+		$isValid = true;
+		foreach($param as $key => $value){
+			if($key != 'key'){
+				$isValid = false;
+				$error[] = "Invalid Key : $key";
+				break;
+			}
+		}
+		if($isValid){
+			if(!$project['key']){
+				$ret = [
+					'error_msg' => 'Project key available',
+					'error_code' => 1005,
+					'available' => true
+				];
+			}else{
+				$ret = [
+					'id' => $project['id'],
+					'name' => $project['name'],
+					'available' => false
+				];
+			}
+		}else{
+			$error[] = "Required only Project Key (key)";
+			$ret =[
+			 	'error' =>	$error
+			];
+		}
+		return $ret;
+	}
 
 }

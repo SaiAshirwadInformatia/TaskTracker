@@ -79,6 +79,31 @@
 		$('.dateTimePicker').datetimepicker({
 			format : 'YYYY-MM-DD'
 		});
+		$('#start_date').focus(function(){
+			$(this).next().click();
+		});
+		$('#color').focus(function(){
+			$(this).next().click();
+		});
+		$('#key').blur(function(){
+			var key = $(this).val();
+			$.ajax({
+				async : true,
+				cache : false,
+				url : '<?php echo base_url('Api/V1/projects/checkKey')?>',
+				type : 'POST',
+				data : {
+					key : key
+				},
+				success : function(response) {
+					if(response.error_code){
+						$('#key').parent().addClass("has-success").removeClass("has-error");
+					}else{
+						$('#key').parent().addClass("has-error").removeClass("has-success");
+					}
+				}
+			});
+		});
 	});
 
 </script>
