@@ -8,7 +8,8 @@ class Projects extends TT_Controller
 		parent::__construct();
 		$this->load->model([
 				'projects_model',
-				'releases_model'
+				'releases_model',
+				'teams_model'
 			]);
 		$this->load->view('header');
 		$this->load->library('pagination');
@@ -21,7 +22,7 @@ class Projects extends TT_Controller
 	public function index($start = 0)
 	{
 		$this->paginationConfig['base_url'] = base_url('Projects/index');
-		$this->paginationConfig['total_rows'] = $this->projects_model->records_count($start,$this->currentUser['id']);
+		$this->paginationConfig['total_rows'] = $this->projects_model->records_count($this->currentUser['id']);
 		$this->pagination->initialize($this->paginationConfig);
 		$projectsList = $this->projects_model->fetch_projects($this->paginationConfig['per_page'],$start,$this->currentUser['id']);
 		$data = [
@@ -46,14 +47,16 @@ class Projects extends TT_Controller
 	}
 
 	public function create(){
-
+		$teamList = $this->teams_model->get_by_user_id($this->currentUser['id']);
 		$data = [
 			'action' => 'create_action',
 			'name' => $this->input->post('name'),
 			'key' => $this->input->post('key'),
 			'color' => $this->input->post('color'),
 			'start_date' => $this->input->post('start_date'),
-			'description' => $this->input->post('description')
+			'description' => $this->input->post('description'),
+			'team_id' => $this->input->post('team_id'),
+			'teamList' => $teamList
 				];
 		$this->load->view('project_form',$data);
 		$this->load->view('footer');
@@ -64,7 +67,8 @@ class Projects extends TT_Controller
 		$color = $this->input->post('color');
 		$key = $this->input->post('key');
 		$start_date = $this->input->post('start_date');
-		if($name and $color and $key and $start_date){
+		$team_id = $this->input->post('team_id');
+		if($name and $color and $key and $start_date and $team_id){
 			$description = $this->input->post('description');
 			$is_active = 1;
 			$access_token = password_hash($name.$color, PASSWORD_DEFAULT);
@@ -74,6 +78,7 @@ class Projects extends TT_Controller
 				'key' => $key,
 				'start_date' => $start_date,
 				'description' => $description,
+				'team_id' => $team_id,
 				'access_token' => $access_token,
 				'is_active' => $is_active
 
@@ -111,8 +116,13 @@ class Projects extends TT_Controller
 
 	public function update($id){
 		$project = $this->projects_model->get_by_id($id);
-		$project['action'] = 'update_action';
-		$this->load->view('project_form',$project);
+		$teamList = $this->teams_model->get_by_user_id($this->currentUser['id']);
+		$data = [
+			'project' => $project,
+			'action' => 'update_action',
+			'teamList' => $teamList 
+		];
+		$this->load->view('project_form',$data);
 		$this->load->view('footer');
 	}
 
@@ -122,16 +132,16 @@ class Projects extends TT_Controller
 		$name = $this->input->post('name');
 		$color = $this->input->post('color');
 		$description = $this->input->post('description');
-		$key = $this->input->post('key');
+		$team_id = $this->input->post('team_id');
 		$start_date = $this->input->post('start_date');
 		$is_active = 1;
 		$access_token = password_hash($name.$color);
-		if($name and $color and $id and $key and $start_date){
+		if($name and $color and $id and $start_date and $team_id){
 			$update = [
 				'name' => $name,
 				'color' => $color,
-				'key' => $key,
 				'start_date' => $start_date,
+				'team_id' => $team_id,
 				'description' => $description,
 				'is_active' => $is_active,
 				'access_token' => $access_token

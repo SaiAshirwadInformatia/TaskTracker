@@ -38,3 +38,9 @@
     <script src="<?php echo base_url('assets/vendor/typeahead.js/dist/typeahead.bundle.min.js')?>"></script>
     -->
     <script src="<?php echo base_url('assets/vendor/jquery-ui/jquery-ui.min.js')?>"></script>
+
+    <script src="<?php echo base_url('assets/js/tasktracker.js')?>"></script>
+    <script>
+    tasktracker.baseurl = '<?php echo base_url()?>';
+    tasktracker.apiurl = tasktracker.baseurl + 'api/v1/';
+    </script>

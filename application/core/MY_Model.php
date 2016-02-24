@@ -23,6 +23,7 @@ class MY_Model extends CI_Model implements IRestManager{
 	var $string_key;
 	var $required;
 	var $fields;
+	var $unique;
 
 	public function __construct() 
 	{
@@ -157,6 +158,84 @@ class MY_Model extends CI_Model implements IRestManager{
 		}
 		return $ret;
 	}
+
+	private function identifyKeySet($param)
+	{
+		$identifiedKeySet = [];
+		$paramKeys = array_keys($param);
+		$keyFound = false;
+		$ret = ['missing'=>[], 'unique_fields'=>[]];
+		foreach ($this->unique as $key => $uniqueKeySet) {
+			$isCurrentSet = false;
+			foreach ($uniqueKeySet as $reqKey) {
+				if(in_array($reqKey, $paramKeys)){
+					$isCurrentSet = true;
+				}
+			}
+			if($isCurrentSet)
+			{
+				$keyFound = true;
+				$diffKeySet = array_diff($uniqueKeySet, $paramKeys);
+				if(count($diffKeySet) > 0)
+				{
+					$ret['missing'] = $diffKeySet;
+				}else{
+					$ret['unique_fields'] = $uniqueKeySet;
+				}
+				break;
+			}
+		}
+		if(!$keyFound)
+		{
+			$uniqueFields = [];
+			foreach ($this->unique as $uniqueKeyArr) {
+				$uniqueFields = array_merge($uniqueFields, $uniqueKeyArr);
+			}
+			$ret['missing'] = $uniqueFields;
+		}
+		return $ret;
+	}
+
+	public function isAvailable($param)
+	{
+		$errors = [];
+		$ret = [
+			'errors' => $errors,
+			'error_code' => 1005
+		];
+		$uniqueFields = $this->identifyKeySet($param);
+		
+		if(count($uniqueFields['missing']) > 0)
+		{
+			foreach ($uniqueFields['missing'] as $req_key) {
+				$errors[] = "Missing key: $req_key";
+			}
+		}
+		if(count($errors) > 0)
+		{
+			$ret['errors'] = $errors;
+		}else{
+			foreach ($uniqueFields['unique_fields'] as $req_field) {
+				$this->db->where($req_field, $param[$req_field]);
+			}
+			$isAvailable = $this->db->get($this->table)->num_rows() === 0;
+			if($isAvailable)
+			{
+				$ret = [
+					'available' => true,
+					'msg' => 'You can create item with the provided data'
+				];
+			}else{
+				$ret = [
+					'available' => false,
+					'msg' => 'Please choose some other data for creation, as this already exists'
+				];
+			}
+		}
+
+		return $ret;
+	}
+
 
 	public function meta(){
 

@@ -4,7 +4,7 @@ class Dashboard extends TT_Controller
 {
 	public function __construct()
 	{
-		parent::__construct(false);
+		parent::__construct();
 		loadProjectsSession();
 	}
 

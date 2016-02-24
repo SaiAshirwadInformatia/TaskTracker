@@ -26,7 +26,6 @@
 							<div class="col-sm-3">
 								<label class="label-control">Release</label>
 								<?php if((isset($releasesList) and $releasesList != NULL) or (isset($release_id) and $release_id != NULL)){ ?>
-
 								<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="release_id"	>
 									<?php
 									foreach($releasesList as $release){

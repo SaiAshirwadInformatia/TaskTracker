@@ -1,0 +1,12 @@
+.projectColorBlock
+{
+	width: 14px;
+	height: 14px;
+	border-radius: 7px;
+	display: inline-block;
+	margin-right: 3px;
+	vertical-align: middle;
+}
+.colorpicker{
+	z-index: 1020;
+}
