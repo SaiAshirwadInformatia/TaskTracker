@@ -24,8 +24,30 @@
 								<input type="text" class="form-control" name="team_members" id="team_members" />
 							</div>
 						</div>
-						<div class="row" id="membersContainer">
-
+						<div class="row">
+							<div class="col-sm-3" id="usercolumn">
+								<input id="<?php echo 'member_id_'.$user['id']?>" type="hidden" name="members_id[]" value="<?php echo $user['id']?>" />
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h2 class="panel-title"><?php echo $user['fname'] . ' ' . $user['lname']?></h2>
+									</div>
+									<div class="panel-body">
+										<img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" width = 100% class="img-responsive" >
+									</div>
+									<div class="panel-footer">
+										<button type="button" class="btn btn-danger btn-xs" id="btn-remove">Remove</button>
+										<span style="margin-left : 2px">
+											<select class="select2" style="width:70%"  name="role[]">
+												<option value="owner">Owner</option>
+												<option value="leader">Leader</option>
+												<option value="developer">Developer</option>
+											</select>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div id="membersContainer">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -64,7 +86,14 @@
 		$('.dateTimePicker').datetimepicker({
 			format : 'YYYY-MM-DD'
 		});
+
+
+		$("btn-remove").click(function(){
+			$("userColumn").remove();
+		});
 		
+		$('.select2').select2();
+
 		/*
 		$('#team_members').typeahead(null, {
 			displayKey: 'name',
@@ -125,6 +154,14 @@
 					var imageSrc = $('<img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png">');
 					var panelFooter = $('<div class="panel-footer">');
 					var removeBtn = $('<button type="button" class="btn btn-danger btn-xs">Remove</button>');
+					var span = $('<span style="margin-left : 5px">')
+					var dropdown = $('<select class="select2" style="width:70%" name="role[]">');
+					var option1 = $('<option value="owner">');
+					var option2 = $('<option value="leader">');
+					var option3 = $('<option value="developer">');
+					$(option1).text('Owner');
+					$(option2).text('Leader');
+					$(option3).text('Developer');
 					$(removeBtn).click(function(){
 						$(userColumn).remove();
 					});
@@ -134,8 +171,13 @@
 					$(panelHeader).appendTo(panel);
 					$(panelBody).append(imageSrc).appendTo(panel);				
 					$(panel).appendTo(userColumn);
-					$(panelFooter).append(removeBtn).appendTo(panel);
+					$(option1).appendTo(dropdown);
+					$(option2).appendTo(dropdown);
+					$(option3).appendTo(dropdown);
+					$(dropdown).appendTo(span);
+					$(panelFooter).append(removeBtn).append(span).appendTo(panel);
 					$(userColumn).append(hiddenInput).appendTo('#membersContainer');
+					$('.select2').select2();
 				}
 			}
 		}).autocomplete('instance')._renderItem = function(ul, item){
