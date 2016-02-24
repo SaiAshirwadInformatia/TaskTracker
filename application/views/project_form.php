@@ -86,12 +86,6 @@
 </div>
 <script>
 	$(function(){
-		CKEDITOR.replace('description');
-		$('.colorpicker').colorpicker();
-		
-		$('.dateTimePicker').datetimepicker({
-			format : 'YYYY-MM-DD'
-		});
 		tasktracker.isAvailableValidation({
 			selector: '#name',
 			module: 'projects',
@@ -129,7 +123,32 @@
 		});
 		$(".select2").select2();
 		$("form").submit(function(){
-			return $(".has-error").length === 0;
-		})
+			isValid  = true;
+			if($('#name').val() == ''){
+				$('#name').parent().addClass('has-error');
+				isValid = false;
+			}else{
+				$('#name').parent().removeClass('has-error');
+			}
+			if($('#color').val() == ''){
+				$('#color').parent().addClass('has-error');
+				isValid = false;
+			}else{
+				$('#color').parent().removeClass('has-error');
+			}
+			if($('#key').val() == ''){
+				$('#key').parent().addClass('has-error');
+				isValid = false;
+			}else{
+				$('#key').parent().removeClass('has-error');
+			}
+			if($('#start_date').val() == ''){
+				$('#start_date').parent().addClass('has-error');
+				isValid = false;
+			}else{
+				$('#start_date').parent().removeClass('has-error');
+			}
+			return isValid;
+		});
 	});
 </script>

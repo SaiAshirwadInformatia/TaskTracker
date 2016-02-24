@@ -78,15 +78,27 @@
 
 <script>
 	$(function(){
-		CKEDITOR.replace('description');
-		$('.dateTimePicker').datetimepicker({
-			format: 'YYYY-MM-DD'
-		});
-		$('#start_date').focus(function(){
-			$(this).next().click();
-		});
-		$('#estimated_release_date').focus(function(){
-			$(this).next().click();
+		$('form').submit(function(){
+			isValid  = true;
+			if($('#name').val() == ''){
+				$('#name').parent().addClass('has-error');
+				isValid = false;
+			}else{
+				$('#name').parent().removeClass('has-error');
+			}
+			if($('#start_date').val() == ''){
+				$('#start_date').parent().addClass('has-error');
+				isValid = false;
+			}else{
+				$('#start_date').parent().removeClass('has-error');
+			}
+			if($('#estimated_release_date').val() == ''){
+				$('#estimated_release_date').parent().addClass('has-error');
+				isValid = false;
+			}else{
+				$('#estimated_release_date').parent().removeClass('has-error');
+			}
+			return isValid;
 		});
 	});
 </script>

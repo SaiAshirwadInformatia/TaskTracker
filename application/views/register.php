@@ -77,7 +77,6 @@
             $('#username').parent().addClass('has-error').removeClass('has-success');
           }
         }
-
       });
     });
 

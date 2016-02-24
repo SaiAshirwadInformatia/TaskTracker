@@ -25,7 +25,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-sm-3" id="usercolumn">
+							<div class="col-sm-3" id="userColumn">
 								<input id="<?php echo 'member_id_'.$user['id']?>" type="hidden" name="members_id[]" value="<?php echo $user['id']?>" />
 								<div class="panel panel-primary">
 									<div class="panel-heading">
@@ -78,21 +78,10 @@
 </div>
 <script>
 	$(function(){
-		CKEDITOR.replace('description');
-		$('.date').focus(function(){ 
-			$(this).next().next().click();
-		});
-		$('.projectColorPicker').colorpicker();
-		$('.dateTimePicker').datetimepicker({
-			format : 'YYYY-MM-DD'
-		});
 
-
-		$("btn-remove").click(function(){
-			$("userColumn").remove();
+		$("#btn-remove").click(function(){
+			$("#userColumn").remove();
 		});
-		
-		$('.select2').select2();
 
 		/*
 		$('#team_members').typeahead(null, {
@@ -185,6 +174,17 @@
 				.append('<a href="#">'+item.fname + ' ' + item.lname + '</a>')
 				.appendTo(ul);
 		};
+
+		$('form').submit(function(){
+			isValid  = true;
+			if($('#name').val() == ''){
+				$('#name').parent().addClass('has-error');
+				isValid = false;
+			}else{
+				$('#name').parent().removeClass('has-error');
+			}
+			return isValid;
+		});
 	});
 
 </script>

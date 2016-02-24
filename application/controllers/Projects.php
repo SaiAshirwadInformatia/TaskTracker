@@ -106,6 +106,7 @@ class Projects extends TT_Controller
 			}else{	
 				$message = "Error({$ret['error']['code']}): " . $ret['error']['message'];
 				setMessage($message, 'error');
+				$this->create();
 			}
 		}else{
 			$message = 'Please fill all fields.';

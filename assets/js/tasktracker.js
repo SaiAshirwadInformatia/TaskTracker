@@ -46,8 +46,14 @@ tasktracker.isAvailableValidation = function(options){
  	/**
  	 * Assign onFocus next click events
  	 */
+
+	 CKEDITOR.replace('description');
+	$('.dateTimePicker').datetimepicker({
+		format: 'YYYY-MM-DD'
+	});
  	$('.date input[type=text], .colorpicker input[type=text]').focus(function(){ 
 		$(this).next().click();
 	});
-		
+	$(".select2").select2();
+
  });
