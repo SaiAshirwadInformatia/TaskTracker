@@ -111,6 +111,11 @@
 <script>
 	
 	$(function(){
+		CKEDITOR.replace('description');
+		$('.dateTimePicker').datetimepicker({
+			format: 'YYYY-MM-DD'
+		});
+
 		$('form').submit(function(){
 			isValid  = true;
 			if($('#title').val() == ''){

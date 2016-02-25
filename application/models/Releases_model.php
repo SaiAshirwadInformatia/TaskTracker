@@ -60,7 +60,7 @@ class Releases_model extends CI_Model
 
 	public function update($data, $id)
 	{
-		$data['lastmodified_ts'] = date('Y/m/d h:m:s');
+		$data['lastmodified_ts'] = date('Y/m/d h:i:s');
 		if($this->db->update('releases', $data, ['id' => $id])){
 			return [
 				'status' => OK

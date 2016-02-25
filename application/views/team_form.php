@@ -83,6 +83,11 @@
 			$("#userColumn").remove();
 		});
 
+		CKEDITOR.replace('description');
+		$('.dateTimePicker').datetimepicker({
+			format: 'YYYY-MM-DD'
+		});
+
 		/*
 		$('#team_members').typeahead(null, {
 			displayKey: 'name',

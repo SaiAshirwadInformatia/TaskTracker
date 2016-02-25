@@ -86,6 +86,11 @@
 </div>
 <script>
 	$(function(){
+
+		CKEDITOR.replace('description');
+		$('.dateTimePicker').datetimepicker({
+			format: 'YYYY-MM-DD'
+		});
 		tasktracker.isAvailableValidation({
 			selector: '#name',
 			module: 'projects',
