@@ -5,10 +5,11 @@ class Register extends TT_Controller{
 	public function __construct(){
 		parent::__construct(false);
 		$this->load->model('users_model');
-		$this->load->view('head');
+		
 	}
 
 	public function index(){
+		$this->load->view('head');
 		$data = 
 			[
 				'fname' => $this->input->post('fname'),
@@ -18,6 +19,26 @@ class Register extends TT_Controller{
 				'username' => $this->input->post('username')
 			];	
 		$this->load->view('register',$data);
+	}
+
+	public function checkUsername($username){
+		$user = $this->users_model->get_by_username($username);
+		$ret = [];
+		if ($user['id']) {
+			$ret = [
+				'msg' => 'This username not available',
+				'id' => $user['id'],
+				'email' => $user['email'],
+				'available' => false
+			];
+		}
+		else {
+			$ret = [
+				'msg' => 'This username is available',
+				'available' => true
+			];
+		}
+		$this->output->set_content_type('application/json')->set_output(json_encode($ret));
 	}
 
 	public function action(){

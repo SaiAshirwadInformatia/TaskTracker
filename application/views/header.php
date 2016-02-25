@@ -2,14 +2,14 @@
 $this->load->view('head');
 ?>
 </head>
-<body class="hold-transition skin-blue sidebar-mini ">
+<body class="hold-transition skin-purple   sidebar-mini ">
 	<header class="main-header">
     <!-- Logo -->
-    <a href="../../index2.html" class="logo">
+    <a href="<?php echo base_url('Dashboard')?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>TT</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>T</b>ask <b>T</b>racker</span>
+      <span class="logo-lg"><img src="<?php echo base_url('assets/images/lg_TaskTracker.jpg')?>" /></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">

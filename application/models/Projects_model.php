@@ -19,6 +19,23 @@ class Projects_model extends CI_Model
 		//2. array $project['name']
 	}
 
+	public function records_count(){
+		return $this->db->count_all('projects');
+	}
+
+	public function fetch_projects($limit, $start) {
+        $this->db->limit($limit, $start);
+        $query = $this->db->get("projects");
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+   }
+
 	public function get_by_id($id)
 	{
 		$this->db->where('id', $id);

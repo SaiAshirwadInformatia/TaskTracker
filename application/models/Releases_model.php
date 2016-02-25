@@ -27,6 +27,19 @@ class Releases_model extends CI_Model
 		return $this->db->count_all_results();
 	}
 
+	public function fetch_releases($limit,$start){
+		$this->db->limit($limit, $start);
+        $query = $this->db->get("releases");
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+	}
+
 	public function get_by_id($id)
 	{
 		$this->db->where('id', $id);

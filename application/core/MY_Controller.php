@@ -2,7 +2,6 @@
 
 class TT_Controller extends CI_Controller
 {
-	
 	public function __construct($checkLogin = true)
 	{
 		parent::__construct();

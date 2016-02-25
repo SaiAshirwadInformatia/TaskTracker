@@ -55,11 +55,72 @@
   </div>
 <script>
   $(function () {
+    var usernameAvailable = false;
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
+      increaseArea: '20%' // script
     });
     
+    $('#username').blur(function() {
+      $.ajax({
+        async : true,
+        cache : false,
+        url : '<?php echo base_url('Register/checkUserName')?>/'+$(this).val(),
+        type : 'GET',
+        success : function(response) {
+          usernameAvailable = response.available;
+          if (response.available) {
+            $('#username').parent().addClass('has-success').removeClass('has-error');
+          } 
+          else {
+            $('#username').parent().addClass('has-error').removeClass('has-success');
+          }
+        }
+
+      });
+    });
+
+    $('form').submit(function(){
+      var isValid = true;
+      if($('#fname').val()=='') {
+        isValid = false;
+        $('#fname').parent().addClass('has-error');
+      } else {
+        $('#fname').parent().removeClass('has-error');
+      }
+
+      if($('#lname').val()=='') {
+        isValid = false;
+        $('#lname').parent().addClass('has-error');
+      }
+      else {
+        $('#lname').parent().removeClass('has-error');
+      }
+
+      if($('#username').val()=='') {
+        isValid = false;
+        $('#username').parent().addClass('has-error');
+      }
+      else {
+        $('#username').parent().removeClass('has-error');
+      }
+
+      if($('#email').val()=='') {
+        isValid = false;
+        $('#email').parent().addClass('has-error');
+      }
+      else {
+        $('#email').parent().removeClass('has-error');
+      }
+
+      if(!usernameAvailable){
+        $('#username').focus();
+        isValid = false;
+      }
+      console.log("is valid status: " + isValid);
+      return isValid;
+    });
+
   });
 </script>

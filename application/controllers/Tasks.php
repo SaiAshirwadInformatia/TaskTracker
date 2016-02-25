@@ -24,12 +24,14 @@ class Tasks extends TT_Controller
 			'tasksList' => $tasksList
 		];
 		$this->load->view('tasks_list', $data);
+		$this->load->view('footer');
 	}
 
 	public function mytasks(){
 		$mytasks_list = $this->tasks_model->get_by_user_id($this->currentUser['id']);
 		$data['mytasks_list'] = $mytasks_list;
 		$this->load->view('mytasks_list',$data);
+		$this->load->view('footer');
 	}
 
 
@@ -41,6 +43,7 @@ class Tasks extends TT_Controller
 			'tasksList' => $tasksList
 		];
 		$this->load->view('tasks_list', $data);
+		$this->load->view('footer');
 	}
 
 	public function assigned(){
@@ -50,6 +53,7 @@ class Tasks extends TT_Controller
 			'tasksList' => $tasksList
 		];
 		$this->load->view('tasks_list', $data);
+		$this->load->view('footer');
 	}
 
 	public function closed(){
@@ -59,6 +63,7 @@ class Tasks extends TT_Controller
 			'tasksList' => $tasksList
 		];
 		$this->load->view('tasks_list', $data);
+		$this->load->view('footer');
 	}
 
 	public function view($id){
@@ -71,6 +76,7 @@ class Tasks extends TT_Controller
 			'assigned_user' => $assigned_user
 		 ];
 		$this->load->view('task_view',$data);
+		$this->load->view('footer');
 	}
 
 
@@ -94,6 +100,7 @@ class Tasks extends TT_Controller
 			'assigned_id' => $this->input->post('assigned_id'),
 			];
 		$this->load->view('task_form',$data);
+		$this->load->view('footer');
 	}
 
 	public function create_action(){
@@ -156,6 +163,7 @@ class Tasks extends TT_Controller
 		$task['releasesList'] = $releasesList;
 		$task['usersList'] = $usersList;
 		$this->load->view('task_form',$task);
+		$this->load->view('footer');
 	}
 
 	public function update_action(){
