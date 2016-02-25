@@ -3,6 +3,7 @@
 class Tasks extends TT_Controller
 {
 	private $currentUser; 	
+	private $currentProject;
 	public function __construct()
 	{
 		parent::__construct();	
@@ -13,54 +14,79 @@ class Tasks extends TT_Controller
 				'users_model'
 			]);
 		$this->load->view('header');
+		$this->load->library('pagination');
 		$this->currentUser = $this->session->userdata('user');
+		$this->currentProject = $this->session->userdata('currentProject');
 	}
 
-	public function index()
-	{
-		$project = $this->session->userdata('currentProject');
-		$tasksList = $this->tasks_model->get_by_project_id($project['id']);
+	public function index($start = 0)
+	{	
+		$this->paginationConfig['total_rows'] = $this->tasks_model->project_count_tasks($this->currentProject['id']);
+		$this->paginationConfig['base_url'] = base_url('Tasks/index');
+		$this->pagination->initialize($this->paginationConfig);
+		$tasksList = $this->tasks_model->fetch_tasks($this->currentProject['id'], $this->paginationConfig['per_page'],$start);
 		$data = [
+			'links' => $this->pagination->create_links(),
 			'tasksList' => $tasksList
 		];
 		$this->load->view('tasks_list', $data);
 		$this->load->view('footer');
 	}
 
-	public function mytasks(){
-		$mytasks_list = $this->tasks_model->get_by_user_id($this->currentUser['id']);
-		$data['mytasks_list'] = $mytasks_list;
+	public function mytasks($start = 0){
+		$count = $this->tasks_model->get_by_user_id($this->currentUser['id']);
+		$this->paginationConfig['total_rows'] = count($count);
+		$this->paginationConfig['base_url'] = base_url('Tasks/mytasks');
+		$this->pagination->initialize($this->paginationConfig);
+		$mytasks_list = $this->tasks_model->get_by_user_id($this->currentUser['id'],$this->paginationConfig['per_page'],$start);
+
+		$data = [
+			'mytasks_list' => $mytasks_list,
+			'links' => $this->pagination->create_links()
+		];
 		$this->load->view('mytasks_list',$data);
 		$this->load->view('footer');
 	}
 
 
 
-	public function open(){
-		$project = $this->session->userdata('currentProject');
-		$tasksList = $this->tasks_model->get_by_state($project['id'],'open');
+	public function open($start = 0){
+		$count =  $this->tasks_model->get_by_state($this->currentProject['id'],'open');
+		$this->paginationConfig['total_rows'] = count($count);
+		$this->paginationConfig['base_url'] = base_url('Tasks/open');
+		$this->pagination->initialize($this->paginationConfig);
+		$tasksList = $this->tasks_model->get_by_state($this->currentProject['id'],'open',$this->paginationConfig['per_page'],$start);
 		$data = [
-			'tasksList' => $tasksList
+			'tasksList' => $tasksList,
+			'links' => $this->pagination->create_links()
 		];
 		$this->load->view('tasks_list', $data);
 		$this->load->view('footer');
 	}
 
-	public function assigned(){
-		$project = $this->session->userdata('currentProject');
-		$tasksList = $this->tasks_model->get_by_state($project['id'],'assigned');
+	public function unassigned($start = 0){
+		$count =  $this->tasks_model->get_by_state($this->currentProject['id'],'unassigned');
+		$this->paginationConfig['total_rows'] = count($count);
+		$this->paginationConfig['base_url'] = base_url('Tasks/unassigned');
+		$this->pagination->initialize($this->paginationConfig);
+		$tasksList = $this->tasks_model->get_by_state($this->currentProject['id'],'unassigned',$this->paginationConfig['per_page'],$start);
 		$data = [
-			'tasksList' => $tasksList
+			'tasksList' => $tasksList,
+			'links' => $this->pagination->create_links()
 		];
 		$this->load->view('tasks_list', $data);
 		$this->load->view('footer');
 	}
 
 	public function closed(){
-		$project = $this->session->userdata('currentProject');
-		$tasksList = $this->tasks_model->get_by_state($project['id'],'closed');
+		$count =  $this->tasks_model->get_by_state($this->currentProject['id'],'closed');
+		$this->paginationConfig['total_rows'] = count($count);
+		$this->paginationConfig['base_url'] = base_url('Tasks/closed');
+		$this->pagination->initialize($this->paginationConfig);
+		$tasksList = $this->tasks_model->get_by_state($this->currentProject['id'],'closed');
 		$data = [
-			'tasksList' => $tasksList
+			'tasksList' => $tasksList,
+			'links' => $this->pagination->create_links()
 		];
 		$this->load->view('tasks_list', $data);
 		$this->load->view('footer');

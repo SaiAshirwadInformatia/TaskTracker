@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/vendor/AdminLTE/plugins/select2/select2.min.css')?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') ?> "/>
     <link rel="stylesheet" href="<?php echo base_url('assets/vendor/AdminLTE/plugins/iCheck/square/blue.css') ?> "/>
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendor/jquery-ui/themes/base/jquery-ui.min.css')?>" />
+    
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css')?>" />
 
     <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"> </script>
@@ -32,3 +34,13 @@
     <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/iCheck/icheck.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/moment/moment.js') ?>"></script>
     <script src="<?php echo base_url('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') ?>"></script>
+    <!--
+    <script src="<?php echo base_url('assets/vendor/typeahead.js/dist/typeahead.bundle.min.js')?>"></script>
+    -->
+    <script src="<?php echo base_url('assets/vendor/jquery-ui/jquery-ui.min.js')?>"></script>
+
+    <script src="<?php echo base_url('assets/js/tasktracker.js')?>"></script>
+    <script>
+    tasktracker.baseurl = '<?php echo base_url()?>';
+    tasktracker.apiurl = tasktracker.baseurl + 'api/v1/';
+    </script>

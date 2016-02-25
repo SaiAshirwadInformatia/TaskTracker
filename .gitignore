@@ -5,7 +5,10 @@
 !*/cache/index.html
 !*/cache/.htaccess
 application/third_party
-assets
+assets/vendor
+assets/images
 application/config/database.php
 *.sublime-workspace
 application/vendor
+npm-debug.log
+.htaccess

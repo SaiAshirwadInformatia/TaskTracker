@@ -15,7 +15,8 @@
 	},
 	"require": {
 		"php": ">=5.2.4",
-		"mandrill/mandrill": "~1.0"
+		"mandrill/mandrill": "~1.0",
+		"saiashirwadinformatia/app-menu-builder": "^0.1.0"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"

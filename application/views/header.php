@@ -2,7 +2,7 @@
 $this->load->view('head');
 ?>
 </head>
-<body class="hold-transition skin-purple   sidebar-mini ">
+<body class="hold-transition skin-blue sidebar-mini">
 	<header class="main-header">
     <!-- Logo -->
     <a href="<?php echo base_url('Dashboard')?>" class="logo">
@@ -47,7 +47,6 @@ $this->load->view('head');
                     <?php 
                     foreach ($projects as $proj) {
                         echo '<li>';
-                        
                         echo '<a href="';
                         echo base_url("Projects/setCurrent/" . $proj['id']) . '">';
                         echo '<span class="projectColorBlock" style="background: ' . $proj['color'] . '"></span>';
@@ -99,5 +98,6 @@ $this->load->view('head');
       </div>
     </nav>
   </header>
+  <div class="wrapper">
 
 <?php $this->load->view('nav')?>

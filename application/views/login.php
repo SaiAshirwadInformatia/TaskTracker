@@ -1,4 +1,6 @@
 	</head>
+
+		<?php $this->load->view('inc_bootstrap_alerts');?>
 	<body class="hold-transition login-page">
 		<div class="login-box">
 			<div class="login-logo">

@@ -19,7 +19,16 @@ class Auth extends CI_Controller
 			$password = $this->input->post('password');
 			if($this->users_model->authenticate($username, $password))
 			{
-				redirect(site_url('Dashboard'));
+				$user = $this->session->userdata('user');
+				if($user['lastlogin_ts'] == NULL){
+					redirect(base_url('Users/setPassword/'.$user['access_token']));
+				}else{
+					$data = [
+						'lastlogin_ts' => date('Y/m/d h:i:s')
+					];
+					$this->users_model->lastLogin($data);
+					redirect(site_url('Dashboard'));
+				}
 			}else{
 				redirect(site_url('Login/failed'));
 			}

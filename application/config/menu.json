@@ -1,0 +1,101 @@
+{
+	"dashboard" : {
+		"label" : "Dashboard",
+		"url" : "#baseurl#Dashboard",
+		"icon" : "fa fa-rocket"
+	},
+	"my-task" : {
+		"label" : "My Task",
+		"url" : "#baseurl#Tasks/mytasks",
+		"icon" : "fa fa-tasks" 
+	},
+	"project-board" : {
+		"label" : "Project Board",
+		"url" : "#baseurl#Projects/board",
+		"icon" : "fa fa-fighter-jet"
+	},
+	"teams" : {
+		"label" : "Teams",
+		"url" : "#",
+		"icon" : "fa fa-users",
+		"children" : {
+			"add-team" : {
+				"label" : "Add Team",
+				"url" : "#baseurl#Teams/create",
+				"icon" : "fa fa-plus-square-o"
+			},
+			"view-teams" : {
+				"label" : "View Teams",
+				"url" : "#baseurl#Teams",
+				"icon" : "fa fa-th-list"
+			}
+		}
+
+	},
+	"projects" : {
+		"label" : "Projects",
+		"url" : "#",
+		"icon" : "fa fa-rocket",
+		"children" : {
+			"add-project" : {
+				"label" : "Add Project",
+				"url" : "#baseurl#Projects/create",
+				"icon" : "fa fa-plus-square-o"
+			},
+			"view-projects" : {
+				"label" : "View Projects",
+				"url" : "#baseurl#Projects",
+				"icon" : "fa fa-th-list"
+			}
+		}
+	},
+	"releases" : {
+		"label" : "Releases",
+		"url" : "#",
+		"icon" : "fa fa-arrow-up",
+		"children" : {
+			"add-release" : {
+				"label" : "Add Release",
+				"url" : "#baseurl#Releases/create",
+				"icon" : "fa fa-plus-square-o"
+			},
+			"view-releases" : {
+				"label" : "View Releases",
+				"url" : "#baseurl#Releases",
+				"icon" : "fa fa-th-list"
+			}
+		}
+	},
+	"tasks" : {
+		"label" : "Tasks",
+		"url" : "#",
+		"icon" : "fa fa-tasks",
+		"children" : {
+			"add-task" : {
+				"label" : "Add Task",
+				"url" : "#baseurl#Tasks/create",
+				"icon" : "fa fa-plus-square-o"
+			},
+			"view-task" : {
+				"label" : "View Tasks",
+				"url" : "#baseurl#Tasks",
+				"icon" : "fa fa-th-list"
+			},
+			"open-task" : {
+				"label" : "Open Tasks",
+				"url" : "#baseurl#Tasks/open",
+				"icon" : "fa fa-th-list"
+			},
+			"unassigned-task" : {
+				"label" : "Unassigned Tasks",
+				"url" : "#baseurl#Tasks/unassigned",
+				"icon" : "fa fa-th-list"
+			},
+			"closed-task" : {
+				"label" : "Closed Tasks",
+				"url" : "#baseurl#Tasks/closed",
+				"icon" : "fa fa-th-list"
+			}
+		}
+	}
+}

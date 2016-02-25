@@ -31,6 +31,11 @@
 					?>
 				</table>
 			</div>
+			<div class="box-footer">
+				<?php
+					echo $links;
+				?>
+			</div> 
 		</div>
 	</div>
 </div>

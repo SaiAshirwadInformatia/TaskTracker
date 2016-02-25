@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 class ProjectsV1_model extends MY_Model
 {
@@ -20,7 +20,17 @@ class ProjectsV1_model extends MY_Model
 			'key',
 			'color'
 		];
+		$this->unique = [
+			'key' => [
+				'key'
+			],
+			'name_team' => [
+				'name',
+				'team_id'
+			]
+		];
 		parent::__construct();
+		$this->load->database();
 	}
 	/*
 	public function get($param = null)
@@ -32,5 +42,67 @@ class ProjectsV1_model extends MY_Model
 		return ['output' => $ret];
 	}
 	*/
+
+	public function isKeyAvailable($param)
+	{
+		$ret = [
+			'error_msg' => 'Please provide param key to validate',
+			'error_code' => 1005
+		];
+		if(isset($param['key']))
+		{
+			$this->db->where('key', $param['key']);
+			$isAvailable = $this->db->get($this->table)->num_rows() === 0;
+			if($isAvailable)
+			{
+				$ret = [
+					'msg' => "Key ({$param['key']}) can be used for Project creatio",
+					'available' => true
+				];
+			}else{
+				$ret = [
+					'msg' => "Key ({$param['key']}) already used by some project",
+					'available' => false
+				];
+			}
+		}
+		return $ret;
+	}
+
+	public function checkKey($param){
+		$this->db->where('key',$param['key']);
+		$project = $this->db->get('projects')->row_array();
+		$ret = [];
+		$error = [];
+		$isValid = true;
+		foreach($param as $key => $value){
+			if($key != 'key'){
+				$isValid = false;
+				$error[] = "Invalid Key : $key";
+				break;
+			}
+		}
+		if($isValid){
+			if(!$project['key']){
+				$ret = [
+					'error_msg' => 'Project key available',
+					'error_code' => 1005,
+					'available' => true
+				];
+			}else{
+				$ret = [
+					'id' => $project['id'],
+					'name' => $project['name'],
+					'available' => false
+				];
+			}
+		}else{
+			$error[] = "Required only Project Key (key)";
+			$ret =[
+			 	'error' =>	$error
+			];
+		}
+		return $ret;
+	}
 
 }

@@ -25,6 +25,8 @@
     "font-awesome": "^4.5.0",
     "Ionicons": "ionicons#~2.0.1",
     "eonasdan-bootstrap-datetimepicker": "~4.17.37",
-    "select2": "~4.0.1"
+    "select2": "~4.0.1",
+    "typeahead.js": "~0.11.1",
+    "jquery-ui": "^1.11.4"
   }
 }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0f48d4a8d6793aaad889075fe4aebbd6",
-    "content-hash": "f1656e2491edc7f1043f1b75e5f97bc4",
+    "hash": "5dbb817d6355fb78062f2f2b69a60a0a",
+    "content-hash": "a0ad5d531bbd98551bebc2c5e4d48a3e",
     "packages": [
         {
             "name": "mandrill/mandrill",
@@ -49,6 +49,51 @@
                 "email"
             ],
             "time": "2015-09-22 13:58:03"
+        },
+        {
+            "name": "saiashirwadinformatia/app-menu-builder",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SaiAshirwadInformatia/AppMenuBuilder.git",
+                "reference": "e51a600af9f692f2e8e36f4ddc8aeec701fa1889"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SaiAshirwadInformatia/AppMenuBuilder/zipball/e51a600af9f692f2e8e36f4ddc8aeec701fa1889",
+                "reference": "e51a600af9f692f2e8e36f4ddc8aeec701fa1889",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "saiashirwadinformatia\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rohan Rajan Sakhale",
+                    "email": "rs@saiashirwad.com",
+                    "homepage": "http://saiashirwad.com"
+                }
+            ],
+            "description": "Build menu more easily with configurations",
+            "homepage": "http://saiashirwad.com",
+            "keywords": [
+                "application menu",
+                "menu builder"
+            ],
+            "time": "2016-02-19 07:08:04"
         }
     ],
     "packages-dev": [

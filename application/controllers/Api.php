@@ -57,6 +57,10 @@ class API extends CI_Controller{
 			];
 		}
 		if($ret and count($ret) > 0){
+			if(isset($ret['error_code']))
+			{
+				$this->output->set_status_header(500);
+			}
 			$this->output->set_content_type('application/json')->set_output(json_encode($ret));
 		}
 	}

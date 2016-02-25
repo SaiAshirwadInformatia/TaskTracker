@@ -26,7 +26,6 @@
 							<div class="col-sm-3">
 								<label class="label-control">Release</label>
 								<?php if((isset($releasesList) and $releasesList != NULL) or (isset($release_id) and $release_id != NULL)){ ?>
-
 								<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="release_id"	>
 									<?php
 									foreach($releasesList as $release){
@@ -55,7 +54,7 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-sm-3">
-								<label class="label-control">Assign To</label>
+								<label class="label-control" id="assigned_id">Assign To</label>
 								<?php if(isset($usersList) and $usersList != NULL){ ?>
 
 								<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="assigned_id"	>
@@ -110,12 +109,28 @@
 	</div>
 </div>
 <script>
+	
 	$(function(){
 		CKEDITOR.replace('description');
-		$('.projectColorPicker').colorpicker();
-		$('.select2').select2();
 		$('.dateTimePicker').datetimepicker({
-			format : 'YYYY-MM-DD'	
+			format: 'YYYY-MM-DD'
 		});
-	});
+
+		$('form').submit(function(){
+			isValid  = true;
+			if($('#title').val() == ''){
+				$('#title').parent().addClass('has-error');
+				isValid = false;
+			}else{
+				$('#title').parent().removeClass('has-error');
+			}
+			if($('#due_date').val() == ''){
+				$('#due_date').parent().addClass('has-error');
+				isValid = false;
+			}else{
+				$('#due_date').parent().removeClass('has-error');
+			}
+			return isValid;
+		});
+	})
 </script>
