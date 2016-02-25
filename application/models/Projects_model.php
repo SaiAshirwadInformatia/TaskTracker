@@ -29,6 +29,12 @@ class Projects_model extends CI_Model
 
 	}
 
+	public function get_projects_by_team_id($team_id){
+		$this->db->where('team_id',$team_id);
+		return $this->db->get('projects')->result_array();
+	}
+
+
 	public function records_count($user_id){
 		$this->db->select("count(*) as total");
 		$this->db->from("projects P");
@@ -55,6 +61,7 @@ class Projects_model extends CI_Model
 		$this->db->where('id', $id);
 		return $this->db->get('projects')->row_array();
 	}
+
 
 	public function insert($data){
 		$status = $this->db->insert('projects',$data);

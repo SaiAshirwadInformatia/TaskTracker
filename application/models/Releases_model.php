@@ -23,10 +23,22 @@ class Releases_model extends CI_Model
 	
 	
 	public function project_count_releases($project_id){
+		$task = [];
 		$this->db->where('project_id',$project_id);
 		$this->db->where('is_released','0');
-		$this->db->from('releases');
-		return $this->db->count_all_results();
+		$releases = $this->db->get('releases')->result_array();
+		foreach ($releases as $release) {
+			if($release){
+				$this->db->where('release_id',$release['id']);
+				$this->db->from('tasks');
+				$task[$release['id']] = $this->db->count_all_results();
+			}
+		}
+		$data = [
+			'releasesList' => $releases,
+			'task' => $task
+		];
+		return $data;
 	}
 
 	public function fetch_releases_by_project($project_id, $limit, $start){

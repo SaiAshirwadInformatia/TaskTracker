@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 11, 2016 at 11:27 PM
+-- Generation Time: Feb 26, 2016 at 02:16 PM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.14
+-- PHP Version: 5.6.18-1+deb.sury.org~trusty+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,6 +23,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `campaigns`
+--
+
+CREATE TABLE IF NOT EXISTS `campaigns` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(10) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `html` text NOT NULL,
+  `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `projects`
 --
 
@@ -32,24 +47,31 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `description` text NOT NULL,
   `key` varchar(128) NOT NULL,
   `color` varchar(64) NOT NULL,
+  `team_id` int(11) NOT NULL,
   `start_date` date NOT NULL,
   `access_token` varchar(256) NOT NULL,
   `is_active` int(1) NOT NULL,
   `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastmodified_ts` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `key` (`key`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `name`, `description`, `key`, `color`, `start_date`, `access_token`, `is_active`, `creation_ts`, `lastmodified_ts`) VALUES
-(1, 'Android', '<p><strong>Android</strong>&nbsp;is a&nbsp;<a href="https://en.wikipedia.org/wiki/Mobile_operating_system">mobile operating system</a>&nbsp;(OS) currently developed by&nbsp;<a href="https://en.wikipedia.org/wiki/Google">Google</a>, based on the&nbsp;<a href="https://en.wikipedia.org/wiki/Linux_kernel">Linux kernel</a>&nbsp;and designed primarily for&nbsp;<a href="https://en.wikipedia.org/wiki/Touchscreen">touchscreen</a>&nbsp;mobile devices such as&nbsp;<a href="https://en.wikipedia.org/wiki/Smartphone">smartphones</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/Tablet_computer">tablets</a>. Android&#39;s&nbsp;<a href="https://en.wikipedia.org/wiki/User_interface">user interface</a>&nbsp;is mainly based on&nbsp;<a href="https://en.wikipedia.org/wiki/Direct_manipulation_interface">direct manipulation</a>, using touch gestures that loosely correspond to real-world actions, such as swiping, tapping and pinching, to manipulate on-screen objects, along with a&nbsp;<a href="https://en.wikipedia.org/wiki/Virtual_keyboard">virtual keyboard</a>&nbsp;(or a physical one, on older Android devices) for text input. In addition to touchscreen devices, Google has further developed&nbsp;<a href="https://en.wikipedia.org/wiki/Android_TV">Android TV</a>&nbsp;for televisions,&nbsp;<a href="https://en.wikipedia.org/wiki/Android_Auto">Android Auto</a>&nbsp;for cars, and&nbsp;<a href="https://en.wikipedia.org/wiki/Android_Wear">Android Wear</a>&nbsp;for wrist watches, each with a specialized user interface. Variants of Android are also used on&nbsp;<a href="https://en.wikipedia.org/wiki/Laptop">notebooks</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Video_game_console">game consoles</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Digital_camera">digital cameras</a>, and other electronics. As of 2015, Android has the largest&nbsp;<a href="https://en.wikipedia.org/wiki/Installed_base">installed base</a>&nbsp;of all operating systems.<a href="https://en.wikipedia.org/wiki/Android_(operating_system)#cite_note-manjoomurky-13">[11]</a></p>\r\n', 'A', '#1827a5', '2016-02-10', '', 1, '2016-02-07 01:28:06', '2016-02-09 20:32:12'),
-(2, 'Java', '<p>This is JAVA</p>\r\n', 'J', '#e20606', '2016-02-08', '', 0, '2016-02-08 14:27:46', NULL),
-(7, 'OAracle', '<p>The&nbsp;<strong>Oracle Corporation</strong>&nbsp;is an American&nbsp;<a href="https://en.wikipedia.org/wiki/Multinational_corporation">global</a>&nbsp;computer technology corporation, headquartered in<a href="https://en.wikipedia.org/wiki/Redwood_City,_California">Redwood City, California</a>. The company primarily specializes in developing and marketing&nbsp;<a href="https://en.wikipedia.org/w/index.php?title=Database_software_and_technology&amp;action=edit&amp;redlink=1">database software and technology</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Computer_hardware">computer hardware</a>&nbsp;systems and&nbsp;<a href="https://en.wikipedia.org/wiki/Enterprise_software">enterprise software</a>&nbsp;products &ndash; particularly&nbsp;<a href="https://en.wikipedia.org/wiki/Oracle_Database">its own brands of database management systems</a>. In 2011 Oracle was the&nbsp;<a href="https://en.wikipedia.org/wiki/List_of_the_largest_software_companies">second-largest software maker</a>by revenue, after&nbsp;<a href="https://en.wikipedia.org/wiki/Microsoft">Microsoft</a>.<a href="https://en.wikipedia.org/wiki/Oracle_Corporation#cite_note-4">[4]</a></p>\r\n\r\n<p>The company also develops and builds tools for&nbsp;<a href="https://en.wikipedia.org/wiki/Database">database</a>&nbsp;development and systems of middle-tier software,&nbsp;<a href="https://en.wikipedia.org/wiki/Enterprise_resource_planning">enterprise resource planning</a>&nbsp;(ERP) software,&nbsp;<a href="https://en.wikipedia.org/wiki/Customer_relationship_management">customer relationship management</a>&nbsp;(CRM) software and&nbsp;<a href="https://en.wikipedia.org/wiki/Supply_chain_management">supply chain management</a>&nbsp;(SCM) software.</p>\r\n', 'O', '#d88484', '2016-03-16', '', 1, '2016-02-08 15:24:33', '2016-02-09 03:32:15'),
-(8, 'Toshiba', '<p><strong>Toshiba Corporation</strong>&nbsp;(??????&nbsp;<em>Kabushiki-gaisha T?shiba</em><a href="https://en.wikipedia.org/wiki/Help:Installing_Japanese_character_sets"><strong>?</strong></a>,&nbsp;<small>English</small>&nbsp;<a href="https://en.wikipedia.org/wiki/Help:IPA_for_English">/t???i?b?,&nbsp;t?-,&nbsp;to?-/</a><a href="https://en.wikipedia.org/wiki/Toshiba#cite_note-2">[2]</a>)&nbsp;(commonly referred to as&nbsp;<strong>Toshiba</strong>, stylized as&nbsp;<strong>TOSHIBA</strong>) is a Japanese&nbsp;<a href="https://en.wikipedia.org/wiki/Multinational_corporation">multinational</a>&nbsp;<a href="https://en.wikipedia.org/wiki/Conglomerate_(company)">conglomerate</a>&nbsp;corporation headquartered in&nbsp;<a href="https://en.wikipedia.org/wiki/Tokyo">Tokyo</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Japan">Japan</a>. Its diversified products and services include information technology and communications equipment and systems, electronic components and materials, power systems, industrial and social infrastructure systems, consumer electronics, household appliances, medical equipment, office equipment, lighting and logistics.</p>\r\n', 'V', '#113566', '2016-02-25', '$2y$10$DLwG7K./a0HIrI82Wf9xhublfTs38wGX6KZu/iEsBfxigAnRBlN5K', 1, '2016-02-09 12:00:46', NULL),
-(11, 'ADminLTE', '<p><strong>AdminLTE</strong>&nbsp;is a popular open source WebApp template for admin dashboards and control panels. It is a responsive HTML template that is based on the CSS framework Bootstrap 3. It utilizes all of the Bootstrap components in its design and re-styles many commonly used plugins to create a consistent design that can be used as a user interface for backend applications. AdminLTE is based on a modular design, which allows it to be easily customized and built upon. This documentation will guide you through installing the template and exploring the various components that are bundled with the template.</p>\r\n\r\n<h2>&nbsp;</h2>\r\n', 'LTE', '#132458', '2016-02-09', '$2y$10$zIQeNXXVjmNrR.lBEFHw0e/ZXTK48hekAUuzTw1W/7fodow4Ruyti', 1, '2016-02-09 12:45:40', NULL);
+INSERT INTO `projects` (`id`, `name`, `description`, `key`, `color`, `team_id`, `start_date`, `access_token`, `is_active`, `creation_ts`, `lastmodified_ts`) VALUES
+(1, 'Android', '<p><strong>Android</strong>&nbsp;is a&nbsp;<a href="https://en.wikipedia.org/wiki/Mobile_operating_system">mobile operating system</a>&nbsp;(OS) currently developed by&nbsp;<a href="https://en.wikipedia.org/wiki/Google">Google</a>, based on the&nbsp;<a href="https://en.wikipedia.org/wiki/Linux_kernel">Linux kernel</a>&nbsp;and designed primarily for&nbsp;<a href="https://en.wikipedia.org/wiki/Touchscreen">touchscreen</a>&nbsp;mobile devices such as&nbsp;<a href="https://en.wikipedia.org/wiki/Smartphone">smartphones</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/Tablet_computer">tablets</a>. Android&#39;s&nbsp;<a href="https://en.wikipedia.org/wiki/User_interface">user interface</a>&nbsp;is mainly based on&nbsp;<a href="https://en.wikipedia.org/wiki/Direct_manipulation_interface">direct manipulation</a>, using touch gestures that loosely correspond to real-world actions, such as swiping, tapping and pinching, to manipulate on-screen objects, along with a&nbsp;<a href="https://en.wikipedia.org/wiki/Virtual_keyboard">virtual keyboard</a>&nbsp;(or a physical one, on older Android devices) for text input. In addition to touchscreen devices, Google has further developed&nbsp;<a href="https://en.wikipedia.org/wiki/Android_TV">Android TV</a>&nbsp;for televisions,&nbsp;<a href="https://en.wikipedia.org/wiki/Android_Auto">Android Auto</a>&nbsp;for cars, and&nbsp;<a href="https://en.wikipedia.org/wiki/Android_Wear">Android Wear</a>&nbsp;for wrist watches, each with a specialized user interface. Variants of Android are also used on&nbsp;<a href="https://en.wikipedia.org/wiki/Laptop">notebooks</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Video_game_console">game consoles</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Digital_camera">digital cameras</a>, and other electronics. As of 2015, Android has the largest&nbsp;<a href="https://en.wikipedia.org/wiki/Installed_base">installed base</a>&nbsp;of all operating systems.<a href="https://en.wikipedia.org/wiki/Android_(operating_system)#cite_note-manjoomurky-13">[11]</a></p>\r\n', 'A', '#1726a5', 1, '2016-02-10', '$2y$10$o2pw8Flkj9VxLFSxx39EUONNzPla1S4shN2F6Z0oRKLWkb8vPT7Q.', 1, '2016-02-07 01:28:06', '2016-02-25 03:32:52'),
+(2, 'Java', '<p>This is JAVA</p>\r\n', 'J', '#e20606', 1, '2016-02-08', '', 0, '2016-02-08 14:27:46', NULL),
+(7, 'OAracle', '<p>The&nbsp;<strong>Oracle Corporation</strong>&nbsp;is an American&nbsp;<a href="https://en.wikipedia.org/wiki/Multinational_corporation">global</a>&nbsp;computer technology corporation, headquartered in<a href="https://en.wikipedia.org/wiki/Redwood_City,_California">Redwood City, California</a>. The company primarily specializes in developing and marketing&nbsp;<a href="https://en.wikipedia.org/w/index.php?title=Database_software_and_technology&amp;action=edit&amp;redlink=1">database software and technology</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Computer_hardware">computer hardware</a>&nbsp;systems and&nbsp;<a href="https://en.wikipedia.org/wiki/Enterprise_software">enterprise software</a>&nbsp;products &ndash; particularly&nbsp;<a href="https://en.wikipedia.org/wiki/Oracle_Database">its own brands of database management systems</a>. In 2011 Oracle was the&nbsp;<a href="https://en.wikipedia.org/wiki/List_of_the_largest_software_companies">second-largest software maker</a>by revenue, after&nbsp;<a href="https://en.wikipedia.org/wiki/Microsoft">Microsoft</a>.<a href="https://en.wikipedia.org/wiki/Oracle_Corporation#cite_note-4">[4]</a></p>\r\n\r\n<p>The company also develops and builds tools for&nbsp;<a href="https://en.wikipedia.org/wiki/Database">database</a>&nbsp;development and systems of middle-tier software,&nbsp;<a href="https://en.wikipedia.org/wiki/Enterprise_resource_planning">enterprise resource planning</a>&nbsp;(ERP) software,&nbsp;<a href="https://en.wikipedia.org/wiki/Customer_relationship_management">customer relationship management</a>&nbsp;(CRM) software and&nbsp;<a href="https://en.wikipedia.org/wiki/Supply_chain_management">supply chain management</a>&nbsp;(SCM) software.</p>\r\n', 'O', '#d88484', 1, '2016-03-16', '', 1, '2016-02-08 15:24:33', '2016-02-09 03:32:15'),
+(8, 'Toshiba', '<p><strong>Toshiba Corporation</strong>&nbsp;(??????&nbsp;<em>Kabushiki-gaisha T?shiba</em><a href="https://en.wikipedia.org/wiki/Help:Installing_Japanese_character_sets"><strong>?</strong></a>,&nbsp;<small>English</small>&nbsp;<a href="https://en.wikipedia.org/wiki/Help:IPA_for_English">/t???i?b?,&nbsp;t?-,&nbsp;to?-/</a><a href="https://en.wikipedia.org/wiki/Toshiba#cite_note-2">[2]</a>)&nbsp;(commonly referred to as&nbsp;<strong>Toshiba</strong>, stylized as&nbsp;<strong>TOSHIBA</strong>) is a Japanese&nbsp;<a href="https://en.wikipedia.org/wiki/Multinational_corporation">multinational</a>&nbsp;<a href="https://en.wikipedia.org/wiki/Conglomerate_(company)">conglomerate</a>&nbsp;corporation headquartered in&nbsp;<a href="https://en.wikipedia.org/wiki/Tokyo">Tokyo</a>,&nbsp;<a href="https://en.wikipedia.org/wiki/Japan">Japan</a>. Its diversified products and services include information technology and communications equipment and systems, electronic components and materials, power systems, industrial and social infrastructure systems, consumer electronics, household appliances, medical equipment, office equipment, lighting and logistics.</p>\r\n', 'V', '#113566', 2, '2016-02-25', '$2y$10$DLwG7K./a0HIrI82Wf9xhublfTs38wGX6KZu/iEsBfxigAnRBlN5K', 1, '2016-02-09 12:00:46', NULL),
+(11, 'ADminLTE', '<p><strong>AdminLTE</strong>&nbsp;is a popular open source WebApp template for admin dashboards and control panels. It is a responsive HTML template that is based on the CSS framework Bootstrap 3. It utilizes all of the Bootstrap components in its design and re-styles many commonly used plugins to create a consistent design that can be used as a user interface for backend applications. AdminLTE is based on a modular design, which allows it to be easily customized and built upon. This documentation will guide you through installing the template and exploring the various components that are bundled with the template.</p>\r\n\r\n<h2>&nbsp;</h2>\r\n', 'LTE', '#132458', 2, '2016-02-09', '$2y$10$zIQeNXXVjmNrR.lBEFHw0e/ZXTK48hekAUuzTw1W/7fodow4Ruyti', 1, '2016-02-09 12:45:40', NULL),
+(12, 'Project 1', '', 'P1', '#e30a0a', 2, '2016-02-13', '$2y$10$qbKJ.lg824701yAoADzINOMLkLJHu1.mn213yUQ3euNWPGvjuOurS', 1, '2016-02-13 16:00:21', NULL),
+(13, 'My selenium project', '', 'S1', '#ff0000', 0, '2016-02-13', '$2y$10$UFobn20jVvvdaqTksyWLje4.nCzjlSedcOE3HDsdebzzNt852/OYy', 1, '2016-02-13 16:03:11', NULL),
+(14, 'Akshay Proj', 'Akshay Description', 'AP', '#ff00ff', 0, '0000-00-00', '', 0, '2016-02-17 16:38:29', NULL),
+(30, 'A', '', '', '', 0, '0000-00-00', '', 0, '2016-02-17 16:52:50', NULL),
+(31, 'Sample', '<p>This is sample for testing team ID</p>\r\n', '4', '#111111', 0, '2016-02-23', '$2y$10$FQkS18XRt3OoZl5Su6pum.pb16rIITE1OBtImqBpE8EHWM2MKYQqq', 1, '2016-02-23 14:09:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -109,19 +131,20 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `user_id` int(11) NOT NULL,
   `assigned_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `tasks`
 --
 
 INSERT INTO `tasks` (`id`, `title`, `description`, `type`, `state`, `release_id`, `due_date`, `creation_ts`, `lastmodified_ts`, `start_ts`, `end_ts`, `user_id`, `assigned_id`) VALUES
-(1, 'Hello Task 1', '', 'bug', 'OPEN', 1, '2016-03-22', '2016-01-24 06:10:06', '2016-02-11 06:32:16', NULL, NULL, 1, 5),
-(2, 'My task 2', 'This is for Android 2', 'Discussion', 'assigned', 1, '0000-00-00', '2016-02-01 14:56:42', NULL, NULL, NULL, 1, 5),
-(3, 'Task 1', '<p>This is newly created task</p>\r\n', 'story', 'OPEN', 1, '0000-00-00', '0000-00-00 00:00:00', NULL, NULL, NULL, 1, 5),
+(1, 'Hello Task 1', '', 'bug', 'unassigned', 1, '2016-03-22', '2016-01-24 06:10:06', '2016-02-12 03:32:06', NULL, NULL, 1, 6),
+(2, 'My task 2', 'This is for Android 2', 'Discussion', 'unassigned', 1, '0000-00-00', '2016-02-01 14:56:42', NULL, NULL, NULL, 1, 5),
+(3, 'Task 1', '<p>This is newly created task</p>\r\n', 'story', 'Open', 1, '2016-02-17', '0000-00-00 00:00:00', '2016-02-12 03:32:35', NULL, NULL, 1, 1),
 (4, 'Task 2.1', '<p>This is for android 1.2&nbsp;</p>\r\n', 'bug', 'OPEN', 4, '2016-02-29', '2016-02-10 10:12:52', '2016-02-11 06:32:09', NULL, NULL, 5, 5),
 (5, 'Task 3', '<p>This sub tassk of Reality task</p>\r\n', 'sub', 'OPEN', 4, '2016-02-12', '2016-02-10 11:05:58', '2016-02-11 06:32:43', NULL, NULL, 5, 5),
-(6, 'Task 5', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et quam sit amet turpis auctor condimentum non vitae nisi. Aliquam ullamcorper arcu erat, faucibus condimentum justo pellentesque in. Donec vitae erat pretium, iaculis odio et, egestas sem. Quisque at leo consequat est tempor pretium eget in neque. Curabitur cursus porttitor nisi, aliquam dapibus nibh vulputate quis. Nulla congue mi tellus, ac tristique elit vehicula id. Mauris a magna id diam tristique tempor vel ut risus. Suspendisse lorem eros, scelerisque id eros eget, porta varius dolor. Sed nec aliquam dui. Duis id consequat arcu. Maecenas quis enim in purus maximus convallis hendrerit aliquet diam.</p>\r\n\r\n<p>Donec tempus enim ut dolor hendrerit, in luctus ex euismod. Maecenas a scelerisque risus, in ultrices sem. Proin eu gravida mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed felis neque, dapibus vel condimentum vitae, gravida eu orci. Aliquam varius nisi mauris, eu pellentesque augue mollis quis. Nullam aliquam massa sit amet mauris pulvinar commodo.</p>\r\n', 'discussion', 'closed', 2, '2016-02-27', '2016-02-11 06:17:04', '2016-02-11 06:32:40', NULL, NULL, 5, 0);
+(6, 'Task 5', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et quam sit amet turpis auctor condimentum non vitae nisi. Aliquam ullamcorper arcu erat, faucibus condimentum justo pellentesque in. Donec vitae erat pretium, iaculis odio et, egestas sem. Quisque at leo consequat est tempor pretium eget in neque. Curabitur cursus porttitor nisi, aliquam dapibus nibh vulputate quis. Nulla congue mi tellus, ac tristique elit vehicula id. Mauris a magna id diam tristique tempor vel ut risus. Suspendisse lorem eros, scelerisque id eros eget, porta varius dolor. Sed nec aliquam dui. Duis id consequat arcu. Maecenas quis enim in purus maximus convallis hendrerit aliquet diam.</p>\r\n\r\n<p>Donec tempus enim ut dolor hendrerit, in luctus ex euismod. Maecenas a scelerisque risus, in ultrices sem. Proin eu gravida mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed felis neque, dapibus vel condimentum vitae, gravida eu orci. Aliquam varius nisi mauris, eu pellentesque augue mollis quis. Nullam aliquam massa sit amet mauris pulvinar commodo.</p>\r\n', 'discussion', 'closed', 2, '2016-02-27', '2016-02-11 06:17:04', '2016-02-11 06:32:40', NULL, NULL, 5, 0),
+(7, 'Something about java', '<p>Java technology allows you to work and play in a secure computing environment. Upgrading to the latest Java version improves the security of your system, as older versions do not include the latest security updates.</p>\r\n\r\n<p>Java allows you to play online games, chat with people around the world, calculate your mortgage interest, and view images in 3D, just to name a few.</p>\r\n', 'story', 'OPEN', 3, '2016-02-24', '2016-02-12 15:54:12', '2016-02-12 03:32:36', NULL, NULL, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -173,6 +196,74 @@ CREATE TABLE IF NOT EXISTS `tasks_relations` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `teams`
+--
+
+CREATE TABLE IF NOT EXISTS `teams` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `description` text NOT NULL,
+  `key` text NOT NULL,
+  `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lastmodified_ts` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `teams`
+--
+
+INSERT INTO `teams` (`id`, `name`, `description`, `key`, `creation_ts`, `lastmodified_ts`) VALUES
+(1, 'Hello World', '<p>World Hello</p>\r\n', '', '2016-02-20 08:06:00', '0000-00-00 00:00:00'),
+(2, 'MoD', '<p>This is for Mod</p>\r\n', '', '2016-02-20 17:24:58', '0000-00-00 00:00:00'),
+(3, 'Team 2', '', '', '2016-02-23 14:24:46', '0000-00-00 00:00:00'),
+(4, 'HelloMyTeam', '', '', '2016-02-23 14:25:36', '0000-00-00 00:00:00'),
+(7, 'Champ', '<p>THis is for only developers</p>\r\n', '', '2016-02-24 10:03:27', '0000-00-00 00:00:00'),
+(8, 'Champ2', '<p>Only for android developers</p>\r\n', '', '2016-02-24 10:04:43', '0000-00-00 00:00:00'),
+(9, 'mod', '<p>very funny team</p>\r\n', '', '2016-02-26 08:36:58', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team_members`
+--
+
+CREATE TABLE IF NOT EXISTS `team_members` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `team_id` int(11) NOT NULL,
+  `role` varchar(32) NOT NULL,
+  `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_active` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+
+--
+-- Dumping data for table `team_members`
+--
+
+INSERT INTO `team_members` (`id`, `user_id`, `team_id`, `role`, `creation_ts`, `is_active`) VALUES
+(1, 1, 1, 'owner', '2016-02-20 08:06:00', 0),
+(2, 6, 1, 'leader', '2016-02-20 08:06:00', 0),
+(3, 5, 2, 'leader', '2016-02-20 17:25:14', 0),
+(4, 5, 3, 'leader', '2016-02-23 14:24:46', 0),
+(5, 1, 4, 'leader', '2016-02-23 14:25:36', 0),
+(6, 5, 4, 'developer', '2016-02-23 14:25:36', 0),
+(7, 1, 5, 'owner', '2016-02-24 08:53:47', 0),
+(8, 5, 5, 'leader', '2016-02-24 08:53:47', 0),
+(9, 1, 6, 'owner', '2016-02-24 09:13:39', 0),
+(10, 5, 6, 'developer', '2016-02-24 09:13:39', 0),
+(11, 1, 7, 'owner', '2016-02-24 10:03:28', 0),
+(12, 5, 7, 'leader', '2016-02-24 10:03:28', 0),
+(13, 6, 7, 'developer', '2016-02-24 10:03:28', 0),
+(14, 1, 8, 'developer', '2016-02-24 10:04:43', 0),
+(15, 5, 8, 'owner', '2016-02-24 10:04:43', 0),
+(16, 6, 8, 'leader', '2016-02-24 10:04:43', 0),
+(17, 1, 9, 'owner', '2016-02-26 08:36:59', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -184,6 +275,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(128) NOT NULL,
   `password` varchar(256) NOT NULL,
   `phone` varchar(10) NOT NULL,
+  `lastlogin_ts` timestamp NULL DEFAULT NULL,
   `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastmodified_ts` timestamp NULL DEFAULT NULL,
   `is_active` int(11) NOT NULL,
@@ -193,16 +285,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `phone` (`phone`),
   UNIQUE KEY `access_token` (`access_token`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `username`, `password`, `phone`, `creation_ts`, `lastmodified_ts`, `is_active`, `access_token`) VALUES
-(1, 'Akshay', 'Mane', 'mane.akshay1997@gmail.com', 'akshay', '$2y$10$cjH1InudIfIqBuLx9dR2NedfAMxeDs.ONSk6kud1LYUJQM10ZSa7S', '2147483647', '2016-02-06 16:28:52', NULL, 0, ''),
-(5, 'Anuj', 'khairnar', 'anujkhairnar5@gmail.com', 'anujk', '$2y$10$cjH1InudIfIqBuLx9dR2NedfAMxeDs.ONSk6kud1LYUJQM10ZSa7S', '98765432', '2016-02-11 06:21:36', NULL, 1, 'asdfkjakdjfhbaskfjn skjvvn'),
-(6, 'Brayan', 'Munis', 'brayanmunis2@gmail.com', 'brayan', '$2y$10$0CopaephTgtTOWZ67/3sOOks6aOF7TUYow4IdgsGr4qqceB5maEXS', '7895642130', '2016-02-11 16:37:27', NULL, 0, '$2y$10$Dr.H55SnW143s5G3v4Tds.WJc0xWr9xFeU2HEmJ7nvlwuywATjite');
+INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `username`, `password`, `phone`, `lastlogin_ts`, `creation_ts`, `lastmodified_ts`, `is_active`, `access_token`) VALUES
+(1, 'Akshay', 'Mane', 'mane.akshay1997@gmail.com', 'akshay', '$2y$10$f/YnYXz6kz1V0k9PjXNb3.7LHMNKS7m0lCQH0vjiBpcmHJxaBNYVC', '2147483647', '2016-02-25 20:42:40', '2016-02-06 16:28:52', NULL, 0, '32bd477527b91048bf0de80d99a47187'),
+(5, 'Anuj', 'khairnar', 'anujkhairnar5@gmail.com', 'anujk', '$2y$10$cjH1InudIfIqBuLx9dR2NedfAMxeDs.ONSk6kud1LYUJQM10ZSa7S', '98765432', NULL, '2016-02-11 06:21:36', NULL, 1, 'asdfkjakdjfhbaskfjn skjvvn'),
+(6, 'Brayan', 'Munis', 'brayanmunis2@gmail.com', 'brayan', '$2y$10$f/YnYXz6kz1V0k9PjXNb3.7LHMNKS7m0lCQH0vjiBpcmHJxaBNYVC', '7895642130', NULL, '2016-02-11 16:37:27', NULL, 0, '$2y$10$3HP1kc1c4wJRc5N3ejUUOuL5/X/rPFYxNJK1WPDg4ibppZHgKWdGW'),
+(7, 'Vaibhav', 'Mane', 'vaibhavmane9819@gmail.com', 'vaibhav', '$2y$10$cjH1InudIfIqBuLx9dR2NedfAMxeDs.ONSk6kud1LYUJQM10ZSa7S', '9004645506', NULL, '2016-02-21 08:16:50', NULL, 0, '$2y$10$j.gFoA8LWVHe/N73UmVaFehWpbwK3O1Gd7cU/e98BwDFiyaz0nLPC');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

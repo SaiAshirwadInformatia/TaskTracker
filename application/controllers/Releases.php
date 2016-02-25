@@ -29,7 +29,7 @@ class Releases extends TT_Controller
 	public function index($start = 0)
 	{
 		$this->paginationConfig['base_url'] = base_url('Releases/index');
-		$this->paginationConfig['total_rows'] = $this->releases_model->project_count_releases($this->currentProject['id']);
+		$this->paginationConfig['total_rows'] = count($this->releases_model->project_count_releases($this->currentProject['id']));
 		$this->pagination->initialize($this->paginationConfig);
 		$releasesList = $this->releases_model->fetch_releases_by_project($this->currentProject['id'], 
 			$this->paginationConfig['per_page'], $start);

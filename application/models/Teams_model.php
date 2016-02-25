@@ -19,13 +19,23 @@ class Teams_Model extends CI_Model{
 		return $this->db->get('teams')->result_array();
 	}
 
-	public function get_by_user_id($user_id){
+	public function get_by_id($id){
+		$this->db->where('id',$id);
+		return $this->db->get('teams')->row_array();
+	}
+
+	public function get_by_user_id($user_id, $limit = 30, $start = 0){
 		$this->db->select("T.*");
 		$this->db->from("team_members TM");
 		$this->db->join("teams T","T.id = TM.team_id");
 		$this->db->where('TM.user_id',$user_id);
+		if($limit and $start >= 0){
+			$this->db->limit($limit,$start);
+		}
 		return $this->db->get()->result_array();
 	}
+
+
 
 	public function link_members($team_id, $members_id,$role)
 	{

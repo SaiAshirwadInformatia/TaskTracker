@@ -40,7 +40,8 @@ class Projects extends TT_Controller
 		$release = $this->releases_model->project_count_releases($id);
 		$data = [
 			'project' => $projectData,
-			'release' => $release
+			'releasesList' => $release['releasesList'],
+			'task' => $release['task']
 		];
 		$this->load->view('project_view', $data);
 		$this->load->view('footer');
@@ -121,7 +122,8 @@ class Projects extends TT_Controller
 		$data = [
 			'project' => $project,
 			'action' => 'update_action',
-			'teamList' => $teamList 
+			'teamList' => $teamList,
+			'id' => $id
 		];
 		$this->load->view('project_form',$data);
 		$this->load->view('footer');
@@ -136,7 +138,7 @@ class Projects extends TT_Controller
 		$team_id = $this->input->post('team_id');
 		$start_date = $this->input->post('start_date');
 		$is_active = 1;
-		$access_token = password_hash($name.$color);
+		$access_token = password_hash($name.$color, PASSWORD_DEFAULT);
 		if($name and $color and $id and $start_date and $team_id){
 			$update = [
 				'name' => $name,

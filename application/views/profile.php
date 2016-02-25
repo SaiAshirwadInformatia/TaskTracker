@@ -18,9 +18,9 @@
             <div class="box-body box-profile">
               <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('assets/images/lg_TaskTracker.jpg')?>" alt="User profile picture">
 
-              <h3 class="profile-username text-center">Brian Munis</h3>
+              <h3 class="profile-username text-center"><?php echo $user['fname'] . ' ' . $user['lname']?></h3>
 
-              <p class="text-muted text-center">Software Engineer</p>
+              <p class="text-muted text-center"><?php echo 'Software'?></p>
 
             </div>
             <!-- /.box-body -->
@@ -31,6 +31,7 @@
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">About Me</h3>
+              <a href="<?php echo base_url('Users/profile_update/' . $user['id'] )?>" class="btn btn-info"></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
