@@ -25,6 +25,12 @@ class Users_model extends CI_Model
 		return false;
 	}
 	
+	public function lastLogin($data){
+		$user = $this->session->userdata('user');
+		$this->db->where('id',$user['id']);
+		$this->db->update('users',$data);
+	}
+
 	public function get_all(){
 		return $this->db->get('users')->result_array();
 	}
@@ -35,10 +41,42 @@ class Users_model extends CI_Model
 		return $this->db->get('users')->row_array();
 	}
 
+	public function get_by_token($token){
+		$this->db->where('access_token',$token);
+		return $this->db->get('users')->row_array();
+	}
+
 	public function get_by_username($username)
 	{
 		$this->db->where('username', $username);
 		return $this->db->get('users')->row_array();
+	}
+
+	public function setPassword($data){
+		$ret = [];
+		$this->db->where('id',$data['user_id']);
+		$this->db->where('access_token',$data['access_token']);
+		$user = $this->db->get('users')->row_array();
+		if(count($user) > 0){
+			$insert = [
+				'access_token' => md5($data['password'].$user['access_token']),
+				'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+				'lastlogin_ts' => date('Y/m/d h:m:s')
+			];
+			$this->db->where('id',$user['id']);
+			if($this->db->update('users',$insert)){
+				$ret = [
+					'status' 	=> OK, 
+					'id'		=> $user['id']
+				];
+			}else{
+				$ret = [
+					'status' 	=> KO, 
+					'error'		=> $this->db->error()
+				];
+			}
+		}
+		return $ret;
 	}
 
 	public function insert($data)
@@ -48,7 +86,7 @@ class Users_model extends CI_Model
 		{
 			$password = $data['password'];
 		}
-		$data['access_token'] = password_hash($data['email'].$password, PASSWORD_DEFAULT);
+		$data['access_token'] = md5($data['email'].$password);
 		$data['password'] = password_hash($password, PASSWORD_DEFAULT);
 		$this->db->insert('users', $data);
 		$ret = [
