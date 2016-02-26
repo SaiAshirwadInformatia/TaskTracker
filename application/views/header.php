@@ -60,7 +60,11 @@ $this->load->view('head');
                     ?>
                 </ul>
               </li>
+              <?php if($projects){ ?>
               <li class="footer"><a href="<?php echo base_url('Projects')?>">View all Projects</a></li>
+              <?php }else{?>
+              <li class="footer"><a href="<?php echo base_url('Projects/create')?>">Please create a project</a></li>
+              <?php } ?>
             </ul>
           </li> 
           <!-- User Account: style can be found in dropdown.less -->

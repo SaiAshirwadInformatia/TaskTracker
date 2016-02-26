@@ -25,7 +25,7 @@ $menu = $SimpleBuilder->build($menuList);
         </li>
 
         <li>
-            <a href="<?php echo base_url('Users/profile') ?>">
+            <a href="<?php echo base_url('Profile') ?>">
                 <i class="fa fa-rocket"></i>  <span>Profile</span>
             </a>
         </li>

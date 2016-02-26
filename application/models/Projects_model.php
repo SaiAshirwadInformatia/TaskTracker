@@ -26,7 +26,6 @@ class Projects_model extends CI_Model
 		$this->db->join("users U","U.id = T.user_id");
 		$this->db->where("U.id",$user_id);
 		return $this->db->get()->result_array();
-
 	}
 
 	public function get_projects_by_team_id($team_id){

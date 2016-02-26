@@ -32,7 +32,10 @@
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">About Me</h3>
-              <a href="<?php echo base_url('Users/profile_update/' . $user['id'] )?>" class="btn btn-info"></a>
+              <!--
+                  Anchor tag used for profile editing           
+              -->
+              <a href="<?php echo base_url('Profile/update/')?>" class="btn btn-default  btn-xs pull-right fa fa-pencil"></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -82,5 +85,9 @@
             
          </div>
                       
+          </div>
+          </div>
+          </section>
+          </div>
           </div>
                     

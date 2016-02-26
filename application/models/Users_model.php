@@ -106,4 +106,16 @@ class Users_model extends CI_Model
 		];
 		return $ret;
 	}
+
+	public function update($user_id,$data){
+		$ret = [];
+		$this->db->where('id',$user_id);
+		if($this->db->update('users',$data)){
+			$ret = [
+			'status' 	=> OK,
+			'id' => $user_id
+			];
+		}
+		return $ret;
+	}
 }
