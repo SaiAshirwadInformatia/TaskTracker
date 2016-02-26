@@ -38,7 +38,7 @@ $menu = $SimpleBuilder->build($menuList);
             </a>
         </li>
         <li>
-            <a href="<?php echo base_url('Project/board') ?>">
+            <a href="<?php echo base_url('Projects/board') ?>">
                 <i class="fa fa-fighter-jet"></i> <span>Project Board</span>
             </a>
         </li>
