@@ -46,28 +46,38 @@
 				</dl>
 				<dl class="dl-horizontal">
 					<dt>Projects</dt>
-					<dd><?php
-						if($projectsList){
-							echo '<ul class="list-group" style="width : 50%">';
-							foreach($projectsList as $project){
-								echo '<li class="list-group-item">';
-								echo '<span class="badge">' . $task[$project['id']] . '</span>';
-								echo $project['name'];
-								echo '</li>';
-							}
-							echo '</ul>';
-						}else{
-							?>
-								<ul class="list-group">
-  									<li class="list-group-item list-group-item-danger">No project found</li>
-  								</ul>
-							<?php
-						}
-					?></dd>
+					<dd style="width : 50%">
+						<div class="box box-info">
+						  	<div class="box-header with-border">
+							    <h3 class="box-title">All team Members</h3>
+							    <button class="btn btn-box-tool pull-right" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							</div>
+						    <div class="box-body">
+								<?php
+								if($projectsList){
+									echo '<ul class="list-group"	>';
+									foreach($projectsList as $project){
+										echo '<li class="list-group-item">';
+										echo '<span class="badge">' . $task[$project['id']] . '</span>';
+										echo $project['name'];
+										echo '</li>';
+									}
+									echo '</ul>';
+								}else{
+									?>
+										<ul class="list-group">
+		  									<li class="list-group-item list-group-item-danger">No project found</li>
+		  								</ul>
+									<?php
+								}
+						?>
+							</div>
+						</div>
+					</dd>
 				</dl>
 			</div>
 			<div class="box-footer">
-				<a href="<?php echo base_url('Projects')?>" class="btn btn-primary btn-sm">Back</a>
+				<a href="<?php echo base_url('Teams')?>" class="btn btn-primary btn-sm">Back</a>
 			</div>
 		</div>
 	</div>

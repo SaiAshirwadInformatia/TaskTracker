@@ -1,6 +1,6 @@
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1><?php echo isset($id) ? 'Update' : 'Create'; ?> Team</h1>
+		<h1><?php echo isset($team['id']) ? 'Update' : 'Create'; ?> Team</h1>
 	</section>
 	<div class="content">
 	<?php $this->load->view('inc_bootstrap_alerts');?>
@@ -11,12 +11,16 @@
 						<div class="row">
 							<div class="col-sm-6">
 								<label class="control-label">Name</label>
-								<input type="text" class="form-control" name="name" id="name" <?php echo isset($name)?'value = "'.$name.'"':'';?>/>
+								<input type="text" class="form-control" name="name" id="name" <?php echo isset($team['name'])?'value = "'.$team['name'].'"':'';?>/>
+							</div>
+							<div class="col-sm-3">
+								<label class="control-label">Key</label>
+								<input type="text" class="form-control" name="key" id="key" <?php echo isset($team['key'])?'value = "'.$team['key'].'"':'';?>/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Description</label>
-							<textarea name="description" id="desription" class="form-control"><?php echo isset($description)?$description:'' ?></textarea>
+							<textarea name="description" id="desription" class="form-control"><?php echo isset($team['description'])?$team['description']:'' ?></textarea>
 						</div>
 						<div class="row">
 							<div class="form-group col-sm-6">
@@ -25,11 +29,13 @@
 							</div>
 						</div>
 						<div class="row">
+							<?php foreach ($members as $member) {
+								?>
 							<div class="col-sm-3" id="userColumn">
-								<input id="<?php echo 'member_id_'.$user['id']?>" type="hidden" name="members_id[]" value="<?php echo $user['id']?>" />
+								<input id="<?php echo 'member_id_'.$member['id']?>" type="hidden" name="members_id[]" value="<?php echo $member['id']?>" />
 								<div class="panel panel-primary">
 									<div class="panel-heading">
-										<h2 class="panel-title"><?php echo $user['fname'] . ' ' . $user['lname']?></h2>
+										<h2 class="panel-title"><?php echo $member['fname'] . ' ' . $member['lname']?></h2>
 									</div>
 									<div class="panel-body">
 										<img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" width = 100% class="img-responsive" >
@@ -46,6 +52,7 @@
 									</div>
 								</div>
 							</div>
+							<?php }?>
 							<div id="membersContainer">
 							</div>
 						</div>
@@ -116,6 +123,24 @@
 			}
 		});
 		*/
+
+			tasktracker.isAvailableValidation({
+			selector: '#key',
+			module: 'teams',
+			onBlur: function(instance)
+			{
+				return {
+					'key' : $(instance).val()
+				};
+			},
+			onSuccess: function(response){
+				if(response.available !== undefined && response.available){
+					$('#key').parent().addClass("has-success").removeClass("has-error");
+				}else{
+					$('#key').parent().addClass("has-error").removeClass("has-success");
+				}
+			}
+		});
 		$('#team_members').autocomplete({
 			source: function(request, response){
 				var name = request.term.split(" ");

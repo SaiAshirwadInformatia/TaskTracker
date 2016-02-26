@@ -64,9 +64,13 @@ class Teams extends TT_Controller{
 	}
 
 	public function create(){
+
 		$data = [
 			'action' => 'create_action',
-			'user' => $this->currentUser
+			'members' => [
+					0 => $this->currentUser
+
+				]
 		];
 		$this->load->view('team_form',$data);
 		$this->load->view('footer');
@@ -84,6 +88,21 @@ class Teams extends TT_Controller{
 		if($team_id > 0)
 		{
 			$this->teams_model->link_members($team_id, $members_id, $role);
+		}
+	}
+
+	public function update($team_id){
+		if($team_id){
+			$team = $this->teams_model->get_by_id($team_id);
+			$members = $this->users_model->get_members_by_team_id($team_id);
+			$data = [
+				'team' => $team,
+				'members' => $members,
+				'action' => 'update_action'
+			];
+			$this->load->view('team_form',$data);
+		}else{
+			refirect(base_url('Teams'));
 		}
 	}
 }
