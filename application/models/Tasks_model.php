@@ -28,12 +28,18 @@ class Tasks_model extends CI_Model
 		return $this->db->get('tasks')->result_array();
 	}
 
-	public function get_by_state($project_id, $state, $limit = false, $start = false){
+
+	public function get_by_state($project_id = false, $state, $limit = false, $start = false, $user_id = false){
 		$this->db->select("T.*, R.name AS release_name, R.id AS release_id, P.name AS project_name, P.id AS project_id");
 		$this->db->from("tasks T");
 		$this->db->join("releases R", "R.id = T.release_id");
 		$this->db->join("projects P", "P.id = R.project_id");
-		$this->db->where("P.id", $project_id);
+		if($project_id){
+			$this->db->where("P.id", $project_id);
+		}
+		if($user_id){		
+			$this->db->where("T.user_id", $user_id);
+		}
 		$this->db->where("T.state", $state);
 		if($limit and $start >= 0){
 			$this->db->limit($limit,$start);
@@ -68,13 +74,17 @@ class Tasks_model extends CI_Model
 	}
 
 	public function project_count_tasks($project_id){
-		$this->db->select("count(*) AS total");
-		$this->db->from("tasks T");
-		$this->db->join("releases R", "R.id = T.release_id");
-		$this->db->join("projects P", "P.id = R.project_id");
-		$this->db->where("P.id", $project_id);
-		$result = $this->db->get()->row_array();
-		return $result['total'];
+		$count = 0;
+		if($project_id){
+			$this->db->select("count(*) AS total");
+			$this->db->from("tasks T");
+			$this->db->join("releases R", "R.id = T.release_id");
+			$this->db->join("projects P", "P.id = R.project_id");
+			$this->db->where("P.id", $project_id);
+			$result = $this->db->get()->row_array();
+			$count = $result['total'];
+		}
+		return $count;
 	}
 
 	public function get_by_project_id($project_id, $limit = null, $start = null){

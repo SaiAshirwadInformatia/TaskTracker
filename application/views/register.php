@@ -116,7 +116,7 @@
       if(!usernameAvailable){
         $('#username').focus();
         isValid = false;
-      }
+      } 
       console.log("is valid status: " + isValid);
       return isValid;
     });

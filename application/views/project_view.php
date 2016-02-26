@@ -22,8 +22,25 @@
 					<dd><?php echo $project['start_date']?></dd>
 				</dl>
 				<dl class="dl-horizontal">
-					<dt>Upcoming Release</dt>
-					<dd><?php echo $release?></dd>
+					<dt>Releases</dt>
+					<dd><?php
+						if($releasesList){
+							echo '<ul class="list-group" style="width : 50%">';
+							foreach($releasesList as $release){
+								echo '<li class="list-group-item">';
+								echo '<span class="badge">' . $task[$release['id']] . '</span>';
+								echo $release['name'];
+								echo '</li>';
+							}
+							echo '</ul>';
+						}else{
+							?>
+								<ul class="list-group">
+  									<li class="list-group-item list-group-item-danger">No release found</li>
+  								</ul>
+							<?php
+						}
+					?></dd>
 				</dl>
 			</div>
 			<div class="box-footer">

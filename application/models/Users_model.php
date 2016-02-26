@@ -46,6 +46,16 @@ class Users_model extends CI_Model
 		return $this->db->get('users')->row_array();
 	}
 
+
+	public function get_members_by_team_id($team_id){
+		$this->db->select("U.* , TM.role as role");
+		$this->db->from("users U");
+		$this->db->join("team_members TM","TM.user_id = U.id");
+		$this->db->join("teams T","T.id = TM.team_id");
+		$this->db->where("T.id",$team_id);
+		return $this->db->get()->result_array();
+	}
+
 	public function get_by_username($username)
 	{
 		$this->db->where('username', $username);
