@@ -131,8 +131,7 @@ $menu = $SimpleBuilder->build($menuList);
       </ul>
       <?php /*
 =======
-      <?php echo $menu; ?>
->>>>>>> 021722198fe9598b903db9181fa7642177534b17 */
+      <?php echo $menu; ?>*/
 ?>
     </section>
     <!-- /.sidebar -->
