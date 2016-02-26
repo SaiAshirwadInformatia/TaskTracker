@@ -9,7 +9,7 @@ $this->load->view('head');
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>TT</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><img src="<?php echo base_url('assets/images/tasktracker2.png')?>" /></span>
+      <span class="logo-lg"><img src="<?php echo base_url('assets/images/tasktracker3.png')?>" /></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">

@@ -6,7 +6,6 @@
 !*/cache/.htaccess
 application/third_party
 assets/vendor
-assets/images
 application/config/database.php
 *.sublime-workspace
 application/vendor
