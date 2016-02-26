@@ -11,12 +11,13 @@
     <section class="content">
 
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-sm-3">
 
           <!-- Profile Image -->
           <div class="box box-primary">
-            <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('assets/images/lg_TaskTracker.jpg')?>" alt="User profile picture">
+          
+            <div class="box-body box-profile ">
+              <img class="img-thumbnail" style="height : 180px; width : 230px " src="<?php echo base_url('assets/images/default_profile.png')?>" alt="User profile picture" >
 
               <h3 class="profile-username text-center"><?php echo $user['fname'] . ' ' . $user['lname']?></h3>
 
