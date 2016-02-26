@@ -22,19 +22,6 @@ class Users extends TT_Controller{
 		}
 	}
 
-	public function profile($user_id)
-	{
-		if($user_id){
-
-			$this->load->view('header');
-			$user = $this->users_model->get_by_id($user_id);
-			$data = [
-				'user' => $user
-			];
-			$this->load->view('profile',$data);
-		}
-	}
-
 
 	public function setPasswordAction(){
 		$data = [

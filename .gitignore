@@ -12,3 +12,5 @@ application/config/database.php
 application/vendor
 npm-debug.log
 .htaccess
+application/view/nav.php
+

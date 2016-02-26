@@ -1,5 +1,5 @@
 <?php
-/*
+
 use saiashirwadinformatia\AppMenuBuilder\Menu\Builder\SimpleBuilder;
 use saiashirwadinformatia\AppMenuBuilder\Menu\Factory\JSONConfigFactory;
 
@@ -9,11 +9,10 @@ $SimpleBuilder = new SimpleBuilder(current_url(), "sidebar-menu", "treeview", "t
 $jsonConfig = APPPATH . 'config' . DIRECTORY_SEPARATOR . 'menu.json';
 $menuList = $JSONConfigFactory->build($jsonConfig, base_url('/'));
 $menu = $SimpleBuilder->build($menuList);
-?>*/
-?>
-<aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+
+/*
+
+
  
 
       <ul class="sidebar-menu">
@@ -129,10 +128,15 @@ $menu = $SimpleBuilder->build($menuList);
             - Closed Tasks
          -->
       </ul>
-      <?php /*
-=======
-      <?php echo $menu; ?>*/
-?>
+
+      */
+
+      ?>
+      <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <?php
+      echo $menu; ?>
     </section>
     <!-- /.sidebar -->
   </aside>

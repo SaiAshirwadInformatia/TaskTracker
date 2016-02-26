@@ -38,7 +38,7 @@ class Tasks_model extends CI_Model
 			$this->db->where("P.id", $project_id);
 		}
 		if($user_id){		
-			$this->db->where("T.user_id", $user_id);
+			$this->db->where("T.assigned_id", $user_id);
 		}
 		$this->db->where("T.state", $state);
 		if($limit and $start >= 0){
