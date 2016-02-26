@@ -10,7 +10,7 @@ class ReleasesV1_model extends MY_Model
 		$this->required = [
 			'name' => 'Release name required',
 			'project_id' => 'Project ID required',
-			'start_data' => 'Release start date required'
+			'start_date' => 'Release start date required'
 		];
 		$this->fields = [
 			'id',
