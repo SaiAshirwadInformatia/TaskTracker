@@ -78,12 +78,14 @@ class Teams extends TT_Controller{
 
 	public function create_action(){
 		$members_id = $this->input->post('members_id');
+		$key = $this->input->post('key');
 		$role = $this->input->post('role');
 		$name = $this->input->post('name');
 		$description = $this->input->post('description');
 		$team_id = $this->teams_model->insert([
 			'name' => $name,
-			'description' => $description
+			'description' => $description,
+			'key' => $key
 		]);
 		if($team_id > 0)
 		{
@@ -103,6 +105,54 @@ class Teams extends TT_Controller{
 			$this->load->view('team_form',$data);
 		}else{
 			refirect(base_url('Teams'));
+		}
+	}
+
+	public function update_action(){
+		$team_id = $this->input->post('id');
+		$members_id = $this->input->post('members_id');
+		$role = $this->input->post('role');
+		$name = $this->input->post('name');
+		$description = $this->input->post('description');
+		$data = [
+			'name' => $name,
+			'description' => $description
+		];
+		//$team_id = $this->teams_model->update($team_id,$data);
+		if($team_id > 0)
+		{
+			$deletedMembers = [];
+			$newMembers = [];
+			$oldMembers = [];
+			$oldMembersID = [];
+			$oldMembersRole = [];
+			$newMembersMembersRole = [];
+			$members = $this->users_model->get_members_by_team_id($team_id);
+			foreach ($members as $member) {
+				if(!in_array($member['id'], $members_id)){
+					$deletedMembers[] = $member['id'];
+				}else{
+					$oldMembers[] = $member;
+					$oldMembersID[] = $member['id'];
+					$oldMembersRole[$member['id']] = $role[array_search($member['id'], $members_id)];
+				}
+			}
+
+			$newMembers = array_diff($members_id, $oldMembersID);
+			foreach ($newMembers as $newMember) {
+				$newMembersRole[] = $role[array_search($newMember, $members_id)];
+			}
+			$valid = [];
+			if(count($oldMembers) > 0){	
+				$valid[] = $this->teams_model->link_members_update($team_id, $oldMembers, $oldMembersRole);
+			}
+			if(count($newMembers) > 0){
+				$valid[] = $this->teams_model->link_members($team_id, $newMembers, $role);
+			}
+			if(count($deletedMembers) > 0){
+				$valid[] = $this->teams_model->link_members_delete($team_id, $deletedMembers);
+			}
+			redirect(base_url('Teams'));
 		}
 	}
 }

@@ -40,9 +40,39 @@ class Teams_Model extends CI_Model{
 	public function link_members($team_id, $members_id,$role)
 	{
 		$insertArr = [];
-		foreach ($members_id as $key => $member_id) {
-			$insertArr[] = ['team_id' => $team_id, 'user_id' => $member_id, 'role' => $role[$key]];
+		if(count($members_id) > 0){
+			foreach ($members_id as $key => $member_id) {
+				$insertArr[] = ['team_id' => $team_id, 'user_id' => $member_id, 'role' => $role[$key]];
+			}
+			$this->db->insert_batch('team_members', $insertArr);
 		}
-		$this->db->insert_batch('team_members', $insertArr);
+	}
+
+
+	public function link_members_update($team_id, $members, $role)
+	{
+		$updateArr = [];
+		if(count($members) > 0){
+			foreach ($members as $member) {
+				$updateArr[] = ['id' => $member['team_members_id'], 'user_id' => $member['id'], 'role' => $role[$member['id']]];
+			}
+			if($this->db->update_batch('team_members', $updateArr, 'id')){
+				return true;
+
+			}
+		}
+		return false;
+	}
+
+	public function link_members_delete($team_id, $members_id)
+	{
+		if(count($members_id) > 0){
+			$this->db->where_in('user_id',$members_id);
+			$this->db->where('team_id',$team_id);
+			if($this->db->delete('team_members')){
+				return true;
+			}
+		}
+		return false;
 	}
 }

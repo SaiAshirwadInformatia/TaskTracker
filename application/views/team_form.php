@@ -31,7 +31,7 @@
 						<div class="row">
 							<?php foreach ($members as $member) {
 								?>
-							<div class="col-sm-3" id="userColumn">
+							<div class="col-sm-3" id="userColumn_<?php echo $member['id']?>">
 								<input id="<?php echo 'member_id_'.$member['id']?>" type="hidden" name="members_id[]" value="<?php echo $member['id']?>" />
 								<div class="panel panel-primary">
 									<div class="panel-heading">
@@ -41,17 +41,25 @@
 										<img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" width = 100% class="img-responsive" >
 									</div>
 									<div class="panel-footer">
-										<button type="button" class="btn btn-danger btn-xs" id="btn-remove">Remove</button>
+										<button type="button" class="btn btn-danger btn-xs" id="btn_remove_<?php echo $member['id']?>">Remove</button>
 										<span style="margin-left : 2px">
 											<select class="select2" style="width:70%"  name="role[]">
-												<option value="owner">Owner</option>
-												<option value="leader">Leader</option>
-												<option value="developer">Developer</option>
+												<option value="owner" <?php if($member['role'] == 'owner'):echo 'selected'; endif; ?>>Owner</option>
+												<option value="leader" <?php if($member['role'] == 'leader'):echo 'selected'; endif; ?>>Leader</option>
+												<option value="developer" <?php if($member['role'] == 'developer'):echo 'selected'; endif; ?>>Developer</option>
 											</select>
 										</span>
 									</div>
 								</div>
 							</div>
+							<script>
+								$(function(){
+									$("#btn_remove_<?php echo $member['id']?>").click(function(){
+										$("#userColumn_<?php echo $member['id']?>").remove();
+									});
+								});
+
+							</script>
 							<?php }?>
 							<div id="membersContainer">
 							</div>
@@ -59,14 +67,14 @@
 					</div>
 				</div>
 				<div class="box-footer">
-					<?php if(isset($id)): ?>
-						<input type="hidden" name="id" id="id" value="<?php echo $id ?>" />
+					<?php if(isset($team['id'])): ?>
+						<input type="hidden" name="id" id="id" value="<?php echo $team['id'] ?>" />
 					<?php endif; ?>
 					<div class="btn-group">
 						<button type="submit" name="save" id="save" class="btn btn-success">
 							<i class="fa fa-save"></i> Save
 						</button>
-						<?php if(!isset($id)):?>
+						<?php if(!isset($team['id'])):?>
 						<button type="submit" name="save" id="saveAddNew" value="saveAddNew" class="btn btn-success">
 							<i class="fa fa-retweet"></i> Save &amp; Add New
 						</button>
@@ -85,11 +93,6 @@
 </div>
 <script>
 	$(function(){
-
-		$("#btn-remove").click(function(){
-			$("#userColumn").remove();
-		});
-
 		CKEDITOR.replace('description');
 		$('.dateTimePicker').datetimepicker({
 			format: 'YYYY-MM-DD'
