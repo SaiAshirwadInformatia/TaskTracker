@@ -48,7 +48,7 @@ class Users_model extends CI_Model
 
 
 	public function get_members_by_team_id($team_id){
-		$this->db->select("U.* , TM.role as role");
+		$this->db->select("U.* , TM.role as role, TM.id as team_members_id");
 		$this->db->from("users U");
 		$this->db->join("team_members TM","TM.user_id = U.id");
 		$this->db->join("teams T","T.id = TM.team_id");

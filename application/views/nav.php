@@ -17,7 +17,6 @@ $menu = $SimpleBuilder->build($menuList);
  
 
       <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
         <li>
             <a href="<?php echo base_url('Dashboard') ?>">
                 <i class="fa fa-rocket"></i>  <span>Dashboard</span>
@@ -44,7 +43,28 @@ $menu = $SimpleBuilder->build($menuList);
         </li>
         <li class="treeview">
             <a href="#">
+<<<<<<< HEAD
                 <i class="fa fa-rocket"></i><span> Projects</span> <i class="fa fa-angle-left pull-right"></i>
+=======
+                <i class="fa fa-users"></i> Team<i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="<?php echo base_url('Teams/create')?>">
+                        <i class="fa fa-plus-square-o"></i> Add Team
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url('Teams')?>">
+                        <i class="fa fa-th-list"></i> View Team
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-rocket"></i> Projects <i class="fa fa-angle-left pull-right"></i>
+>>>>>>> 0a693eb86005deffb451d9498c00d8eab158be75
             </a>
             <ul class="treeview-menu">
                 <li> 
@@ -59,7 +79,6 @@ $menu = $SimpleBuilder->build($menuList);
                 </li>
             </ul>
         </li>
-
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-arrow-up"></i> <span>Releases</span><i class="fa fa-angle-left pull-right"></i>

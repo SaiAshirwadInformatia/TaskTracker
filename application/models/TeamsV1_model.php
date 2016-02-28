@@ -15,6 +15,11 @@ class TeamsV1_model extends MY_Model
 			'name',
 			'description'
 		];
+		$this->unique = [
+			'key' => [
+				'key'
+			]
+		];
 
 		parent::__construct(); 
 	}
