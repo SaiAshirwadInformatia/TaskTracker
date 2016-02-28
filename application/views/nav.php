@@ -44,17 +44,17 @@ $menu = $SimpleBuilder->build($menuList);
         </li>
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-rocket"></i> Projects <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-rocket"></i><span> Projects</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
                 <li> 
                     <a href="<?php echo base_url('Projects/create')?>">
-                        <i class="fa fa-plus-square-o"></i> Add Project
+                        <i class="fa fa-plus-square-o"></i> <span>Add Project</span>
                     </a>
                 </li>
                 <li> 
                     <a href="<?php echo base_url('Projects')?>">
-                        <i class="fa fa-th-list"></i> View Projects
+                        <i class="fa fa-th-list"></i> <span>View Projects</span>
                     </a>
                 </li>
             </ul>
@@ -62,49 +62,49 @@ $menu = $SimpleBuilder->build($menuList);
 
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-arrow-up"></i> Releases<i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-arrow-up"></i> <span>Releases</span><i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
                 <li>
                     <a href="<?php echo base_url('Releases/create')?>">
-                        <i class="fa fa-plus-square-o"></i> Add Release
+                        <i class="fa fa-plus-square-o"></i> <span>Add Release</span>
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo base_url('Releases')?>">
-                        <i class="fa fa-th-list"></i> View Releases
+                        <i class="fa fa-th-list"></i> <span>View Releases</span>
                     </a>
                 </li>
             </ul>
         </li>
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-tasks"></i> Tasks<i class=" fa fa-angle-left pull-right"></i>
+                <i class="fa fa-tasks"></i> <span>Tasks</span><i class=" fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
                 <li>
                     <a href="<?php echo base_url('Tasks/create/') ?>">
-                        <i class="fa fa-plus-square-o"></i> Add Task
+                        <i class="fa fa-plus-square-o"></i> <span>Add Task</span>
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo  base_url('Tasks') ?>">
-                        <i class="fa fa-plus-square-o"></i> View All Task
+                        <i class="fa fa-plus-square-o"></i> <span>View All Task</span>
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo base_url('Tasks/open') ?>">
-                        <i class="fa fa-plus-square-o"></i> Open Task
+                        <i class="fa fa-plus-square-o"></i> <span>Open Task</span>
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo base_url('Tasks/assigned') ?>">
-                        <i class="fa fa-plus-square-o"></i> Assigned Task
+                        <i class="fa fa-plus-square-o"></i> <span>Assigned Task</span>
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo base_url('Tasks/closed') ?>">
-                        <i class="fa fa-plus-square-o"></i> Closed Task
+                        <i class="fa fa-plus-square-o"></i> <span>Closed Task</span>
                     </a>
                 </li>
             </ul>
