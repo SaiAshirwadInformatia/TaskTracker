@@ -293,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `username`, `password`, `phone`, `lastlogin_ts`, `creation_ts`, `lastmodified_ts`, `is_active`, `access_token`) VALUES
 (1, 'Akshay', 'Mane', 'mane.akshay1997@gmail.com', 'akshay', '$2y$10$f/YnYXz6kz1V0k9PjXNb3.7LHMNKS7m0lCQH0vjiBpcmHJxaBNYVC', '2147483647', '2016-02-25 20:42:40', '2016-02-06 16:28:52', NULL, 0, '32bd477527b91048bf0de80d99a47187'),
-(5, 'Anuj', 'khairnar', 'anujkhairnar5@gmail.com', 'anujk', '$2y$10$cjH1InudIfIqBuLx9dR2NedfAMxeDs.ONSk6kud1LYUJQM10ZSa7S', '98765432', NULL, '2016-02-11 06:21:36', NULL, 1, 'asdfkjakdjfhbaskfjn skjvvn'),
+(5, 'Anuj', 'khairnar', 'anuj@gmail.com', 'anujk', '$2y$10$f/YnYXz6kz1V0k9PjXNb3.7LHMNKS7m0lCQH0vjiBpcmHJxaBNYVC', '98765432', NULL, '2016-02-11 06:21:36', NULL, 1, 'asdfkjakdjfhbaskfjn skjvvn'),
 (6, 'Brayan', 'Munis', 'brayanmunis2@gmail.com', 'brayan', '$2y$10$f/YnYXz6kz1V0k9PjXNb3.7LHMNKS7m0lCQH0vjiBpcmHJxaBNYVC', '7895642130', NULL, '2016-02-11 16:37:27', NULL, 0, '$2y$10$3HP1kc1c4wJRc5N3ejUUOuL5/X/rPFYxNJK1WPDg4ibppZHgKWdGW'),
 (7, 'Vaibhav', 'Mane', 'vaibhavmane9819@gmail.com', 'vaibhav', '$2y$10$cjH1InudIfIqBuLx9dR2NedfAMxeDs.ONSk6kud1LYUJQM10ZSa7S', '9004645506', NULL, '2016-02-21 08:16:50', NULL, 0, '$2y$10$j.gFoA8LWVHe/N73UmVaFehWpbwK3O1Gd7cU/e98BwDFiyaz0nLPC');
 
