@@ -35,6 +35,12 @@
 <input type="text" class="form-control" placeholder="Notes.."  name="notes" id="notes" <?php echo 'value = "'.$user['notes'].'"' ?>/>
 </div>
 
+		<label for="inputEmail3" class="col-sm-2 control-label">Qualification</label>
+<div class="col-sm-10">
+<input type="text" class="form-control" placeholder="Notes.."  name="qualification" id="qualification" <?php echo 'value = "'.$user['qualification'].'"' ?>/>
+</div>
+
+
 
 
 <div class="form-group">

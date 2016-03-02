@@ -21,7 +21,7 @@
 
               <h3 class="profile-username text-center"><?php echo $user['fname'] . ' ' . $user['lname']?></h3>
 
-              <p class="text-muted text-center"><?php echo 'Software'?></p>
+              <p class="text-muted text-center"> <?php echo $user['qualification'] ?></p>
 
             </div>
             <!-- /.box-body -->

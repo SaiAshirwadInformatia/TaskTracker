@@ -51,6 +51,8 @@ class Profile extends TT_Controller{
 			'education' => $this->input->post('education'),
 			'location' => $this->input->post('location'),
 			'notes' => $this->input->post('notes'),
+			'qualification' => $this->input->post('qualification'),
+
 
 		];
 		$ret = $this->users_model->update($this->currentUser['id']	,$data);
