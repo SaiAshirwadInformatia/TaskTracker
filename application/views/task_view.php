@@ -22,6 +22,10 @@
 					<dd><?php echo $task['title']?></dd>
 				</dl>
 				<dl class="dl-horizontal">
+					<dt>State</dt>
+					<dd><?php echo $task['state']?></dd>
+				</dl>
+				<dl class="dl-horizontal">
 					<dt>Type</dt>
 					<dd><?php echo $task['type']?></dd>
 				</dl>
