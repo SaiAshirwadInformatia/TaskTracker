@@ -149,7 +149,7 @@ class Tasks extends TT_Controller
 				'due_date' => $due_date
 			];
 			if($assigned_id and $assigned_id != 0){
-				$data['state'] = 'assigned';
+				$data['state'] = 'Assigned';
 			}else{
 				$data['state'] = 'Open';
 			}
