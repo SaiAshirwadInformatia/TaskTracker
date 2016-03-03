@@ -4,6 +4,8 @@ class TT_Controller extends CI_Controller
 {
 	protected $paginationConfig;
 
+	protected $status;
+
 	public function __construct($checkLogin = true)
 	{
 		parent::__construct();
@@ -29,6 +31,16 @@ class TT_Controller extends CI_Controller
 	       'last_tagl_close' => '</li>',
 	       'per_page' => 1,
 	       'uri_segment' => 3
+		];
+		$this->status = [
+			'open' => ['need_info', 'duplicate', 'assigned', 'rejected'],
+			'assigned' => ['need_info', 'inprogress'],
+			'inprogress' => ['need_info', 'complete'],
+			'complete' => ['closed', 'failed', 'reopen'],
+			'close' => ['failed', 'reopen'],
+			'failed' => ['need_info'],
+			'reopen' => ['need_info'],
+			'need_info' => ['open']
 		];
 	}
 

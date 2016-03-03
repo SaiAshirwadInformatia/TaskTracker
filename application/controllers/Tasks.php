@@ -99,7 +99,8 @@ class Tasks extends TT_Controller
 		$data = [
 			'task' => $task,
 			'user' => $user,
-			'assigned_user' => $assigned_user
+			'assigned_user' => $assigned_user,
+			'status' => $this->status
 		 ];
 		$this->load->view('task_view',$data);
 		$this->load->view('footer');

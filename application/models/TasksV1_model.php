@@ -28,6 +28,11 @@ class TasksV1_model extends MY_Model
 
 		parent::__construct(); 
 	}
+
+	public function statusUpdate($param){
+		$this->db->update('state',$param['state'],['id' => $id]);
+		return $ret[];
+	}
 }
 
 ?>

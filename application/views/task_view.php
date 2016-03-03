@@ -1,6 +1,18 @@
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Task</h1>
+		<h1>Task 
+		<span class="pull-right">
+				<?php
+					if(array_key_exists($task['state'], $status)){
+						$data = [
+							'status' =>$status[$task['state']],
+							'task_id' => $task['id']	
+							]; 
+						$this->load->view('inc_state_buttons',$data);
+					}
+				?>
+			</span>
+		</h1>
 	</section>
 	<div class="content">
 		<div class="box box-default">
@@ -44,3 +56,6 @@
 		</div>
 	</div>
 </div>
+<?php
+
+?>
