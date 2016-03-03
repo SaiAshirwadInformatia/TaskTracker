@@ -34,13 +34,16 @@ class TT_Controller extends CI_Controller
 		];
 		$this->status = [
 			'open' => ['need_info', 'duplicate', 'assigned', 'rejected'],
-			'assigned' => ['need_info', 'inprogress'],
-			'inprogress' => ['need_info', 'complete'],
+			'assigned' => ['need-info', 'inprogress'],
+			'inprogress' => ['need-info', 'complete'],
 			'complete' => ['closed', 'failed', 'reopen'],
-			'close' => ['failed', 'reopen'],
-			'failed' => ['need_info'],
-			'reopen' => ['need_info'],
-			'need_info' => ['open']
+			'closed' => ['failed', 'reopen'],
+			'failed' => ['need-info'],
+			'reopen' => ['need-nfo'],
+			'need-info' => ['open'],
+			'duplicate' => ['re-open'],
+			're-open' => ['assigned','rejected'],
+			'rejected' => ['re-open']
 		];
 	}
 

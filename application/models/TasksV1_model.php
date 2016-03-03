@@ -30,8 +30,22 @@ class TasksV1_model extends MY_Model
 	}
 
 	public function statusUpdate($param){
-		$this->db->update('state',$param['state'],['id' => $id]);
-		return $ret[];
+		if($param['state']){
+			$data = [
+				'state' => $param['state']
+			];
+		}
+		if($this->db->update('tasks',$data,['id' => $param['id']])){
+			$ret = [
+				'id' => $param['id'],
+				'status' => OK
+			];
+		}else{
+			$ret = [
+				'status' => ko
+			];
+		}
+		return $ret;
 	}
 }
 

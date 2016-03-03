@@ -9,19 +9,19 @@ foreach($status as $state){
 <script>
 $('.statusUpdate').click(function(){
 	var taskId = $(this).data('taskId');
-	var status = $(this).data('status');
+	var state = $(this).data('state');
 	$.ajax({
 		async: true,
 		cache: false,
 		type: 'POST',
-		url: tasktracker.apihref + '/tasks/statusUpdate',
+		url: tasktracker.apiurl + 'tasks/statusUpdate',
 		data: {
 			id: taskId,
-			status: status
+			state: state
 		},
 		success: function(response){
 			console.log(response);
-			window.location = tasktracker.basehref + '/Tasks';
+			window.location = tasktracker.baseurl + 'Tasks/view/'+taskId;
 		}
 	});
 });
