@@ -29,6 +29,11 @@ $menu = $SimpleBuilder->build($menuList);
             </a>
         </li>
 
+        <li>
+            <a href="<?php echo base_url('Kanban') ?>">
+                <i class="fa fa-modx"></i> <span>Kanban</span>
+            </a>
+        </li>
 
 
         <li>

@@ -69,7 +69,6 @@ class Teams extends TT_Controller{
 			'action' => 'create_action',
 			'members' => [
 					0 => $this->currentUser
-
 				]
 		];
 		$this->load->view('team_form',$data);
@@ -100,7 +99,8 @@ class Teams extends TT_Controller{
 			$data = [
 				'team' => $team,
 				'members' => $members,
-				'action' => 'update_action'
+				'action' => 'update_action',
+				'id' => $team_id
 			];
 			$this->load->view('team_form',$data);
 		}else{
