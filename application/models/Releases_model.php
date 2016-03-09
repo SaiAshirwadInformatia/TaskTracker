@@ -41,7 +41,7 @@ class Releases_model extends CI_Model
 		return $data;
 	}
 
-	public function fetch_releases_by_project($project_id, $limit, $start){
+	public function fetch_releases_by_project($project_id, $limit = 30, $start = 0){
 		$this->db->where('project_id', $project_id);
 		$this->db->limit($limit, $start);
         return $this->db->get('releases')->result_array();

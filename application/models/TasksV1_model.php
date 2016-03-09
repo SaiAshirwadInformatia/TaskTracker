@@ -30,22 +30,41 @@ class TasksV1_model extends MY_Model
 	}
 
 	public function statusUpdate($param){
+		$ret = [];
 		if($param['state']){
 			$data = [
 				'state' => $param['state']
 			];
-		}
-		if($this->db->update('tasks',$data,['id' => $param['id']])){
-			$ret = [
-				'id' => $param['id'],
-				'status' => OK
-			];
-		}else{
-			$ret = [
-				'status' => ko
-			];
+			if($this->db->update('tasks',$data,['id' => $param['id']])){
+				$ret = [
+					'id' => $param['id'],
+					'status' => OK
+				];
+			}else{
+				$ret = [
+					'status' => ko
+				];
+			}
 		}
 		return $ret;
+	}
+	public function getByState($param){
+		$data = [];
+		if($param['state'] and $param['release_id']){
+			$this->db->where('state',$param['state']);
+			$this->db->where('release_id',$param['release_id']);
+			$data =  $this->db->get('tasks')->result_array();
+			if(count($data) <= 0){
+				$data = [
+					'state' => 'No record found'
+				];
+			}
+		}else{
+			$data = [
+				'key' => 'Key must be "state"'
+			];
+		}
+		return $data;
 	}
 }
 

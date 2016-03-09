@@ -39,7 +39,6 @@ class TT_Controller extends CI_Controller
 			'Complete' => ['Closed', 'Failed', 'Reopen'],
 			'Closed' => ['Failed', 'ReOopen'],
 			'Failed' => ['Need-info'],
-			'Reopen' => ['Need-Info'],
 			'Need-info' => ['Assigned','Closed'],
 			'Duplicate' => ['Re-open'],
 			'Re-open' => ['Assigned','Rejected'],

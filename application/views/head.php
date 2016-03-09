@@ -43,4 +43,5 @@
     <script>
     tasktracker.baseurl = '<?php echo base_url()?>';
     tasktracker.apiurl = tasktracker.baseurl + 'api/v1/';
+    tasktracker.currentProject = '<?php  $project = $this->session->userdata("currentProject"); echo $project["id"]?>';
     </script>
