@@ -35,15 +35,13 @@ class TeamsV1_model extends MY_Model
 			$this->db->join('users U','U.id = TM.user_id');
 			$this->db->where('T.id',$param['task_id']);
 			$data = $this->db->get()->result_array();
-
 		}else{
 			$data = [
-				'Status' => 'No record found'
+				'status' => 'No record found'
 			];
 		}
 
 		return $data;
-
 	}
 }
 

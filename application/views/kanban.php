@@ -51,19 +51,35 @@
 <script>
 	$(function(){
 		var boxOpen =  $('#Open');
-		getByState('Open',boxOpen,'primary');
-
-
 		var boxInprogress =  $('#Inprogress');
-		getByState('Inprogress',boxInprogress,'info');
-
-
 		var boxComplete =  $('#Complete');
-		getByState('Complete',boxComplete,'success');
-
-
 		var boxFailed =  $('#Failed');
-		getByState('Failed',boxFailed,'danger');
+		var taskType = {
+			discussion : 'info',
+			bug : 'error',
+			story : 'warning',
+			question : 'danger',
+			sub : 'primary'
+		};
+		createCard();
+
+ 		function createCard(){
+			getByState('Open',boxOpen,taskType);
+
+			getByState('Inprogress',boxInprogress,taskType);
+
+			getByState('Complete',boxComplete,taskType);
+
+			getByState('Failed',boxFailed,taskType);
+		}
+
+		$('#releaseDropdown').on('change', function(){
+			boxOpen.empty();
+			boxInprogress.empty();
+			boxComplete.empty();
+			boxFailed.empty();
+			createCard();
+		});
 
 		function getByState(state,container,color){
 			var state = state;
@@ -91,22 +107,26 @@
 		}
 
 		function drawCard(task,container,color){
-			var box = $('<div class="box box-'+color+'">');
+			var box = $('<div class="box box-'+color[task['type']]+'">');
 			var boxTitle = $('<div class="box-header with-border">');
+			var timeAgo = $('<small class="pull-right"><time id="'+task['assigned_id']+'_'+task['id']+'" datetime="'+task['creation_ts']+'">');
 			var H3 = $('<h3 class="box-title">');
-			var boxBody = $('<div class="box-body">');
+			var boxBody = $('<div class="box-body" style="height:100px;overflow: auto;">');
 			var boxFooter = $('<div class="box-footer">');
-			var selectTag = $('<select class="select2" id="'+task['id']+'" style="width:50%">');
+			var description = $('<small>');
+			var selectTag = $('<select class="select2 select2-hidden-accessible" id="'+task['id']+'" style="width:70%">');
 			userGetByTask(task['id'],task['assigned_id']);
-			console.log('user : '+task['assigned_id']);
 			$(H3).html(task['title']);
-			$(boxBody).html(task['description']);
+			$(description).html(task['description']);
 			$(H3).appendTo(boxTitle);
+			$(boxBody).append(description);
+			$(boxTitle).append(timeAgo);
 			$(boxTitle).appendTo(box);
 			$(boxBody).appendTo(box);
 			$(boxFooter).appendTo(box);
 			$(selectTag).appendTo(boxFooter);
-			$(box).appendTo(container);
+			$(box).appendTo(container);	
+			$('time#'+task['assigned_id']+'_'+task['id']).timeago();
 			$('.select2').select2();
 		}
 
@@ -130,9 +150,8 @@
 		}
 
 		function drawDropdown(user,task_id,assigned_id){
-			console.log(assigned_id,user['id']);
 			if(user['id'] == assigned_id){
-				var optionTag = $('<option value="'+user['id']+'" selected>');
+				var optionTag = $('<option value="'+user['id']+'" selected >');
 			}else{
 				var optionTag = $('<option value="'+user['id']+'">');
 			}

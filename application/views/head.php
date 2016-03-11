@@ -33,6 +33,7 @@
     <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/select2/select2.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/iCheck/icheck.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/moment/moment.js') ?>"></script>
+    <script src="<?php echo base_url('assets/vendor/jquery-timeago/jquery.timeago.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') ?>"></script>
     <!--
     <script src="<?php echo base_url('assets/vendor/typeahead.js/dist/typeahead.bundle.min.js')?>"></script>

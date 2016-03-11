@@ -61,7 +61,7 @@ class TasksV1_model extends MY_Model
 			}
 		}else{
 			$data = [
-				'key' => 'Key must be "state"'
+				'key' => 'Key must be \'state\' and \'release_id\''
 			];
 		}
 		return $data;
