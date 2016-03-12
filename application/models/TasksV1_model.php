@@ -49,22 +49,44 @@ class TasksV1_model extends MY_Model
 		return $ret;
 	}
 	public function getByState($param){
-		$data = [];
+		$returnArr = [];
 		if($param['state'] and $param['release_id']){
-			$this->db->where('state',$param['state']);
-			$this->db->where('release_id',$param['release_id']);
-			$data =  $this->db->get('tasks')->result_array();
-			if(count($data) <= 0){
-				$data = [
+			$this->db->select('T.*, U.id as user_id, U.fname AS user_fname, U.lname AS user_lname');
+			$this->db->from('tasks T');
+			$this->db->join('releases R', 'R.id = T.release_id');
+			$this->db->join('projects P', 'R.project_id = P.id');
+			$this->db->join('team_members TM', 'TM.team_id = P.team_id');
+			$this->db->join('users U', 'TM.user_id = U.id');
+			$this->db->where('T.state',$param['state']);
+			$this->db->where('T.release_id',$param['release_id']);
+			$data =  $this->db->get()->result_array();
+			foreach ($data as $value) {
+				if(!isset($returnArr[$value['id']])){
+					$value['team_members'] = [];
+					$returnArr[$value['id']] = $value;
+
+				}
+				$returnArr[$value['id']]['team_members'][] = [
+					'id' => $value['user_id'],
+					'name' => $value['user_fname'] . ' ' . $value['user_lname']
+				];
+				unset($returnArr[$value['id']]['user_fname']);
+				unset($returnArr[$value['id']]['user_lname']);
+				unset($returnArr[$value['id']]['user_id']);
+			}
+			if(count($returnArr) === 0){
+				$returnArr = [
 					'state' => 'No record found'
 				];
+			}else{
+				$returnArr = array_values($returnArr);
 			}
 		}else{
-			$data = [
-				'key' => 'Key must be \'state\' and \'release_id\''
+			$returnArr = [
+				'key' => "Key must be 'state' and 'release_id'"
 			];
 		}
-		return $data;
+		return $returnArr;
 	}
 }
 

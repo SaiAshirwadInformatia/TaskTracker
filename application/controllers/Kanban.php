@@ -5,14 +5,16 @@ class Kanban extends TT_Controller
 {
 	protected $currentProject;
 
-	public function __construct(){
+	public function __construct() {
 		parent::__construct();
 		$this->load->model([
 				'users_model',
 				'projects_model',
 				'releases_model'
 			]);
-		$this->load->view('header');
+		$this->load->view('header', [
+			'nextStatus' => $this->status
+		]);	
 		$this->currentProject = $this->session->userdata('currentProject');
 	}
 
@@ -22,7 +24,7 @@ class Kanban extends TT_Controller
 			'status' => $this->status,
 			'releasesList' => $releasesList
 		];
-		$this->load->view('kanban',$data);
+		$this->load->view('kanban', $data);
 		$this->load->view('footer');
 	}
 

@@ -89,3 +89,81 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 define('OK', 'OK');
 define('KO', 'NOT_OK');
+
+
+/* TEST STATUS */
+define('OPEN', 'Open');
+define('CLOSED', 'Closed');
+define('ASSIGNED', 'Assigned');
+define('INPROGRESS','In-Progress');
+define('COMPLETE', 'Complete');
+define('FAILED', 'Failed');
+define('DUPLICATE', 'Duplicate');
+define('REJECTED', 'Rejected');
+define('NEED_INFO', 'Need-Info');
+define('REOPEN', 'Re-Open');
+
+$status = [
+	OPEN => [
+		'label' => OPEN,
+		'key' => 'O',
+		'className' => 'info',
+		'kanban' => true
+	],
+	CLOSED => [
+		'label' => CLOSED,
+		'key' => 'C',
+		'className' => 'success',
+		'kanban' => true
+	],
+	ASSIGNED => [
+		'label' => ASSIGNED,
+		'key' => 'A',
+		'className' => 'primary',
+		'kanban' => true
+	],
+	INPROGRESS => [
+		'label' => INPROGRESS,
+		'key' => 'I',
+		'className' => 'warning',
+		'kanban' => true
+	],
+	FAILED => [
+		'label' => FAILED,
+		'key' => 'F',
+		'className' => 'danger',
+		'kanban' => true
+	],
+	COMPLETE => [
+		'label' => COMPLETE,
+		'key' => 'C',
+		'className' => 'success',
+		'kanban' => true
+
+	],
+	DUPLICATE => [
+		'label' => DUPLICATE,
+		'key' => 'D',
+		'className' => 'warning',
+		'kanban' => true
+	],
+	REJECTED => [
+		'label' => REJECTED,
+		'key' => 'R',
+		'className' => 'warning',
+		'kanban' => true
+	],
+	NEED_INFO => [
+		'label' => NEED_INFO,
+		'key' => 'N',
+		'className' => 'primary',
+		'kanban' => true
+	],
+	REOPEN => [
+		'label' => REOPEN,
+		'key' => 'RO',
+		'className' => 'primary',
+		'kanban' => true
+	]
+
+];

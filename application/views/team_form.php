@@ -158,7 +158,7 @@
 					async: true,
 					cache: false,
 					type: 'POST',
-					url: 'http://localhost/TaskTracker/api/v1/users/search',
+					url: tasktracker.apiuri+'/users/search',
 					data: {
 						fname: fname
 					},

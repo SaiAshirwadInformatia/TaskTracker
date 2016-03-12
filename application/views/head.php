@@ -42,7 +42,8 @@
 
     <script src="<?php echo base_url('assets/js/tasktracker.js')?>"></script>
     <script>
-    tasktracker.baseurl = '<?php echo base_url()?>';
-    tasktracker.apiurl = tasktracker.baseurl + 'api/v1/';
-    tasktracker.currentProject = '<?php  $project = $this->session->userdata("currentProject"); echo $project["id"]?>';
+        tasktracker.baseurl = '<?php echo base_url()?>';
+        tasktracker.apiurl = tasktracker.baseurl + 'api/v1';
+        tasktracker.currentProject = '<?php  $project = $this->session->userdata("currentProject"); echo $project["id"]?>';
+        tasktracker.status = <?php global $status;echo json_encode($status);?>;
     </script>
