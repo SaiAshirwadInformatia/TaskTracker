@@ -2,6 +2,7 @@
  * Task Tracker Application JS
  */
 
+
 var tasktracker = {};
 
 tasktracker.isAvailableValidation = function(options){
@@ -50,10 +51,11 @@ console.log('Update to Status: ' + status);
 };
 
 tasktracker.drawButton = function(task, buttonGroup){
-	var nextState = tasktracker.nextStatus[task.state];
+	var nextState = tasktracker.nextStatus[task.state]['next'];
 	for(var stateIdx in nextState){
 		var myState = nextState[stateIdx];
-		var button = $('<button class="btn btn-xs"><i class="fa fa-check">');
+		var icon = tasktracker.nextStatus[myState]['icon']
+		var button = $('<button class="btn btn-xs" title="'+myState+'"><i class="'+icon+'">');
 		$(button).data('taskId', task.id);
 		$(button).data('state', myState);
 		$(button).click(tasktracker.doStatusChange);
@@ -72,7 +74,7 @@ tasktracker.drawCard = function(task, container, color, teamMembers){
 	var boxTitle = $('<div class="box-header with-border">');
 	var timeAgo = $('<small class="pull-right"><time id="'+task.assigned_id+'_'+task.id+'" datetime="'+task.creation_ts+'">');
 	var H3 = $('<h3 class="box-title">');
-	var boxBody = $('<div class="box-body" style="height:100px;overflow: auto;">');
+	var boxBody = $('<div class="box-body task_content">');
 	var boxFooter = $('<div class="box-footer">');
 	var description = $('<small>');
 	var selectTag = $('<select class="select2 select2-hidden-accessible" id="'+task['id']+'" style="width:50%">');
@@ -104,7 +106,12 @@ tasktracker.drawCard = function(task, container, color, teamMembers){
 	$(boxBody).appendTo(box);
 	$(boxFooter).appendTo(box);
 	$(box).appendTo(container);		
-	$(selectTag).select2();	
+	$(selectTag).select2();
+	$('time').timeago();
+	$('.task_content').slimScroll({
+		height: '150px',
+		size: '5px'
+	});
 };
 
 
@@ -164,7 +171,6 @@ tasktracker.kanbanBuilder = function(){
 				loadTaskByStatus(state);
 			}
 		}
-		$('time').timeago();
 	};
 
 	this.start = function(release_id){

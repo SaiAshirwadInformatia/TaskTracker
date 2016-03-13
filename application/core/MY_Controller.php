@@ -33,16 +33,46 @@ class TT_Controller extends CI_Controller
 	       'uri_segment' => 3
 		];
 		$this->status = [
-			OPEN => [NEED_INFO, DUPLICATE, ASSIGNED, REJECTED],
-			ASSIGNED => [NEED_INFO, INPROGRESS],
-			INPROGRESS => [NEED_INFO, COMPLETE],
-			COMPLETE => [CLOSED, FAILED, REOPEN],
-			CLOSED => [FAILED, REOPEN],
-			FAILED => [NEED_INFO],
-			NEED_INFO => [ASSIGNED,CLOSED],
-			DUPLICATE => [REOPEN],
-			REOPEN => [ASSIGNED,REJECTED],
-			REJECTED => [NEED_INFO,REOPEN,CLOSED]
+			OPEN => [
+				'next' => [NEED_INFO, DUPLICATE, ASSIGNED, REJECTED],
+				'icon' => 'fa fa-check'
+			],
+			ASSIGNED => [
+				'next' => [NEED_INFO, INPROGRESS],
+				'icon' => 'fa fa-arrow-left'
+			],
+			INPROGRESS => [
+				'next' => [NEED_INFO, COMPLETE],
+				'icon' => 'fa fa-check'
+			],
+			COMPLETE => [
+				'next' => [CLOSED, FAILED, REOPEN],
+				'icon' => 'fa fa-check'
+			],
+			CLOSED => [
+				'next' => [FAILED, REOPEN],
+				'icon' => 'fa fa-times'
+			],
+			FAILED => [
+				'next' => [NEED_INFO],
+				'icon' => 'fa fa-exclaimation-triangle'
+			],
+			NEED_INFO => [
+				'next' => [ASSIGNED,CLOSED],
+				'icon' => 'fa fa-info'
+			],
+			DUPLICATE => [
+				'next' => [REOPEN],
+				'icon' => 'fa fa-files-o'
+			],
+			REOPEN => [
+				'next' => [ASSIGNED,REJECTED],
+				'icon' => 'fa fa-repeat'
+			],
+			REJECTED => [
+				'next' => [NEED_INFO,REOPEN,CLOSED],
+				'icon' => 'fa fa-trash'
+			]
 		];
 	}
 
