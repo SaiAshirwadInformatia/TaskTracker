@@ -37,7 +37,7 @@
 
 		<label for="inputEmail3" class="col-sm-2 control-label">Qualification</label>
 <div class="col-sm-10">
-<input type="text" class="form-control" placeholder="Notes.."  name="qualification" id="qualification" <?php echo 'value = "'.$user['qualification'].'"' ?>/>
+<input type="text" class="form-control" placeholder="Qualification.."  name="qualification" id="qualification" <?php echo 'value = "'.$user['qualification'].'"' ?>/>
 </div>
 
 
