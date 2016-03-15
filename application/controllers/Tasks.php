@@ -99,7 +99,8 @@ class Tasks extends TT_Controller
 		$data = [
 			'task' => $task,
 			'user' => $user,
-			'assigned_user' => $assigned_user
+			'assigned_user' => $assigned_user,
+			'status' => $this->status
 		 ];
 		$this->load->view('task_view',$data);
 		$this->load->view('footer');
@@ -148,7 +149,7 @@ class Tasks extends TT_Controller
 				'due_date' => $due_date
 			];
 			if($assigned_id and $assigned_id != 0){
-				$data['state'] = 'assigned';
+				$data['state'] = 'Assigned';
 			}else{
 				$data['state'] = 'Open';
 			}

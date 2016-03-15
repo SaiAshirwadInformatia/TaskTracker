@@ -29,6 +29,11 @@ $menu = $SimpleBuilder->build($menuList);
             </a>
         </li>
 
+        <li>
+            <a href="<?php echo base_url('Kanban') ?>">
+                <i class="fa fa-modx"></i> <span>Kanban</span>
+            </a>
+        </li>
 
 
         <li>
@@ -43,28 +48,36 @@ $menu = $SimpleBuilder->build($menuList);
         </li>
         <li class="treeview">
             <a href="#">
+<<<<<<< HEAD
 
                 <i class="fa fa-rocket"></i><span> Projects</span> <i class="fa fa-angle-left pull-right"></i>
 
                 <i class="fa fa-users"></i> Team<i class="fa fa-angle-left pull-right"></i>
+=======
+                <i class="fa fa-users"></i> <span>Team</span><i class="fa fa-angle-left pull-right"></i>
+>>>>>>> 499c3e23d953c4d125274a5807e84f6a21dee8ea
             </a>
             <ul class="treeview-menu">
                 <li>
                     <a href="<?php echo base_url('Teams/create')?>">
-                        <i class="fa fa-plus-square-o"></i> Add Team
+                        <i class="fa fa-plus-square-o"></i> <span>Add Team</spna>
                     </a>
                 </li>
                 <li>
                     <a href="<?php echo base_url('Teams')?>">
-                        <i class="fa fa-th-list"></i> View Team
+                        <i class="fa fa-th-list"></i> <span>View Team</span>
                     </a>
                 </li>
             </ul>
         </li>
         <li class="treeview">
             <a href="#">
+<<<<<<< HEAD
                 <i class="fa fa-rocket"></i> Projects <i class="fa fa-angle-left pull-right"></i>
 
+=======
+                <i class="fa fa-rocket"></i> <span>Projects<span><i class="fa fa-angle-left pull-right"></i>
+>>>>>>> 499c3e23d953c4d125274a5807e84f6a21dee8ea
             </a>
             <ul class="treeview-menu">
                 <li> 

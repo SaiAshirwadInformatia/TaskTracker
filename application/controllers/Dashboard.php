@@ -10,7 +10,9 @@ class Dashboard extends TT_Controller
 
 	public function index()
 	{
-		$this->load->view('header');	
+		$this->load->view('header', [
+			'status' => $this->status
+		]);	
 		$this->load->view('dashboard');
 		$this->load->view('footer');
 

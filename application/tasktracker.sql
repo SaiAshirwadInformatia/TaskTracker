@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 26, 2016 at 02:16 PM
+-- Generation Time: Mar 03, 2016 at 11:49 PM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.6.18-1+deb.sury.org~trusty+1
 
@@ -138,13 +138,13 @@ CREATE TABLE IF NOT EXISTS `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `title`, `description`, `type`, `state`, `release_id`, `due_date`, `creation_ts`, `lastmodified_ts`, `start_ts`, `end_ts`, `user_id`, `assigned_id`) VALUES
-(1, 'Hello Task 1', '', 'bug', 'unassigned', 1, '2016-03-22', '2016-01-24 06:10:06', '2016-02-12 03:32:06', NULL, NULL, 1, 6),
-(2, 'My task 2', 'This is for Android 2', 'Discussion', 'unassigned', 1, '0000-00-00', '2016-02-01 14:56:42', NULL, NULL, NULL, 1, 5),
+(1, 'Hello Task 1', '', 'bug', 'Rejected', 1, '2016-03-22', '2016-01-24 06:10:06', '2016-02-12 03:32:06', NULL, NULL, 1, 0),
+(2, 'My task 2', 'This is for Android 2', 'Discussion', 'Open', 1, '0000-00-00', '2016-02-01 14:56:42', NULL, NULL, NULL, 1, 0),
 (3, 'Task 1', '<p>This is newly created task</p>\r\n', 'story', 'Open', 1, '2016-02-17', '0000-00-00 00:00:00', '2016-02-12 03:32:35', NULL, NULL, 1, 1),
-(4, 'Task 2.1', '<p>This is for android 1.2&nbsp;</p>\r\n', 'bug', 'OPEN', 4, '2016-02-29', '2016-02-10 10:12:52', '2016-02-11 06:32:09', NULL, NULL, 5, 5),
-(5, 'Task 3', '<p>This sub tassk of Reality task</p>\r\n', 'sub', 'OPEN', 4, '2016-02-12', '2016-02-10 11:05:58', '2016-02-11 06:32:43', NULL, NULL, 5, 5),
-(6, 'Task 5', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et quam sit amet turpis auctor condimentum non vitae nisi. Aliquam ullamcorper arcu erat, faucibus condimentum justo pellentesque in. Donec vitae erat pretium, iaculis odio et, egestas sem. Quisque at leo consequat est tempor pretium eget in neque. Curabitur cursus porttitor nisi, aliquam dapibus nibh vulputate quis. Nulla congue mi tellus, ac tristique elit vehicula id. Mauris a magna id diam tristique tempor vel ut risus. Suspendisse lorem eros, scelerisque id eros eget, porta varius dolor. Sed nec aliquam dui. Duis id consequat arcu. Maecenas quis enim in purus maximus convallis hendrerit aliquet diam.</p>\r\n\r\n<p>Donec tempus enim ut dolor hendrerit, in luctus ex euismod. Maecenas a scelerisque risus, in ultrices sem. Proin eu gravida mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed felis neque, dapibus vel condimentum vitae, gravida eu orci. Aliquam varius nisi mauris, eu pellentesque augue mollis quis. Nullam aliquam massa sit amet mauris pulvinar commodo.</p>\r\n', 'discussion', 'closed', 2, '2016-02-27', '2016-02-11 06:17:04', '2016-02-11 06:32:40', NULL, NULL, 5, 0),
-(7, 'Something about java', '<p>Java technology allows you to work and play in a secure computing environment. Upgrading to the latest Java version improves the security of your system, as older versions do not include the latest security updates.</p>\r\n\r\n<p>Java allows you to play online games, chat with people around the world, calculate your mortgage interest, and view images in 3D, just to name a few.</p>\r\n', 'story', 'OPEN', 3, '2016-02-24', '2016-02-12 15:54:12', '2016-02-12 03:32:36', NULL, NULL, 1, 6);
+(4, 'Task 2.1', '<p>This is for android 1.2&nbsp;</p>\r\n', 'bug', 'Open', 4, '2016-02-29', '2016-02-10 10:12:52', '2016-02-11 06:32:09', NULL, NULL, 5, 6),
+(5, 'Task 3', '<p>This sub tassk of Reality task</p>\r\n', 'sub', 'Open', 4, '2016-02-12', '2016-02-10 11:05:58', '2016-02-11 06:32:43', NULL, NULL, 5, 6),
+(6, 'Task 5', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et quam sit amet turpis auctor condimentum non vitae nisi. Aliquam ullamcorper arcu erat, faucibus condimentum justo pellentesque in. Donec vitae erat pretium, iaculis odio et, egestas sem. Quisque at leo consequat est tempor pretium eget in neque. Curabitur cursus porttitor nisi, aliquam dapibus nibh vulputate quis. Nulla congue mi tellus, ac tristique elit vehicula id. Mauris a magna id diam tristique tempor vel ut risus. Suspendisse lorem eros, scelerisque id eros eget, porta varius dolor. Sed nec aliquam dui. Duis id consequat arcu. Maecenas quis enim in purus maximus convallis hendrerit aliquet diam.</p>\r\n\r\n<p>Donec tempus enim ut dolor hendrerit, in luctus ex euismod. Maecenas a scelerisque risus, in ultrices sem. Proin eu gravida mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed felis neque, dapibus vel condimentum vitae, gravida eu orci. Aliquam varius nisi mauris, eu pellentesque augue mollis quis. Nullam aliquam massa sit amet mauris pulvinar commodo.</p>\r\n', 'discussion', 'Closed', 2, '2016-02-27', '2016-02-11 06:17:04', '2016-02-11 06:32:40', NULL, NULL, 5, 0),
+(7, 'Something about java', '<p>Java technology allows you to work and play in a secure computing environment. Upgrading to the latest Java version improves the security of your system, as older versions do not include the latest security updates.</p>\r\n\r\n<p>Java allows you to play online games, chat with people around the world, calculate your mortgage interest, and view images in 3D, just to name a few.</p>\r\n', 'story', 'Open', 3, '2016-02-24', '2016-02-12 15:54:12', '2016-02-12 03:32:36', NULL, NULL, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -214,13 +214,13 @@ CREATE TABLE IF NOT EXISTS `teams` (
 --
 
 INSERT INTO `teams` (`id`, `name`, `description`, `key`, `creation_ts`, `lastmodified_ts`) VALUES
-(1, 'Hello World', '<p>World Hello</p>\r\n', '', '2016-02-20 08:06:00', '0000-00-00 00:00:00'),
+(1, 'Hello World', '<p>World Hello</p>\r\n', 'a', '2016-02-20 08:06:00', '0000-00-00 00:00:00'),
 (2, 'MoD', '<p>This is for Mod</p>\r\n', '', '2016-02-20 17:24:58', '0000-00-00 00:00:00'),
-(3, 'Team 2', '', '', '2016-02-23 14:24:46', '0000-00-00 00:00:00'),
-(4, 'HelloMyTeam', '', '', '2016-02-23 14:25:36', '0000-00-00 00:00:00'),
-(7, 'Champ', '<p>THis is for only developers</p>\r\n', '', '2016-02-24 10:03:27', '0000-00-00 00:00:00'),
-(8, 'Champ2', '<p>Only for android developers</p>\r\n', '', '2016-02-24 10:04:43', '0000-00-00 00:00:00'),
-(9, 'mod', '<p>very funny team</p>\r\n', '', '2016-02-26 08:36:58', '0000-00-00 00:00:00');
+(3, 'Team 2', '', 'b', '2016-02-23 14:24:46', '0000-00-00 00:00:00'),
+(4, 'HelloMyTeam', '', 'c', '2016-02-23 14:25:36', '0000-00-00 00:00:00'),
+(7, 'Champ', '<p>THis is for only developers</p>\r\n', 'd', '2016-02-24 10:03:27', '0000-00-00 00:00:00'),
+(8, 'Champ2', '<p>Only for android developers</p>\r\n', 'e', '2016-02-24 10:04:43', '0000-00-00 00:00:00'),
+(9, 'mod', '<p>very funny team</p>\r\n', 'f', '2016-02-26 08:36:58', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -236,16 +236,14 @@ CREATE TABLE IF NOT EXISTS `team_members` (
   `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_active` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `team_members`
 --
 
 INSERT INTO `team_members` (`id`, `user_id`, `team_id`, `role`, `creation_ts`, `is_active`) VALUES
-(1, 1, 1, 'owner', '2016-02-20 08:06:00', 0),
-(2, 6, 1, 'leader', '2016-02-20 08:06:00', 0),
-(3, 5, 2, 'leader', '2016-02-20 17:25:14', 0),
+(3, 6, 2, 'leader', '2016-02-20 17:25:14', 0),
 (4, 5, 3, 'leader', '2016-02-23 14:24:46', 0),
 (5, 1, 4, 'leader', '2016-02-23 14:25:36', 0),
 (6, 5, 4, 'developer', '2016-02-23 14:25:36', 0),
@@ -259,7 +257,11 @@ INSERT INTO `team_members` (`id`, `user_id`, `team_id`, `role`, `creation_ts`, `
 (14, 1, 8, 'developer', '2016-02-24 10:04:43', 0),
 (15, 5, 8, 'owner', '2016-02-24 10:04:43', 0),
 (16, 6, 8, 'leader', '2016-02-24 10:04:43', 0),
-(17, 1, 9, 'owner', '2016-02-26 08:36:59', 0);
+(17, 1, 9, 'owner', '2016-02-26 08:36:59', 0),
+(20, 5, 1, 'leader', '2016-02-27 04:52:13', 0),
+(21, 6, 1, 'developer', '2016-02-27 05:08:16', 0),
+(22, 7, 1, 'developer', '2016-02-27 05:08:16', 0),
+(23, 1, 1, 'owner', '2016-02-27 05:47:41', 0);
 
 -- --------------------------------------------------------
 
@@ -275,6 +277,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(128) NOT NULL,
   `password` varchar(256) NOT NULL,
   `phone` varchar(10) NOT NULL,
+  `skills` text NOT NULL,
+  `location` varchar(64) NOT NULL,
+  `notes` text NOT NULL,
+  `education` varchar(64) NOT NULL,
   `lastlogin_ts` timestamp NULL DEFAULT NULL,
   `creation_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastmodified_ts` timestamp NULL DEFAULT NULL,
@@ -291,11 +297,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `username`, `password`, `phone`, `lastlogin_ts`, `creation_ts`, `lastmodified_ts`, `is_active`, `access_token`) VALUES
-(1, 'Akshay', 'Mane', 'mane.akshay1997@gmail.com', 'akshay', '$2y$10$f/YnYXz6kz1V0k9PjXNb3.7LHMNKS7m0lCQH0vjiBpcmHJxaBNYVC', '2147483647', '2016-02-25 20:42:40', '2016-02-06 16:28:52', NULL, 0, '32bd477527b91048bf0de80d99a47187'),
-(5, 'Anuj', 'khairnar', 'anujkhairnar5@gmail.com', 'anujk', '$2y$10$cjH1InudIfIqBuLx9dR2NedfAMxeDs.ONSk6kud1LYUJQM10ZSa7S', '98765432', NULL, '2016-02-11 06:21:36', NULL, 1, 'asdfkjakdjfhbaskfjn skjvvn'),
-(6, 'Brayan', 'Munis', 'brayanmunis2@gmail.com', 'brayan', '$2y$10$f/YnYXz6kz1V0k9PjXNb3.7LHMNKS7m0lCQH0vjiBpcmHJxaBNYVC', '7895642130', NULL, '2016-02-11 16:37:27', NULL, 0, '$2y$10$3HP1kc1c4wJRc5N3ejUUOuL5/X/rPFYxNJK1WPDg4ibppZHgKWdGW'),
-(7, 'Vaibhav', 'Mane', 'vaibhavmane9819@gmail.com', 'vaibhav', '$2y$10$cjH1InudIfIqBuLx9dR2NedfAMxeDs.ONSk6kud1LYUJQM10ZSa7S', '9004645506', NULL, '2016-02-21 08:16:50', NULL, 0, '$2y$10$j.gFoA8LWVHe/N73UmVaFehWpbwK3O1Gd7cU/e98BwDFiyaz0nLPC');
+INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `username`, `password`, `phone`, `skills`, `location`, `notes`, `education`, `lastlogin_ts`, `creation_ts`, `lastmodified_ts`, `is_active`, `access_token`) VALUES
+(1, 'Akshay', 'Mane', 'mane.akshay1997@gmail.com', 'akshay', '$2y$10$mum62PjYQutGtdmMmqNvducUP.KmvqmCldQ/7trtOBPxx6hIVizRG', '2147483647', '', '', '', '', '2016-03-03 05:39:44', '2016-02-06 16:28:52', NULL, 0, 'b27aebacd0897b866f5ed15649d6d577'),
+(5, 'Anuj', 'khairnar', 'anujkhairnar5@gmail.com', 'anujk', '$2y$10$f/YnYXz6kz1V0k9PjXNb3.7LHMNKS7m0lCQH0vjiBpcmHJxaBNYVC', '98765432', '', '', '', '', NULL, '2016-02-11 06:21:36', NULL, 1, 'asdfkjakdjfhbaskfjn skjvvn'),
+(6, 'Brayan', 'Munis', 'brayanmunis2@gmail.com', 'brayan', '$2y$10$f/YnYXz6kz1V0k9PjXNb3.7LHMNKS7m0lCQH0vjiBpcmHJxaBNYVC', '7895642130', '', '', '', '', NULL, '2016-02-11 16:37:27', NULL, 0, '$2y$10$3HP1kc1c4wJRc5N3ejUUOuL5/X/rPFYxNJK1WPDg4ibppZHgKWdGW'),
+(7, 'Vaibhav', 'Mane', 'vaibhavmane9819@gmail.com', 'vaibhav', '$2y$10$cjH1InudIfIqBuLx9dR2NedfAMxeDs.ONSk6kud1LYUJQM10ZSa7S', '9004645506', '', '', '', '', NULL, '2016-02-21 08:16:50', NULL, 0, '$2y$10$j.gFoA8LWVHe/N73UmVaFehWpbwK3O1Gd7cU/e98BwDFiyaz0nLPC');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

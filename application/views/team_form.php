@@ -44,9 +44,11 @@
 										<button type="button" class="btn btn-danger btn-xs" id="btn_remove_<?php echo $member['id']?>">Remove</button>
 										<span style="margin-left : 2px">
 											<select class="select2" style="width:70%"  name="role[]">
-												<option value="owner" <?php if($member['role'] == 'owner'):echo 'selected'; endif; ?>>Owner</option>
-												<option value="leader" <?php if($member['role'] == 'leader'):echo 'selected'; endif; ?>>Leader</option>
-												<option value="developer" <?php if($member['role'] == 'developer'):echo 'selected'; endif; ?>>Developer</option>
+												<option value="owner" <?php if(isset($member['role']) && $member['role'] == 'owner'):echo 'selected'; endif; ?>>Owner</option>
+												<?php if(isset($id)){?>
+												<option value="leader" <?php if(isset($member['role']) && $member['role'] == 'leader'):echo 'selected'; endif; ?>>Leader</option>
+												<option value="developer" <?php if(isset($member['role']) && $member['role'] == 'developer'):echo 'selected'; endif; ?>>Developer</option>
+												<?php } ?>
 											</select>
 										</span>
 									</div>
@@ -173,7 +175,7 @@
 					async: true,
 					cache: false,
 					type: 'POST',
-					url: 'http://localhost/TaskTracker/api/v1/users/search',
+					url: tasktracker.apiuri+'/users/search',
 					data: {
 						fname: fname
 					},

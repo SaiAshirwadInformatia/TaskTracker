@@ -4,6 +4,8 @@ class TT_Controller extends CI_Controller
 {
 	protected $paginationConfig;
 
+	protected $status;
+
 	public function __construct($checkLogin = true)
 	{
 		parent::__construct();
@@ -29,6 +31,48 @@ class TT_Controller extends CI_Controller
 	       'last_tagl_close' => '</li>',
 	       'per_page' => 1,
 	       'uri_segment' => 3
+		];
+		$this->status = [
+			OPEN => [
+				'next' => [NEED_INFO, DUPLICATE, ASSIGNED, REJECTED],
+				'icon' => 'fa fa-check'
+			],
+			ASSIGNED => [
+				'next' => [NEED_INFO, INPROGRESS],
+				'icon' => 'fa fa-arrow-left'
+			],
+			INPROGRESS => [
+				'next' => [NEED_INFO, COMPLETE],
+				'icon' => 'fa fa-check'
+			],
+			COMPLETE => [
+				'next' => [CLOSED, FAILED, REOPEN],
+				'icon' => 'fa fa-check'
+			],
+			CLOSED => [
+				'next' => [FAILED, REOPEN],
+				'icon' => 'fa fa-times'
+			],
+			FAILED => [
+				'next' => [NEED_INFO],
+				'icon' => 'fa fa-exclaimation-triangle'
+			],
+			NEED_INFO => [
+				'next' => [ASSIGNED,CLOSED],
+				'icon' => 'fa fa-info'
+			],
+			DUPLICATE => [
+				'next' => [REOPEN],
+				'icon' => 'fa fa-files-o'
+			],
+			REOPEN => [
+				'next' => [ASSIGNED,REJECTED],
+				'icon' => 'fa fa-repeat'
+			],
+			REJECTED => [
+				'next' => [NEED_INFO,REOPEN,CLOSED],
+				'icon' => 'fa fa-trash'
+			]
 		];
 	}
 

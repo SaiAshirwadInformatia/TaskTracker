@@ -16,7 +16,8 @@ class Projects extends TT_Controller
 		loadProjectsSession();
 		if($this->session->userdata('user')){
 			$this->currentUser = $this->session->userdata('user');
-	
+		}
+	}
 
 	public function index($start = 0)
 	{

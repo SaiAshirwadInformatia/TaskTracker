@@ -18,9 +18,10 @@ class API extends CI_Controller{
 	 */
 	public function V1($module = 'meta', $param = null){
 
-		$classname = ucfirst($module).'V1_model';
-		
+		$classname = ucfirst($module).'V1_model';	
+
 		$method = $this->input->method();
+		
 		$ret = [];
 		if(file_exists(APPPATH . 'models/' . $classname . '.php')) {
 			$this->load->model($classname);
