@@ -47,4 +47,5 @@
         tasktracker.apiurl = tasktracker.baseurl + 'api/v1';
         tasktracker.currentProject = '<?php  $project = $this->session->userdata("currentProject"); echo $project["id"]?>';
         tasktracker.status = <?php global $status;echo json_encode($status);?>;
+        tasktracker.taskType = <?php global $taskType;echo json_encode($taskType);?>;
     </script>

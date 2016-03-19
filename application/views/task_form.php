@@ -16,11 +16,11 @@
 							<div class="col-sm-3">
 								<label class="label-control">Type</label>
 								<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="type"	>
-									<option value="bug" <?php if(isset($type) and $type == 'bug'): echo 'selected'; endif; ?> >Issue/Bug</option>
-									<option value="story" <?php if(isset($type) and $type == 'story'):echo 'selected'; endif; ?>>Story</option>
-									<option value="discussion" <?php if(isset($type) and $type == 'discussion'): echo 'selected'; endif; ?> >Discussion</option>
-									<option value="question" <?php if(isset($type) and $type == 'question'): echo 'selected'; endif;?> >Question</option>
-									<option value="sub"<?php if(isset($type) and $type == 'sub'): echo 'selected'; endif;?> >Sub Task</option>
+									<option value="bug" <?php if(isset($type) and $type == 'Bug'): echo 'selected'; endif; ?> >Issue/Bug</option>
+									<option value="story" <?php if(isset($type) and $type == 'Story'):echo 'selected'; endif; ?>>Story</option>
+									<option value="discussion" <?php if(isset($type) and $type == 'Discussion'): echo 'selected'; endif; ?> >Discussion</option>
+									<option value="question" <?php if(isset($type) and $type == 'Question'): echo 'selected'; endif;?> >Question</option>
+									<option value="sub"<?php if(isset($type) and $type == 'Sub-Type'): echo 'selected'; endif;?> >Sub Task</option>
 								</select>
 							</div>
 							<div class="col-sm-3">

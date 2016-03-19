@@ -35,7 +35,7 @@ class TT_Controller extends CI_Controller
 		$this->status = [
 			OPEN => [
 				'next' => [NEED_INFO, DUPLICATE, ASSIGNED, REJECTED],
-				'icon' => 'fa fa-check'
+				'icon' => 'fa fa-check',
 			],
 			ASSIGNED => [
 				'next' => [NEED_INFO, INPROGRESS],
@@ -55,7 +55,7 @@ class TT_Controller extends CI_Controller
 			],
 			FAILED => [
 				'next' => [NEED_INFO],
-				'icon' => 'fa fa-exclaimation-triangle'
+				'icon' => 'fa fa-exclamation-triangle'
 			],
 			NEED_INFO => [
 				'next' => [ASSIGNED,CLOSED],

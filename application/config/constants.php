@@ -103,6 +103,12 @@ define('REJECTED', 'Rejected');
 define('NEED_INFO', 'Need-Info');
 define('REOPEN', 'Re-Open');
 
+/*  Task Type */
+define('BUG', 'Bug');
+define('DISCUSSION','Discussion');
+define('STORY', 'Story');
+define('QUESTION', 'Question');
+define('SUB_TYPE', 'Sub-Type');
 $status = [
 	OPEN => [
 		'label' => OPEN,
@@ -113,7 +119,7 @@ $status = [
 	CLOSED => [
 		'label' => CLOSED,
 		'key' => 'C',
-		'className' => 'success',
+		'className' => 'danger',
 		'kanban' => true
 	],
 	ASSIGNED => [
@@ -131,7 +137,7 @@ $status = [
 	FAILED => [
 		'label' => FAILED,
 		'key' => 'F',
-		'className' => 'danger',
+		'className' => 'warning',
 		'kanban' => true
 	],
 	COMPLETE => [
@@ -150,7 +156,7 @@ $status = [
 	REJECTED => [
 		'label' => REJECTED,
 		'key' => 'R',
-		'className' => 'warning',
+		'className' => 'danger',
 		'kanban' => true
 	],
 	NEED_INFO => [
@@ -164,6 +170,29 @@ $status = [
 		'key' => 'RO',
 		'className' => 'primary',
 		'kanban' => true
+	]
+];
+
+$taskType = [
+	BUG => [
+		'label' => BUG,
+		'className' => 'danger'
+	],
+	QUESTION => [
+		'label' => QUESTION,
+		'className' => 'warning'
+	],
+	STORY => [
+		'label' => STORY,
+		'className' => 'default'
+	],
+	DISCUSSION => [
+		'label' => DISCUSSION,
+		'className' => 'primary'
+	],
+	SUB_TYPE => [
+		'label' => SUB_TYPE,
+		'className' => 'info' 
 	]
 
 ];

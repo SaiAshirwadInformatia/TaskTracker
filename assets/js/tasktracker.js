@@ -44,9 +44,14 @@ tasktracker.isAvailableValidation = function(options){
 tasktracker.doStatusChange = function(){
 	var taskId = $(this).data('taskId');
 	var status = $(this).data('state');
+	var task = $(this).data('task');
+	var buttonGroup = $(this).data('buttonGroup');
 	// AJAX for changing state
-console.log('Update to Status: ' + status);
- $('#task_card_' + taskId).appendTo('#' + status);
+	task.state = status;
+	console.log('Update to Status: ' + status);
+ 	$('#task_card_' + taskId).appendTo('#' + status);
+	$(buttonGroup).children().remove();
+	tasktracker.drawButton(task,buttonGroup);
 
 };
 
@@ -55,21 +60,22 @@ tasktracker.drawButton = function(task, buttonGroup){
 	for(var stateIdx in nextState){
 		var myState = nextState[stateIdx];
 		var icon = tasktracker.nextStatus[myState]['icon']
-		var button = $('<button class="btn btn-xs" title="'+myState+'"><i class="'+icon+'">');
+		var button = $('<button class="btn btn-xs btn-'+tasktracker.status[myState].className+'" title="'+myState+'"><i class="'+icon+'">');
 		$(button).data('taskId', task.id);
 		$(button).data('state', myState);
+		$(button).data('task', task);
+		$(button).data('buttonGroup', buttonGroup);
 		$(button).click(tasktracker.doStatusChange);
 		$(button).appendTo(buttonGroup);
 	}
 };
-
 tasktracker.doAssign  = function(){
 	var taskId = $(this).data('taskId');
 };
 
 tasktracker.drawCard = function(task, container, color, teamMembers){
-	console.log('Drawing Card');
-	console.log(task);
+	//console.log('Drawing Card');
+	//console.log(task);
 	var box = $('<div id="task_card_' + task.id + '" class="box box-'+color+'">');
 	var boxTitle = $('<div class="box-header with-border">');
 	var timeAgo = $('<small class="pull-right"><time id="'+task.assigned_id+'_'+task.id+'" datetime="'+task.creation_ts+'">');
@@ -80,14 +86,14 @@ tasktracker.drawCard = function(task, container, color, teamMembers){
 	var selectTag = $('<select class="select2 select2-hidden-accessible" id="'+task['id']+'" style="width:50%">');
 	$(selectTag).data('taskId', task.id);
 	$(selectTag).change(tasktracker.doAssign);
-	var buttonGroup = $('<div class="btn-group '+task['id']+'_button">');
+	var buttonGroup = $('<div class="btn-group '+task['id']+'_button pull-right">');
 	tasktracker.drawButton(task, buttonGroup);
-	console.log('Team Members in Draw Card');
+	console.log('Team Members in Draw Card : ');
 	console.log(teamMembers);
 	for(var key in teamMembers){
 		var user = teamMembers[key];
-		console.log('User');
-		console.log(user);
+		//console.log('User');
+		//console.log(user);
 		var option = $('<option value="'+user.id+'">');
 		$(option).html(user.fname + ' ' + user.lname);
 		if(task.assigned_id === user.id){
@@ -139,7 +145,7 @@ tasktracker.kanbanBuilder = function(){
 		});
 	};
 
-	var loadTaskByStatus = function(state){
+	var loadTaskByStatus = function(state,taskType){
 		$.ajax({
 			aync : true,
 			cache: false,
@@ -155,7 +161,8 @@ tasktracker.kanbanBuilder = function(){
 				if(response.length > 0){
 					for(var key in response){
 						var task = response[key];
-						tasktracker.drawCard(task,'#' + state.label, state.color, teamMembers);
+						var taskType = tasktracker.taskType[task.type];
+						tasktracker.drawCard(task,'#' + state.label, taskType.className, teamMembers);
 					}
 				}
 			}
