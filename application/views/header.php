@@ -7,14 +7,14 @@ $this->load->view('head');
     <!-- Logo -->
     <a href="<?php echo base_url('Dashboard')?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>TT</b></span>
+      <span class="logo-mini"><img src="<?php echo base_url('assets/images/tt.png')?>" /></span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><img src="<?php echo base_url('assets/images/tasktracker3.png')?>" /></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
       <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <a href="#" class="sidebar-toggle tourElement" id="toggle-btn" data-toggle="offcanvas" role="button" style="opacity:1;z-index:1200">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>

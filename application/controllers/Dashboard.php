@@ -13,6 +13,7 @@ class Dashboard extends TT_Controller
 		$this->load->view('header');	
 		$this->load->view('dashboard');
 		$this->load->view('footer');
+		//$this->load->view('tasktracker.tour.js');
 		/*
 		$to_name = 'Rohan Sakhale';
 		$to_email = 'rohansakhale@gmail.com';

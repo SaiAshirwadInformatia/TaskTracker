@@ -19,6 +19,20 @@
 			</div>	
 		</form>
 	</div>
+	 <?php $skills = [
+                'JAVA',
+                'PHP',
+                'HTML',
+                'CSS',
+                'JAVASCRIPT'
+              ];
+              
+                echo '<select>';
+                foreach ($skills as $skill) {
+                    echo '<option value="$skill">'.$skill.'</option>';
+                }
+                echo '</select>';
+              ?>
 
 				<label for="inputEmail3" class="col-sm-2 control-label">Last Name</label>
 				<div class="col-sm-10">

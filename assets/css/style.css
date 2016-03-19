@@ -10,3 +10,16 @@
 .colorpicker{
 	z-index: 1020;
 }
+
+/*
+
+.tour-step-background{
+	opacity: 0;
+	border:2px solid white;
+}
+
+.tourElement{
+	opacity: 1;
+	z-index: 2000;
+}
+*/

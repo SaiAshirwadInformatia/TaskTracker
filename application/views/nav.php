@@ -19,13 +19,13 @@ $menu = $SimpleBuilder->build($menuList);
       <ul class="sidebar-menu">
         <li>
             <a href="<?php echo base_url('Dashboard') ?>">
-                <i class="fa fa-rocket"></i>  <span>Dashboard</span>
+                <i class="fa fa-dribbble"></i>  <span>Dashboard</span>
             </a>
         </li>
 
-        <li>
+        <li id="profile-link">
             <a href="<?php echo base_url('Profile') ?>">
-                <i class="fa fa-rocket"></i>  <span>Profile</span>
+                <i class="fa fa-user"></i>  <span>Profile</span>
             </a>
         </li>
 
@@ -33,7 +33,7 @@ $menu = $SimpleBuilder->build($menuList);
 
         <li>
             <a href="<?php echo base_url('Tasks/mytasks')?>">
-                <i class="fa fa-tasks"></i> <span>My Task</span>
+                <i class="fa fa-list"></i> <span>My Task</span>
             </a>
         </li>
         <li>
@@ -60,7 +60,7 @@ $menu = $SimpleBuilder->build($menuList);
         </li>
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-rocket"></i> <span>Projects<span><i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-rocket"></i> <span>Projects</span><i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
                 <li> 
