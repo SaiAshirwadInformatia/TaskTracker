@@ -1,6 +1,9 @@
 <?php 
 $this->load->view('head');
 ?>
+<script>
+tasktracker.nextStatus = <?php echo json_encode($nextStatus)?>;
+</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<header class="main-header">
@@ -9,7 +12,7 @@ $this->load->view('head');
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><img src="<?php echo base_url('assets/images/tt.png')?>" /></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><img src="<?php echo base_url('assets/images/tasktracker3.png')?>" /></span>
+      <span class="logo-lg"><img src="<?php echo base_url('assets/images/tasktracker4.png')?>" /></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">

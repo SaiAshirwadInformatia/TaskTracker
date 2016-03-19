@@ -28,6 +28,11 @@
     "select2": "~4.0.1",
     "typeahead.js": "~0.11.1",
     "jquery-ui": "^1.11.4",
+<<<<<<< HEAD
     "bootstrap-tour": "^0.10.2"
+=======
+    "jquery-timeago": "^1.5.2",
+    "jquery-slimscroll": "^1.3.7"
+>>>>>>> f009049998032765a3bf1fb80e1e91a428b4d303
   }
 }

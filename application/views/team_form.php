@@ -24,7 +24,7 @@
 						</div>
 						<div class="row">
 							<div class="form-group col-sm-6">
-								<label class="label-control">Add Members</label>
+								<label class="label-control">Team Members</label>
 								<input type="text" class="form-control" name="team_members" id="team_members" />
 							</div>
 						</div>
@@ -45,8 +45,10 @@
 										<span style="margin-left : 2px">
 											<select class="select2" style="width:70%"  name="role[]">
 												<option value="owner" <?php if(isset($member['role']) && $member['role'] == 'owner'):echo 'selected'; endif; ?>>Owner</option>
+												<?php if(isset($id)){?>
 												<option value="leader" <?php if(isset($member['role']) && $member['role'] == 'leader'):echo 'selected'; endif; ?>>Leader</option>
 												<option value="developer" <?php if(isset($member['role']) && $member['role'] == 'developer'):echo 'selected'; endif; ?>>Developer</option>
+												<?php } ?>
 											</select>
 										</span>
 									</div>
@@ -66,6 +68,23 @@
 						</div>
 					</div>
 				</div>
+
+				<div>
+					<form action=proccess.php' method='POST enctype='multipart/form-data'>
+					<lable> Attachments</lable>
+					<input type='submit' name='submit'>
+					</form>
+				</div>
+
+
+
+
+
+
+
+
+
+
 				<div class="box-footer">
 					<?php if(isset($team['id'])): ?>
 						<input type="hidden" name="id" id="id" value="<?php echo $team['id'] ?>" />
@@ -156,7 +175,7 @@
 					async: true,
 					cache: false,
 					type: 'POST',
-					url: 'http://localhost/TaskTracker/api/v1/users/search',
+					url: tasktracker.apiuri+'/users/search',
 					data: {
 						fname: fname
 					},

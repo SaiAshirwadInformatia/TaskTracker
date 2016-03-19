@@ -29,6 +29,11 @@ $menu = $SimpleBuilder->build($menuList);
             </a>
         </li>
 
+        <li>
+            <a href="<?php echo base_url('Kanban') ?>">
+                <i class="fa fa-modx"></i> <span>Kanban</span>
+            </a>
+        </li>
 
 
         <li>
@@ -43,7 +48,10 @@ $menu = $SimpleBuilder->build($menuList);
         </li>
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-users"></i> <span>Team</span><i class="fa fa-angle-left pull-right"></i>
+
+                <i class="fa fa-rocket"></i><span> Projects</span> <i class="fa fa-angle-left pull-right"></i>
+
+                <i class="fa fa-users"></i> Team<i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
                 <li>

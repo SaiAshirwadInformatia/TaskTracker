@@ -85,6 +85,11 @@
 						</div>
 					</div>
 				</div>
+
+
+
+
+
 				<div class="box-footer">
 					<?php if(isset($id)): ?>
 						<input type="hidden" name="id" id="id" value="<?php echo $id ?>" />
@@ -101,6 +106,7 @@
 						<button type="submit" name="save" value="saveExit" id="saveExit" class="btn btn-success">
 							<i class="glyphicon glyphicon-floppy-saved"></i> Save &amp; Exit
 						</button>
+						
 					<?php endif;?>
 					</div>
 				</div>
@@ -108,6 +114,7 @@
 		</form>
 	</div>
 </div>
+
 <script>
 	
 	$(function(){

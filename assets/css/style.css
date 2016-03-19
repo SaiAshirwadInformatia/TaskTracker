@@ -10,7 +10,6 @@
 .colorpicker{
 	z-index: 1020;
 }
-
 /*
 
 .tour-step-background{
@@ -23,3 +22,11 @@
 	z-index: 2000;
 }
 */
+
+.kanban_panel{
+	width:300px;
+	display:inline;
+	float:left;
+	margin-left: 10px;
+	margin-right: 10px;
+}
