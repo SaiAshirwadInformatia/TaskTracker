@@ -49,8 +49,6 @@ $menu = $SimpleBuilder->build($menuList);
         <li class="treeview">
             <a href="#">
 
-                <i class="fa fa-rocket"></i><span> Projects</span> <i class="fa fa-angle-left pull-right"></i>
-
                 <i class="fa fa-users"></i> Team<i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">

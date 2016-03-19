@@ -1,7 +1,7 @@
 	</head>
 
 		<?php $this->load->view('inc_bootstrap_alerts');?>
-	<body class="hold-transition login-page">
+	<body class="hold-transition login-page" style="background-image: url('<?php echo base_url("assets/images/bgimg.jpg")?>');">
 		<div class="login-box">
 			<div class="login-logo">
 				<a href="#"><b>TaskTracker</b></a>
