@@ -2,6 +2,9 @@
 
 class TasksV1_model extends MY_Model
 {
+	private $commentRequiredFileds;
+	private $commentTable;
+
 	public function __construct()
 	{
 		$this->table = 'tasks';
@@ -25,6 +28,14 @@ class TasksV1_model extends MY_Model
 			'strat_ts',
 			'end_ts'
 		];
+
+		$this->commentTable = 'tasks_comments' ;
+
+		$this->commentRequiredFileds = [
+				'task_id' => 'task_id is required',
+				'user_id' => 'user_id is required',
+				'comment' => 'comment is required'
+			];
 
 		parent::__construct(); 
 	}
@@ -88,6 +99,50 @@ class TasksV1_model extends MY_Model
 		}
 		return $returnArr;
 	}
+
+	public function taskComments($param) {	
+
+		var_dump($param);die();
+
+		$error = [];
+		$data = [];
+		$isValid = true;
+		foreach($this->commentRequiredFileds as $key => $value ){
+			if(!array_key_exists($key, $param)){
+				$error[] = $value;
+				$isValid = false;
+			}
+		}
+		foreach($param as $key => $value ){
+			if(!array_key_exists($key, $this->commentRequiredFileds)){
+				$error[] = $key.' key is not required';
+				$isValid = false;
+			}
+		}
+		if($isValid){
+			if($this->db->insert($this->commentTable,$param)){
+				$data = [
+					'msg' => 'Successfully added new Comment',
+					'id' => $this->db->insert_id()
+				]; 
+			}else{
+				$data = [
+					'error_msg' => $this->db->error()
+				];
+			}
+		}
+		if(count($error) > 0){
+			$ret = [
+				'status' => KO,
+				'error' => $error,
+				];
+		}else{
+			$ret = $data;
+		}
+		return $ret;
+
+	}
+
 }
 
 ?>

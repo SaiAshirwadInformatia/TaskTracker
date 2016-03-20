@@ -94,7 +94,7 @@ class MY_Model extends CI_Model implements IRestManager{
 				];
 			}else{
 				$ret = [
-					'error_msg' => $this->db->error(),
+					'error_msg' => $this->db->error()
 				];
 			}
 		}else{
