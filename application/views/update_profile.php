@@ -19,6 +19,20 @@
 			</div>	
 		</form>
 	</div>
+	 <?php $skills = [
+                'JAVA',
+                'PHP',
+                'HTML',
+                'CSS',
+                'JAVASCRIPT'
+              ];
+              
+                echo '<select>';
+                foreach ($skills as $skill) {
+                    echo '<option value="$skill">'.$skill.'</option>';
+                }
+                echo '</select>';
+              ?>
 
 				<label for="inputEmail3" class="col-sm-2 control-label">Last Name</label>
 				<div class="col-sm-10">
@@ -44,6 +58,12 @@
 		<div class="col-sm-10">
 		<input type="text" class="form-control" placeholder="Notes.."  name="notes" id="notes" <?php echo 'value = "'.$user['notes'].'"' ?>/>
 		</div>
+
+		<label for="inputEmail3" class="col-sm-2 control-label">Qualification</label>
+<div class="col-sm-10">
+<input type="text" class="form-control" placeholder="Qualification.."  name="qualification" id="qualification" <?php echo 'value = "'.$user['qualification'].'"' ?>/>
+</div>
+
 
 
 

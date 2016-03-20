@@ -34,4 +34,9 @@ class UsersV1_model extends MY_Model
 		
 	}
 
+	public function uploadDisplayPicture()
+	{
+		// TODO
+	}
+
 }

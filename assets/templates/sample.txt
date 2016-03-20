@@ -1,0 +1,21 @@
+Hi *|FNAME|*,
+
+Username = *|USERNAME|*
+
+For complete validation of account, you click on  link given at below
+http://localhost/BookXchange/index.php?at=*|ACCESS_TOKEN|*
+
+Link: http://bookxchange.saiashirwad.com
+
+
+Having trouble signing in?
+Please reach us at akshaym@saiashirwad.com
+
+Regards
+Team BookXchange
+
+
+<small>Powered by <a href="http://saiashirwad.com"><strong>Sai Ashirwad Informatia</strong></a></small>
+
+<hr>
+Sai Ashirwad Informatia, Bhayandar (West), Thane - 401101, Maharashtra, India

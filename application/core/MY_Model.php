@@ -16,6 +16,7 @@ interface IRestManager{
 
 }
 
+
 class MY_Model extends CI_Model implements IRestManager{
 
 	var $table;

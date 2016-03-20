@@ -68,6 +68,23 @@
 						</div>
 					</div>
 				</div>
+
+				<div>
+					<form action=proccess.php' method='POST enctype='multipart/form-data'>
+					<lable> Attachments</lable>
+					<input type='submit' name='submit'>
+					</form>
+				</div>
+
+
+
+
+
+
+
+
+
+
 				<div class="box-footer">
 					<?php if(isset($team['id'])): ?>
 						<input type="hidden" name="id" id="id" value="<?php echo $team['id'] ?>" />
