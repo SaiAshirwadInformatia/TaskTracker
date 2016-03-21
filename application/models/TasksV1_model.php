@@ -2,6 +2,7 @@
 
 class TasksV1_model extends MY_Model
 {
+	
 	public function __construct()
 	{
 		$this->table = 'tasks';
@@ -25,6 +26,8 @@ class TasksV1_model extends MY_Model
 			'strat_ts',
 			'end_ts'
 		];
+
+		
 
 		parent::__construct(); 
 	}
@@ -88,6 +91,7 @@ class TasksV1_model extends MY_Model
 		}
 		return $returnArr;
 	}
+
 }
 
 ?>
