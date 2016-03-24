@@ -73,6 +73,32 @@ tasktracker.doAssign  = function(){
 	var taskId = $(this).data('taskId');
 };
 
+tasktracker.changeAssignedMember = function(task, selectTag){
+	$(selectTag).change(function(){
+		var assignedUser = $(selectTag).val();
+		$.ajax({
+			async: true,
+			cache: false,
+			type: 'POST',
+			url: tasktracker.apiurl+'/tasks/changeAssignedMemberByTaskId',
+			data: {
+				task_id : task['id'],
+				assigned_id : assignedUser,
+			},
+			success: function(response){
+				var result = response;
+				if(result.status != 'OK'){
+					console.log('Cannot assigned new mwmber for task - '+task.title)
+				}else{
+					console.log('Status - '+result.status);
+					console.log('Task ID - '+result.task_id);
+					console.log('Assigned Id - '+result.assigned_id);
+				}
+			}
+		});
+	});
+}
+
 tasktracker.drawCard = function(task, container, color, teamMembers){
 	//console.log('Drawing Card');
 	//console.log(task);
@@ -113,6 +139,7 @@ tasktracker.drawCard = function(task, container, color, teamMembers){
 	$(boxFooter).appendTo(box);
 	$(box).appendTo(container);		
 	$(selectTag).select2();
+	tasktracker.changeAssignedMember(task, selectTag);
 	$('time').timeago();
 	$('.task_content').slimScroll({
 		height: '150px',

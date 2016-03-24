@@ -22,13 +22,6 @@ $menu = $SimpleBuilder->build($menuList);
                 <i class="fa fa-dribbble"></i>  <span>Dashboard</span>
             </a>
         </li>
-
-        <li id="profile-link">
-            <a href="<?php echo base_url('Profile') ?>">
-                <i class="fa fa-user"></i>  <span>Profile</span>
-            </a>
-        </li>
-
         <li>
             <a href="<?php echo base_url('Kanban') ?>">
                 <i class="fa fa-modx"></i> <span>Kanban</span>

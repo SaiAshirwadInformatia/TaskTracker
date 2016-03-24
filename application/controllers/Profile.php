@@ -44,15 +44,30 @@ class Profile extends TT_Controller{
 
 	public function update_action(){
 		$data = [
+			//Personal Information
 			'fname' => $this->input->post('fname'),
 			'lname' => $this->input->post('lname'),
+			'mname' => $this->input->post('mname'),
+			'dob' => $this->input->post('dob'),
+			'gender' => $this->input->post('gender'),
+			'designation' => $this->input->post('designation'),
+			//Contact Details
+			'email' => $this->input->post('email'),
 			'phone' => $this->input->post('phone'),
-			'skills' => $this->input->post('skills'),
-			'education' => $this->input->post('education'),
-			'location' => $this->input->post('location'),
-			'notes' => $this->input->post('notes'),
-			'qualification' => $this->input->post('qualification'),
-
+			'github' => $this->input->post('github'),
+			'facebook' => $this->input->post('facebook'),
+			//Residential Information
+			'address1' => $this->input->post('address1'),
+			'address2' => $this->input->post('address2'),
+			'city' => $this->input->post('city'),
+			'district' => $this->input->post('district'),
+			'state' => $this->input->post('state'),
+			'pincode' => $this->input->post('pincode'),
+			'country' => $this->input->post('country'),
+			//Edicational Details
+			'college' => $this->input->post('college'),
+			'board' => $this->input->post('board'),
+			'exam' => $this->input->post('exam'),
 
 		];
 		$ret = $this->users_model->update($this->currentUser['id']	,$data);

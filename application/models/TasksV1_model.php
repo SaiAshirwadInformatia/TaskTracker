@@ -92,6 +92,37 @@ class TasksV1_model extends MY_Model
 		return $returnArr;
 	}
 
+
+	public function changeAssignedMemberByTaskId($param)
+	{
+		$ret = [];
+		if($param['task_id'] and $param['assigned_id']){
+			$this->db->where('id',$param['task_id']);
+			$data = [
+				'assigned_id' => $param['assigned_id']
+			];
+			if($this->db->update($this->table,$data)){
+				$ret = [
+					'status' => OK,
+					'task_id' => $param['task_id'],
+					'assigned_id' => $param['assigned_id']
+				];
+			}else{
+				$ret = [
+					'status' => KO,
+					'error' => $this->db->error()		
+				];
+			}
+		}else{
+			$ret = [
+				'error' => [
+					'task_id reqired',
+					'assigned_id required'
+				]
+			];
+		}
+		return $ret;
+	}
 }
 
 ?>

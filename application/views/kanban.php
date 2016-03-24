@@ -14,16 +14,26 @@
 	</div>
 	<div class="content" id="kanban_content" style="overflow-x:scroll;">
 			<div style="width:3200px;">
+
 			<?php 
 				global $status;
 				foreach($status as $key => $state){
-					echo '<div class="kanban_panel">';
+					echo '<div class="kanban_panel fixed_place">';
 					echo '<div class="panel panel-default">';
 					echo '<div class="panel-heading">';
 					echo '<h3 class="panel-title">';
 					echo $key;
 					echo '</h3>';
 					echo '</div>';
+					echo '</div>';
+					echo '</div>';	
+				}
+			?>
+			<?php 
+				global $status;
+				foreach($status as $key => $state){
+					echo '<div class="kanban_panel">';
+					echo '<div class="panel panel-default">';
 					echo '<div class="panel-body" " id="'.$key.'">';
 					echo '</div>';
 					echo '</div>';

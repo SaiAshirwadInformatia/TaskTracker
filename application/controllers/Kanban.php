@@ -11,7 +11,7 @@ class Kanban extends TT_Controller
 				'users_model',
 				'projects_model',
 				'releases_model'
-			])
+			]);
 		$this->load->view('header', [
 			'nextStatus' => $this->status
 		]);	
