@@ -12,9 +12,10 @@ class Kanban extends TT_Controller
 				'projects_model',
 				'releases_model'
 			]);
-		$this->load->view('header', [
-			'nextStatus' => $this->status
-		]);	
+		$data = [
+		'nextStatus' => $this->nextStatus
+		];
+		$this->load->view('header',$data);
 		$this->currentProject = $this->session->userdata('currentProject');
 	}
 

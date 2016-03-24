@@ -13,7 +13,10 @@ class Teams extends TT_Controller{
 				'tasks_model'
 			]);
 		loadProjectsSession();
-		$this->load->view('header');
+		$data = [
+		'nextStatus' => $this->nextStatus
+		];
+		$this->load->view('header',$data);
 		$this->load->library('pagination');
 		$this->currentUser = $this->session->userdata("user");
 	}

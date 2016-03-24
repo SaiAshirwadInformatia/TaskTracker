@@ -11,7 +11,10 @@ class Projects extends TT_Controller
 				'releases_model',
 				'teams_model'
 			]);
-		$this->load->view('header');
+		$data = [
+		'nextStatus' => $this->nextStatus
+		];
+		$this->load->view('header',$data);
 		$this->load->library('pagination');
 		loadProjectsSession();
 		if($this->session->userdata('user')){

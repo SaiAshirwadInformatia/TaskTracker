@@ -22,7 +22,10 @@ class Releases extends TT_Controller
 			setMessage('Please create project first', 'error');
 			redirect('Projects/create');
 		}
-		$this->load->view('header');
+		$data = [
+		'nextStatus' => $this->nextStatus
+		];
+		$this->load->view('header',$data);
 		$this->load->library('pagination');
 	}
 

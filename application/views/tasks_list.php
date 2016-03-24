@@ -16,7 +16,7 @@
 					<?php
 					foreach ($tasksList as $task) {
 						echo '<tr>';
-						echo '<td>' . ucfirst($task['title']) . '</td>';
+						echo '<td><a href="'.base_url('Tasks/view/' . $task['id']).'">' . ucfirst($task['title']) . '</a></td>';
 						echo '<td>' . ucfirst($task['type']) . '</td>';
 						echo '<td>' . ucfirst($task['state']) . '</td>';
 						echo '<td>' . $task['start_ts'] . '</td>';

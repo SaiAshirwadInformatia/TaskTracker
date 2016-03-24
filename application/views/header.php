@@ -2,7 +2,7 @@
 $this->load->view('head');
 ?>
 <script>
-tasktracker.nextStatus = <?php echo json_encode($nextStatus)?>;
+  tasktracker.nextStatus = <?php echo json_encode($nextStatus) ?>;
 </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

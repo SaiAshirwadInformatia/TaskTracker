@@ -32,7 +32,7 @@ class TT_Controller extends CI_Controller
 	       'per_page' => 1,
 	       'uri_segment' => 3
 		];
-		$this->status = [
+		$this->nextStatus = [
 			OPEN => [
 				'next' => [NEED_INFO, DUPLICATE, ASSIGNED, REJECTED],
 				'icon' => 'fa fa-check',

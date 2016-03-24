@@ -1,30 +1,22 @@
 <?php
  
-class TaskCommentsV1_model extends MY_Model
+class CommentsV1_model extends MY_Model
 {
-	private $commentRequiredFileds;
-	private $commentTable;
-
-
-
 
 	public function __construct(){
 		parent::__construct();
 
-		$this->commentTable = 'tasks_comments' ;
-
-		$this->commentRequiredFileds = [
+		$this->table = 'tasks_comments' ;
+		$this->string_key = 'comment';
+		$this->required = [
 				'task_id' => 'task_id is required',
 				'user_id' => 'user_id is required',
 				'comment' => 'comment is required'
 			];
+		$this->id = 'task_id';
 	}
 
-
-	public function insertComments($param) {	
-
-		
-
+	/*public function insertComments($param) {	
 		$error = [];
 		$data = [];
 		$isValid = true;
@@ -61,9 +53,7 @@ class TaskCommentsV1_model extends MY_Model
 			$ret = $data;
 		}
 		return $ret;
-
 	}
-
 
 	public function getComments($param){
 
@@ -94,6 +84,8 @@ class TaskCommentsV1_model extends MY_Model
 
 		return $ret;
 	}
+
+	*/
 } 
 
 

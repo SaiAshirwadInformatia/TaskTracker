@@ -15,7 +15,7 @@
 					<?php 
 						foreach ($mytasks_list as $task) {
 							echo '<tr>';
-							echo '<td>' . $task["title"] . '</td>';
+							echo '<td><a href="'.base_url('Tasks/view/' . $task['id']).'">' . $task["title"] . '</a></td>';
 							echo '<td>' . $task["type"] . '</td>';
 							echo '<td>' . $task["state"] . '</td>';
 							echo '<td>';

@@ -10,9 +10,11 @@ class Dashboard extends TT_Controller
 
 	public function index()
 	{
-		$this->load->view('header', [
-			'status' => $this->status
-		]);	
+		
+		$data = [
+		'nextStatus' => $this->nextStatus
+		];
+		$this->load->view('header',$data);
 		$this->load->view('dashboard');
 		$this->load->view('footer');
 		//$this->load->view('tasktracker.tour.js');

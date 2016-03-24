@@ -13,7 +13,10 @@ class Tasks extends TT_Controller
 				'releases_model',
 				'users_model'
 			]);
-		$this->load->view('header');
+		$data = [
+		'nextStatus' => $this->nextStatus
+		];
+		$this->load->view('header',$data);
 		$this->load->library('pagination');
 		$this->currentUser = $this->session->userdata('user');
 		$this->currentProject = $this->session->userdata('currentProject');
