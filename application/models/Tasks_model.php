@@ -29,6 +29,57 @@ class Tasks_model extends CI_Model
 	}
 
 
+	public function get_assigned_list($project_id,$assigned_id = null){
+		$this->db->select('U.fname, U.lname,COUNT(T.id) AS total');
+		$this->db->from('tasks T');
+		$this->db->join('releases R','R.id = T.release_id');
+		$this->db->join('projects P','P.id = R.project_id');
+		$this->db->join('team_members TM','TM.team_id = P.id');
+		$this->db->join('users U','U.id = TM.user_id');
+		$this->db->where('P.team_id = TM.team_id');
+		$this->db->where('T.assigned_id = U.id');
+		$this->db->where("P.id = $project_id");
+		//$this->db->where("T.assigned_id = $assigned_id");
+		$this->db->group_by('U.id');
+		$this->db->order_by('total','desc');
+		return $this->db->get()->result_array();
+	}
+
+
+	public function get_by_type($taskType, $project_id = null, $user_id = null, $limit = 30, $start = 0){
+		$this->db->select('T.id AS id,T.title as title,T.type, T.creation_ts AS time');
+		$this->db->from('tasks T');
+		$this->db->join('releases R','R.id = T.release_id');
+		$this->db->join('projects P','P.id = R.project_id');
+		if($user_id != NULL){
+			$this->db->where('T.assigned_id', $user_id);
+		}
+		if($project_id != NULL){
+			$this->db->where('P.id',$project_id);
+		}
+		$this->db->where("T.type",$taskType);
+		$this->db->order_by('T.creation_ts','desc');
+		$this->db->limit($limit,$start);
+		return $this->db->get()->result_array();
+
+	}
+
+	public function count_task_by_type($type, $project_id = null, $user_id = null){
+		$this->db->select("T.type, COUNT(T.id) AS total");
+		$this->db->from('tasks T');
+		$this->db->join('releases R','R.id = T.release_id');
+		$this->db->join('projects P','P.id = R.project_id');
+		if($user_id != null){
+			$this->db->where("T.assigned_id = $user_id");
+		}
+		if($project_id != null){
+			$this->db->where('P.id',$project_id);
+		}
+		$this->db->where('T.type',$type);
+		return $this->db->get()->row_array();
+	}
+
+
 	public function get_by_state($project_id = false, $state, $limit = false, $start = false, $user_id = false){
 		$this->db->select("T.*, R.name AS release_name, R.id AS release_id, P.name AS project_name, P.id AS project_id");
 		$this->db->from("tasks T");

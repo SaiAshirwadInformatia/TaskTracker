@@ -21,26 +21,26 @@
 							    <h3 class="box-title">All team Members</h3>
 							    <button class="btn btn-box-tool pull-right" data-widget="collapse"><i class="fa fa-minus"></i></button>
 							</div>
-							    <div class="box-body">
-									<?php
-									if($membersList){
-										echo '<ul class="list-group">';
-										foreach($membersList as $member){
-											echo '<li class="list-group-item">';
-											echo '<span class="badge">' . $task[$member['fname']] . '</span>';
-											echo $member['fname'] . ' ' . $member['lname'] . '(' . ucfirst($member['role']) .')';
-											echo '</li>';
-										}
-										echo '</ul>';
-									}else{
-										?>
-											<ul class="list-group">
-			  									<li class="list-group-item list-group-item-danger">No memeber found</li>
-			  								</ul>
-										<?php
-									}
-									?>
-								</div>
+							    
+							<?php
+							if($membersList){
+								echo '<ul class="list-group">';
+								foreach($membersList as $member){
+									echo '<li class="list-group-item">';
+									echo '<span class="badge">' . $task[$member['fname']] . '</span>';
+									echo $member['fname'] . ' ' . $member['lname'] . '(' . ucfirst($member['role']) .')';
+									echo '</li>';
+								}
+								echo '</ul>';
+							}else{
+								?>
+									<ul class="list-group">
+	  									<li class="list-group-item list-group-item-danger">No memeber found</li>
+	  								</ul>
+								<?php
+							}
+							?>
+						
 						</div>
 					</dd>
 				</dl>
@@ -52,26 +52,24 @@
 							    <h3 class="box-title">All team Members</h3>
 							    <button class="btn btn-box-tool pull-right" data-widget="collapse"><i class="fa fa-minus"></i></button>
 							</div>
-						    <div class="box-body">
-								<?php
-								if($projectsList){
-									echo '<ul class="list-group"	>';
-									foreach($projectsList as $project){
-										echo '<li class="list-group-item">';
-										echo '<span class="badge">' . $task[$project['id']] . '</span>';
-										echo $project['name'];
-										echo '</li>';
-									}
-									echo '</ul>';
-								}else{
-									?>
-										<ul class="list-group">
-		  									<li class="list-group-item list-group-item-danger">No project found</li>
-		  								</ul>
-									<?php
+							<?php
+							if($projectsList){
+								echo '<ul class="list-group"	>';
+								foreach($projectsList as $project){
+									echo '<li class="list-group-item">';
+									echo '<span class="badge">' . $task[$project['id']] . '</span>';
+									echo $project['name'];
+									echo '</li>';
 								}
-						?>
-							</div>
+								echo '</ul>';
+							}else{
+								?>
+									<ul class="list-group">
+	  									<li class="list-group-item list-group-item-danger">No project found</li>
+	  								</ul>
+								<?php
+							}
+					?>
 						</div>
 					</dd>
 				</dl>

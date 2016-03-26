@@ -13,7 +13,20 @@ class CommentsV1_model extends MY_Model
 				'user_id' => 'user_id is required',
 				'comment' => 'comment is required'
 			];
-		$this->id = 'task_id';
+		$this->id = 'id';
+	}
+
+	public function get($param = null) {
+		if($param){
+			return parent::get($param);
+		}
+		if($this->input->get('task_id')){
+			$this->db->where('task_id', $this->input->get('task_id'));
+		}
+		if($this->input->get('user_id')){
+			$this->db->where('user_id', $this->input->get('user_id'));
+		}
+		return $this->db->get($this->table)->result_array();
 	}
 
 	/*public function insertComments($param) {	

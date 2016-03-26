@@ -3,7 +3,6 @@
 
 class Kanban extends TT_Controller
 {
-	protected $currentProject;
 
 	public function __construct() {
 		parent::__construct();
@@ -16,7 +15,6 @@ class Kanban extends TT_Controller
 		'nextStatus' => $this->nextStatus
 		];
 		$this->load->view('header',$data);
-		$this->currentProject = $this->session->userdata('currentProject');
 	}
 
 	public function index($relase_id = '0'){

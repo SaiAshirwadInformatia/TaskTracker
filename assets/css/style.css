@@ -1,3 +1,12 @@
+#comment-box{
+	position: relative;
+}
+#user_img{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
 .login-back{
 	position: fixed;
 	z-index: -1;
@@ -37,7 +46,7 @@
 
 
 
-.kanban_panel{
+.kanban-panel{
 	width:300px;
 	display:inline;
 	float:left;

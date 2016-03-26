@@ -17,7 +17,7 @@ interface IRestManager{
 }
 
 
-class MY_Model extends CI_Model implements IRestManager{
+class MY_Model extends CI_Model implements IRestManager {
 
 	var $table;
 	var $id;
@@ -38,7 +38,7 @@ class MY_Model extends CI_Model implements IRestManager{
 		if(is_null($param) or !$param)
 		{
 			$ret = $this->db->get($this->table)->result_array();
-			if(!$ret or count($ret) === 0){
+			if(!$ret or count($ret) === 0) {
 				$ret = [
 					'error_msg' => 'No ' . $this->table . ' found',
 					'error_code' => 1003

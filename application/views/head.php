@@ -32,6 +32,7 @@
     <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/colorpicker/bootstrap-colorpicker.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/ckeditor/ckeditor.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/select2/select2.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/chartjs/Chart.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/AdminLTE/plugins/iCheck/icheck.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/moment/moment.js') ?>"></script>
     <script src="<?php echo base_url('assets/vendor/bootstrap-tour/build/js/bootstrap-tour.min.js')?>"></script>
@@ -51,4 +52,11 @@
         tasktracker.currentProject = '<?php  $project = $this->session->userdata("currentProject"); echo $project["id"]?>';
         tasktracker.status = <?php global $status;echo json_encode($status);?>;
         tasktracker.taskType = <?php global $taskType;echo json_encode($taskType);?>;
+        <?php 
+            if($this->session->userdata('currentUser')){
+                ?> 
+                    tasktracker.currentUser = '<?php  $user = $this->session->userdata("currentUser");echo $user['id']?>';
+                <?php
+            }
+        ?>
     </script>

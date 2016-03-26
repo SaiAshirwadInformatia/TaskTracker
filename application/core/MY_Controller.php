@@ -4,6 +4,10 @@ class TT_Controller extends CI_Controller
 {
 	protected $paginationConfig;
 
+	protected $currentProject;
+
+	protected $currentUser;
+
 	protected $status;
 
 	public function __construct($checkLogin = true)
@@ -13,6 +17,12 @@ class TT_Controller extends CI_Controller
 			if(!$this->session->userdata('logged')){
 				redirect(base_url('Login'));
 			}
+		}
+		if($this->session->userdata('currentProject')){
+			$this->currentProject = $this->session->userdata('currentProject');
+		}
+		if($this->session->userdata('user')){
+			$this->currentUser = $this->session->userdata('user');
 		}
 		$this->paginationConfig = [
 	       'full_tag_open' => '<ul class="pagination">',

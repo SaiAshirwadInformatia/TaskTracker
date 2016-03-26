@@ -56,7 +56,7 @@ class ProjectsV1_model extends MY_Model
 			if($isAvailable)
 			{
 				$ret = [
-					'msg' => "Key ({$param['key']}) can be used for Project creatio",
+					'msg' => "Key ({$param['key']}) can be used for Project creation",
 					'available' => true
 				];
 			}else{
@@ -103,6 +103,20 @@ class ProjectsV1_model extends MY_Model
 			];
 		}
 		return $ret;
+	}
+
+	public function getAllStatistics(){
+		$projects = [];
+		$projects = $this->db->get('projects')->result_array();
+		foreach ($projects as $key => $project) {
+			$this->db->select('T.type,count(*) AS total');
+			$this->db->from('tasks T');
+			$this->db->join('releases R','R.id = T.release_id');
+			$this->db->where('R.project_id = '.$project['id']);
+			$this->db->group_by('T.type');
+			$projects[$key]['statistics'] = $this->db->get()->result_array();
+		}
+		return $projects;
 	}
 
 }

@@ -2,8 +2,6 @@
 
 class Releases extends TT_Controller
 {
-
-	private $currentProject;
 	
 	public function __construct()
 	{
@@ -17,7 +15,6 @@ class Releases extends TT_Controller
 			'form_validation'
 		]);
 		loadProjectsSession();
-		$this->currentProject = $this->session->userdata('currentProject');
 		if(!$this->currentProject){
 			setMessage('Please create project first', 'error');
 			redirect('Projects/create');

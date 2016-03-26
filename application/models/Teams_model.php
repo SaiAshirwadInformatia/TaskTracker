@@ -35,6 +35,14 @@ class Teams_Model extends CI_Model{
 		return $this->db->get()->result_array();
 	}
 
+	public function get_by_project_id($project_id){
+		$this->db->select('U.id,U.fname,U.lname,U.access_token');
+		$this->db->from('users U');
+		$this->db->join('team_members TM','TM.user_id = U.id');
+		$this->db->join('projects P','P.team_id = TM.team_id');
+		$this->db->where("P.id = $project_id");
+		return $this->db->get()->result_array();
+	}
 
 
 	public function link_members($team_id, $members_id,$role)

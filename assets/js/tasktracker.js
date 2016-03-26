@@ -213,6 +213,43 @@ tasktracker.kanbanBuilder = function(){
 	}
 };
 
+tasktracker.buildRadarChart = function(){
+	var projects = [];
+	var statisticsOfTask  = [];
+
+	var prepareStatistics = function(){
+		$.ajax({
+			sync : true,
+			cache : false,
+			type : 'POST',
+			url : tasktracker.apiurl+'/projects/getAllStatistics',
+			success : function(response){
+				console.log(response);
+				if(response.length > 0){
+					for(var project in response){
+						var data = project.statistics;
+						var button = project.name;
+						drawRadarButtons(button,data);
+					}
+				}
+			}
+		});
+	}
+
+	this.init = function(){
+		prepareStatistics();
+
+	}
+	this.start = function(project_id){
+		projectId = project_id;
+	}
+}
+
+tasktracker.drawRadarButtons()
+
+
+
+
 /**
  * Call all the commonly required JS directly
  */
