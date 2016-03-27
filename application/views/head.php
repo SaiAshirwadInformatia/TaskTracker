@@ -53,9 +53,11 @@
         tasktracker.status = <?php global $status;echo json_encode($status);?>;
         tasktracker.taskType = <?php global $taskType;echo json_encode($taskType);?>;
         <?php 
-            if($this->session->userdata('currentUser')){
+            if($this->session->userdata('user')){
+                $user = $this->session->userdata('user');
+                global $user;
                 ?> 
-                    tasktracker.currentUser = '<?php  $user = $this->session->userdata("currentUser");echo $user['id']?>';
+                    tasktracker.user = <?php  echo json_encode($user);?>;
                 <?php
             }
         ?>

@@ -174,7 +174,7 @@ tasktracker.kanbanBuilder = function(){
 
 	var loadTaskByStatus = function(state,taskType){
 		$.ajax({
-			aync : true,
+			async : true,
 			cache: false,
 			type: 'POST',
 			url: tasktracker.apiurl+'/tasks/getByState',
@@ -213,7 +213,7 @@ tasktracker.kanbanBuilder = function(){
 	}
 };
 
-tasktracker.buildRadarChart = function(){
+/*tasktracker.buildRadarChart = function(){
 	var projects = [];
 	var statisticsOfTask  = [];
 
@@ -246,6 +246,80 @@ tasktracker.buildRadarChart = function(){
 }
 
 tasktracker.drawRadarButtons()
+
+*/
+
+
+tasktracker.buildComment = function(comment,container,user,time){
+	var boxComment = $('<div class="box-comment">');
+	var userImg = $('<img class="img-circle img-sm" src="'+tasktracker.baseurl+'/assets/images/tiger.jpg" />');
+	var commentClass = $('<div class="comment-text">');
+	var userName = $('<span class="username">');
+	var timeAgo = $('<span  class="pull-right"><time datetime="'+time+'">');
+	var commentText = $('<span>');
+	userName.html(user.fname+' '+user.lname);
+	commentText.html(comment);
+	$(userName).appendTo(commentClass);
+	$(commentText).appendTo(commentClass);
+	$(userImg).appendTo(boxComment);
+	$(timeAgo).appendTo(userName);
+	$(commentClass).appendTo(boxComment);
+	$(boxComment).appendTo(container);
+	$('time').timeago();
+	console.log(time);
+}
+
+/*
+<div class="box-comment">
+						<img class="img-circle img-sm" src="<?php echo base_url('assets/images/tiger.jpg')?>" />
+						<div class="comment-text">
+							<span class="username">Akshay Mane</span>
+							It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.	
+						</div>
+					</div>
+*/
+
+
+tasktracker.commentBuilder = function(){
+	var prepareComments = function(taskId,container){
+		$.ajax({
+			async : true,
+			cache : false,
+			type : 'GET',
+			url : tasktracker.apiurl+'/comments',
+			data : {
+				task_id : taskId
+			},
+			success : function(response){
+				var comments = response;
+				for(var comment in comments){
+					if(comments[comment].id){
+						comment = comments[comment];
+						commentUser(comment.user_id,comment.comment,container,comment.creation_ts);
+					}
+				}
+			}
+		});
+	}
+
+	var commentUser = function(userId,comment,container,time){
+
+		$.ajax({
+			async : true,
+			cache : false,
+			type : 'GET',
+			url : tasktracker.apiurl+'/users/'+userId,
+			success : function(response){
+				var user = response;
+				//console.log(user);
+				tasktracker.buildComment(comment,container,user,time);
+			}
+		});
+	}
+	this.start = function(taskId,container){
+		prepareComments(taskId,container);
+	}
+}
 
 
 

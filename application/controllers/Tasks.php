@@ -2,7 +2,6 @@
 
 class Tasks extends TT_Controller
 {
-	private $currentUser; 	
 	public function __construct()
 	{
 		parent::__construct();	
@@ -17,7 +16,6 @@ class Tasks extends TT_Controller
 		];
 		$this->load->view('header',$data);
 		$this->load->library('pagination');
-		$this->currentUser = $this->session->userdata('user');
 	}
 
 	public function index($start = 0)

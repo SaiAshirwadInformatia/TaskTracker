@@ -26,6 +26,7 @@ class CommentsV1_model extends MY_Model
 		if($this->input->get('user_id')){
 			$this->db->where('user_id', $this->input->get('user_id'));
 		}
+		$this->db->order_by('creation_ts','asc');
 		return $this->db->get($this->table)->result_array();
 	}
 
