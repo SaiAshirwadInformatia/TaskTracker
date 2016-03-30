@@ -15,7 +15,7 @@
 					<?php 
 					foreach ($releasesList as $release) {
 						echo '<tr>';
-						echo '<td>' . $release['name'] . '</td>';
+						echo '<td><a href="'.base_url('Releases/view/'.$release['id']).'">' . $release['name'] . '</a></td>';
 						echo '<td>' . $release['start_date'] . '</td>';
 						echo '<td>' . $release['estimated_release_date'] . '</td>';
 						echo '<td>';

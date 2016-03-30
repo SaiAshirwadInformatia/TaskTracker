@@ -15,7 +15,7 @@
 				<?php
 				foreach ($teamsList as $team) {
 					echo '<tr>';
-					echo '<td>' . $team['name'] . '</td>';
+					echo '<td><a href="'.base_url('Teams/view/'.$team['id']).'">' . $team['name'] . '</a></td>';
 					echo '<td>' . $team['key'] . '</td>';
 					echo '<td>' . count($members[$team['id']]) . '</td>';
 					echo '<td>' . count($projects[$team['id']]) . '</td>';

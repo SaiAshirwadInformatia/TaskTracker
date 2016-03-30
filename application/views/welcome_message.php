@@ -70,6 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="container">
 	<h1>Welcome to CodeIgniter!</h1>
 
+	var_dump('$data');
 	<div id="body">
 		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 

@@ -5,7 +5,9 @@ class Dashboard extends TT_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
 		loadProjectsSession();
+		
 		$this->load->model([
 				'users_model',
 				'projects_model',

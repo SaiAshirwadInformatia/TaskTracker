@@ -19,7 +19,7 @@
 						<div class="box box-info">
 						  	<div class="box-header with-border">
 							    <h3 class="box-title">All team Members</h3>
-							    <button class="btn btn-box-tool pull-right" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							    <button class="btn btn-box-tool pull-right" data-widget="collapse"></button>
 							</div>
 							    
 							<?php
@@ -50,7 +50,7 @@
 						<div class="box box-info">
 						  	<div class="box-header with-border">
 							    <h3 class="box-title">All team Members</h3>
-							    <button class="btn btn-box-tool pull-right" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							    <button class="btn btn-box-tool pull-right" data-widget="collapse"></button>
 							</div>
 							<?php
 							if($projectsList){

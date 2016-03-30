@@ -27,10 +27,10 @@ class Auth extends CI_Controller
 						'lastlogin_ts' => date('Y/m/d h:i:s')
 					];
 					$this->users_model->lastLogin($data);
-					redirect(site_url('Dashboard'));
+					redirect(base_url('Dashboard'));
 				}
 			}else{
-				redirect(site_url('Login/failed'));
+				redirect(base_url('Login/failed'));
 			}
 		}else{
 			redirect(base_url('Login'));

@@ -40,7 +40,7 @@ class Projects extends TT_Controller
 	{
 		$projectData = $this->projects_model->get_by_id($id);
 		// Array index in $data below becomes variable to be accessed in view
-		$release = $this->releases_model->project_count_releases($id);
+		$release = $this->releases_model->get_releases_by_project_id($id);
 		$data = [
 			'project' => $projectData,
 			'releasesList' => $release['releasesList'],

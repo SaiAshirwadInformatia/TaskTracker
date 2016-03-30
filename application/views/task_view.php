@@ -7,45 +7,90 @@
 	<section class="content">
 		<div class="box box-default">	
 			<div class="box-body">
-				<div class="row">
-					<div class="col-sm-12">
-						<label>Description</label>
-						<div><?php echo $task['description']?></div>
+				<form class="form-inline">
+					<div class="row">
+						<div class="col-sm-12">
+							<label class="label-control">Description </label>
+							<div><?php echo $task['description']?></div>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-3">
-						<label>Assigned to :</label>
-						<select>
-							<option></option>
-						</select>
+					<div class="row">
+						<div class="col-sm-1">
+							<label class="label-control" >Assign To</label>
+						</div>
+							<?php if(isset($usersList) and $usersList != NULL){ ?>
+							<div class="col-sm-2">
+							<select class=" select2 select2-hidden-accessible" style="width: 100%;" name="assigned_id"	id="assigned_id">
+								<option value="0">Anyone </option>
+								<?php
+								foreach($usersList as $user){
+									echo '<option value="';
+									echo $user['id'];
+									echo '"';
+									if(isset($task['assigned_id'])): if($user['id'] === $task['assigned_id']): echo 'selected'; endif;endif;
+									echo '>';
+									echo $user['fname'] .' '.$user['lname'];
+									echo '</option>';
+								}
+								 ?>
+							</select>
+							<?php }	?>
+							</div>
+						<div class="col-sm-1">
+							<label class="label-control">Type </label>
+						</div>
+						<div class="col-sm-2">
+							<span><?php echo $task['type']?></span>
+						</div>
+						<div class="col-sm-1">
+							<label class="label-control">Priority </label>
+						</div>
+						<div class="col-sm-2">
+							<span></span>
+						</div>
+						<div class="col-sm-1">
+							<label class="label-control">ETA </label>
+						</div>
+						<div class="col-sm-2">
+							<span></span>
+						</div>
 					</div>
-					<div class="col-sm-3">
-						<label>Type :</label>
-						<span><?php echo $task['type']?></span>
+					<div class="row">
+						<div class="col-sm-2">
+							<label class="label-control">Arrived in Release </label>
+						</div>
+						<div class="col-sm-4">
+							<span>
+							<?php
+							echo '<a href="' . base_url('Releases/view/' . $releaseArrive['id']).'">';
+							echo '<span>'.$releaseArrive['name'].'</span>';
+							echo '</a>';	 ?>
+
+						</div>
+						<div class="col-sm-2">
+							<label class="label-control">Fixed in Release </label>
+						</div>
+						<div class="col-sm-4">
+							<span>
+							<?php
+							echo '<a href="' . base_url('Releases/view/' . $releaseFixed['id']).'">';
+							echo '<span>'.$releaseFixed['name'].'</span>';
+							echo '</a>'; 
+							?>
+
+						</div>
 					</div>
-					<div class="col-sm-3">
-						<label>Priority</label>
-						<span></span>
-					</div>
-					<div class="col-sm-3">
-						<label>ETA</label>
-						<span></span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<label>Arrived in Release</label>
-						<span></span>
-					</div>
-					<div class="col-sm-6">
-					</div>
-				</div>
+				</form>
 				<div class="box-comments col-sm-offset-2 col-sm-8">
-					<div class="header">
-						<h3 class="title">Comments</h3>
+					<div class="box-header">
+						<div class="btn-group">
+							<h3 class="btn btn-default" id="comment_btn">Comments</h3>
+							<h3 class="btn btn-default" id="history_btn">History</h3>
+						</div>
 					</div>
 					<div  id="comments">
+					</div>
+					<div id="history">
 					</div>
 					<div class="footer">
 						<img class="img-responsive img-circle img-sm"  src="<?php echo base_url('assets/images/tiger.jpg')?>">
@@ -55,13 +100,16 @@
 						</div>
 					</div>
 				</div>
-			</div>
 		</div>
 	</section>
 </div>
 <script>
 	var commentObj = new tasktracker.commentBuilder();
 	$(function(){
+		var task = <?php echo json_encode($task); ?>;
+		var selectTag = $('#assigned_id');
+		//console.log(task);
+		tasktracker.changeAssignedMember(task,selectTag);
 		commentObj.start(<?php echo $task['id']?>,$('#comments'));
 		$('#commentbtn').click(function(){
 			<?php
@@ -97,5 +145,26 @@
 				commentInput.css('border','1px solid red');
 			}
 		});
+
+		$('#assigned_id').change(function(){
+			assigned_id = $(this).val();
+			console.log(assigned_id);
+		});
+
+
+		$('#comments').slimScroll({
+			height: '400px',
+			size: '5px'
+		});
+
+		$('#comment_btn').click(function(){
+			$('#history').css('display','none');
+			$('#comments').css('display','block');
+		});
+		$('#history_btn').click(function(){
+			$('#comments').css('display','none');
+			$('#history').css('display','block');
+		});
+		$('comment_btn').click();
 	});
 </script>

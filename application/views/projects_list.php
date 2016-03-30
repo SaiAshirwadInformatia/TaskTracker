@@ -16,7 +16,7 @@
 					<?php
 					foreach ($projectsList as $project) {
 						echo '<tr>';
-						echo '<td>' . $project['name'] . '</td>';
+						echo '<td><a href="'.base_url('Projects/view/'.$project['id']).'">' . $project['name'] . '</a></td>';
 						echo '<td>' . $project['key'] . '</td>';
 						echo '<td style="width:45px"><span class="projectColorBlock" style="margin-left:10px;background:' . $project['color']	 . '"><span></td>';
 						echo '<td>' . $project['start_date'] . '</td>';

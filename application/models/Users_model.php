@@ -25,6 +25,17 @@ class Users_model extends CI_Model
 		return false;
 	}
 	
+
+
+	public function get_users_by_project_id($project_id){
+		$this->db->select('U.*');
+		$this->db->from('users U');
+		$this->db->join('team_members TM','TM.user_id = U.id');
+		$this->db->join('projects P','P.team_id = TM.team_id');
+		$this->db->where('P.id',$project_id);
+		return  $this->db->get()->result_array();
+	}
+
 	public function lastLogin($data){
 		$user = $this->session->userdata('user');
 		$this->db->where('id',$user['id']);

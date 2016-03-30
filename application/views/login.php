@@ -3,7 +3,7 @@
 		<?php $this->load->view('inc_bootstrap_alerts');?>
 	<body class="hold-transition login-page">
 		<div class="login-back">
-			<img src="<?php echo base_url("assets/images/bgimg.jpg")?>" />
+			<img src="<?php echo base_url("assets/images/login_background.jpg")?>" />
 		</div>
 		<div class="login-box">
 			<div class="login-logo">

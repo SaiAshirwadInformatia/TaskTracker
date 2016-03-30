@@ -8,7 +8,6 @@ var tasktracker = {};
 tasktracker.isAvailableValidation = function(options){
 	var defaultSettings = {
 		'selector' : '#key',
-		'module' : 'projects',
 		'onBlur' : function(instance){
 			return {};
 		},
@@ -30,7 +29,7 @@ tasktracker.isAvailableValidation = function(options){
 	 		$.ajax({
 	 			async: true,
 	 			cache: false,
-	 			url: tasktracker.apiurl + defaultSettings.module + '/isAvailable',
+	 			url: tasktracker.apiurl +'/'+ defaultSettings.module + '/isKeyAvailable',
 	 			data: data,
 	 			type: 'POST',
 	 			success: defaultSettings.onSuccess,
@@ -74,6 +73,7 @@ tasktracker.doAssign  = function(){
 };
 
 tasktracker.changeAssignedMember = function(task, selectTag){
+	console.log('Hi am here ');
 	$(selectTag).change(function(){
 		var assignedUser = $(selectTag).val();
 		$.ajax({

@@ -4,7 +4,7 @@
 	</section>
 	<div class="content">
 	<?php $this->load->view('inc_bootstrap_alerts');?>
-		<form action="<?php echo base_url('Tasks/' . $action);?>" method="POST">
+		<form action="<?php echo base_url('Tasks/' . $action);?>" method="POST" enctype="multipart/form-data">
 			<div class="box box-default">
 				<div class="box-body">
 					<div class="form-group">
@@ -55,7 +55,8 @@
 						<div class="row">
 							<div class="col-sm-3">
 								<label class="label-control" id="assigned_id">Assign To</label>
-								<?php if(isset($usersList) and $usersList != NULL){ ?>
+								<?php 
+									if(isset($usersList) and $usersList != NULL){ ?>
 
 								<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="assigned_id"	>
 									<option value="0">Anyone</option>
@@ -64,7 +65,7 @@
 										echo '<option value="';
 										echo $user['id'];
 										echo '"';
-										if(isset($assigned_id)): if($user['id'] = $assigned_id): echo 'selected'; endif;endif;
+										if(isset($task['assigned_id'])): if($user['id'] === $task['assigned_id']): echo 'selected'; endif;endif;
 										echo '>';
 										echo $user['fname'] .' '.$user['lname'];
 										echo '</option>';
@@ -82,19 +83,24 @@
 									</span>
 								</div>
 							</div>
+							<div class="col-sm-6">
+							<label class="control-label">Attachments</label>
+								<div class="input-group">
+									<input class="form-control" type="file" name="attachments" id="attachments" />
+									<span class="input-group-addon btn btn-default">
+										Upload
+									</span>
+								<ul class="list-group">
+              					<ul>
+							</div>
 						</div>
 					</div>
 				</div>
-
-
-
-
-
 				<div class="box-footer">
 					<?php if(isset($id)): ?>
 						<input type="hidden" name="id" id="id" value="<?php echo $id ?>" />
-
-					<?php 	endif; ?>
+						<input type="hidden" name="assigned" id="assigned_id" value="<?php echo $assigned_id ?>" />
+					<?php 	endif;?>
 					<div class="btn-group">
 						<button type="submit" name="save" id="save" class="btn btn-success">
 							<i class="fa fa-save"></i> Save

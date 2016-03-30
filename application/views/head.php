@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') ?> "/>
     <link rel="stylesheet" href="<?php echo base_url('assets/vendor/AdminLTE/plugins/iCheck/square/blue.css') ?> "/>
     <link rel="stylesheet" href="<?php echo base_url('assets/vendor/jquery-ui/themes/base/jquery-ui.min.css')?>" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jasny-bootstrap.min.css')?>" />
 
     
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css')?>" />
@@ -38,6 +39,8 @@
     <script src="<?php echo base_url('assets/vendor/bootstrap-tour/build/js/bootstrap-tour.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/jquery-timeago/jquery.timeago.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/custom.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jasny-bootstrap.min.js')?>"></script>
     <script src="<?php echo base_url('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') ?>"></script>
     <!--
     <script src="<?php echo base_url('assets/vendor/typeahead.js/dist/typeahead.bundle.min.js')?>"></script>

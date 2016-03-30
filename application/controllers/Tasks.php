@@ -16,6 +16,8 @@ class Tasks extends TT_Controller
 		];
 		$this->load->view('header',$data);
 		$this->load->library('pagination');
+		$this->uploadConfig['upload_path'] = 'assets/uploads/task_attachments/';
+		$this->load->library('upload',$this->uploadConfig);
 	}
 
 	public function index($start = 0)
@@ -46,6 +48,7 @@ class Tasks extends TT_Controller
 		$this->load->view('mytasks_list',$data);
 		$this->load->view('footer');
 	}
+
 
 
 
@@ -93,24 +96,27 @@ class Tasks extends TT_Controller
 
 	public function view($id){
 		$task = $this->tasks_model->get_by_id($id);
-		$user = $this->users_model->get_by_id($task['user_id']);
-		$assigned_user = $this->users_model->get_by_id($task['assigned_id']);
+		$project = $this->session->userdata('currentProject');
+		$usersList = $this->users_model->get_users_by_project_id($this->currentProject['id']);
+		$releaseArrive = $this->releases_model->get_by_id($task['arrived_in_released']);
+		$releaseFixed = $this->releases_model->get_by_id($task['fixed_in_released']);
 		$data = [
 			'task' => $task,
-			'user' => $user,
-			'assigned_user' => $assigned_user,
-			'status' => $this->status
+			'usersList' => $usersList,	
+			'status' => $this->status,
+			'releaseArrive' => $releaseArrive,
+			'releaseFixed' => $releaseFixed
 		 ];
 		$this->load->view('task_view',$data);
 		$this->load->view('footer');
+
 	}
 
 
 	public function create($release_id = 0)
 	{
-		$project = $this->session->userdata('currentProject');
-		$releasesList = $this->releases_model->get_by_project_id($project['id']);
-		$usersList = $this->users_model->get_all();
+		$releasesList = $this->releases_model->get_by_project_id($this->currentProject['id']);
+		$usersList = $this->users_model->get_users_by_project_id($this->currentProject['id']);
 		if(!isset($release_id) and $release_id == 0){
 			$release_id = $this->input->post('release_id');
 		}
@@ -135,6 +141,20 @@ class Tasks extends TT_Controller
 		$release_id = $this->input->post('release_id');
 		$assigned_id = $this->input->post('assigned_id');
 		$due_date = $this->input->post('due_date');
+		if ( ! $this->upload->do_upload($this->input->post('attachments')))
+		{
+			$data = array('data' => $this->upload->display_errors());
+			var_dump($this->upload->data());
+			var_dump('true');die();
+			$this->load->view('welcome_message', $data);
+		}
+		else
+		{
+			$data = array('data' => $this->upload->data());
+
+		var_dump('false');die();
+			$this->load->view('welcome_message', $data);
+		}
 		if($title and $type and $release_id and $due_date){
 			$description = $this->input->post('description');
 			$data= 
@@ -182,9 +202,9 @@ class Tasks extends TT_Controller
 	public function update($id)
 	{
 		$task = $this->tasks_model->get_by_id($id);
-		$project = $this->session->userdata('currentProject');
-		$releasesList = $this->releases_model->get_by_project_id($project['id']);
-		$usersList = $this->users_model->get_all();
+		$releasesList = $this->releases_model->get_by_project_id($this->currentProject['id']);
+		$usersList = $this->users_model->get_users_by_project_id($this->currentProject['id']);
+		$task['task'] = $task;
 		$task['action'] = 'update_action';
 		$task['releasesList'] = $releasesList;
 		$task['usersList'] = $usersList;

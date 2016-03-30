@@ -21,12 +21,11 @@ class Releases_model extends CI_Model
 	}
 
 	
-	
-	public function project_count_releases($project_id){
-		$task = [];
+
+	public function get_releases_by_project_id($project_id){;
 		$this->db->where('project_id',$project_id);
 		$this->db->where('is_released','0');
-		$releases = $this->db->get('releases')->result_array();
+		$releases =  $this->db->get('releases')->result_array();
 		foreach ($releases as $release) {
 			if($release){
 				$this->db->where('release_id',$release['id']);
@@ -39,6 +38,16 @@ class Releases_model extends CI_Model
 			'task' => $task
 		];
 		return $data;
+
+	}
+	
+	public function project_count_releases($project_id){
+		$task = [];
+		$this->db->select('count(id) AS total');
+		$this->db->from('releases');
+		$this->db->where('project_id',$project_id);
+		$this->db->where('is_released','0');
+		return $this->db->get()->row_array();
 	}
 
 	public function fetch_releases_by_project($project_id, $limit = 30, $start = 0){

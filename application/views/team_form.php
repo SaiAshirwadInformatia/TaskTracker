@@ -38,12 +38,12 @@
 										<h2 class="panel-title"><?php echo $member['fname'] . ' ' . $member['lname']?></h2>
 									</div>
 									<div class="panel-body">
-										<img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" width = 100% class="img-responsive" >
+										<img src="<?php echo base_url('assets/images/default_profile.png') ?>" width = 100% class="img-responsive" >
 									</div>
 									<div class="panel-footer">
 										<button type="button" class="btn btn-danger btn-xs" id="btn_remove_<?php echo $member['id']?>">Remove</button>
 										<span style="margin-left : 2px">
-											<select class="select2" style="width:70%"  name="role[]">
+											<select class="select2" style="width:60%"  name="role[]">
 												<option value="owner" <?php if(isset($member['role']) && $member['role'] == 'owner'):echo 'selected'; endif; ?>>Owner</option>
 												<?php if(isset($id)){?>
 												<option value="leader" <?php if(isset($member['role']) && $member['role'] == 'leader'):echo 'selected'; endif; ?>>Leader</option>
@@ -68,22 +68,6 @@
 						</div>
 					</div>
 				</div>
-
-				<div>
-					<form action=proccess.php' method='POST enctype='multipart/form-data'>
-					<lable> Attachments</lable>
-					<input type='submit' name='submit'>
-					</form>
-				</div>
-
-
-
-
-
-
-
-
-
 
 				<div class="box-footer">
 					<?php if(isset($team['id'])): ?>
@@ -146,7 +130,7 @@
 		});
 		*/
 
-			tasktracker.isAvailableValidation({
+		tasktracker.isAvailableValidation({
 			selector: '#key',
 			module: 'teams',
 			onBlur: function(instance)
@@ -163,6 +147,8 @@
 				}
 			}
 		});
+
+				console.log(tasktracker.apiurl);
 		$('#team_members').autocomplete({
 			source: function(request, response){
 				var name = request.term.split(" ");
@@ -175,7 +161,7 @@
 					async: true,
 					cache: false,
 					type: 'POST',
-					url: tasktracker.apiuri+'/users/search',
+					url: tasktracker.apiurl+'/users/search',
 					data: {
 						fname: fname
 					},
@@ -192,11 +178,11 @@
 					var panel = $('<div class="panel panel-primary">');
 					var panelBody = $('<div class="panel-body">');
 					var panelHeader = $('<div class="panel-heading">');
-					var imageSrc = $('<img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png">');
+					var imageSrc = $('<img src="'+tasktracker.baseurl+'/assets/images/default_profile.png">');
 					var panelFooter = $('<div class="panel-footer">');
 					var removeBtn = $('<button type="button" class="btn btn-danger btn-xs">Remove</button>');
 					var span = $('<span style="margin-left : 5px">')
-					var dropdown = $('<select class="select2" style="width:70%" name="role[]">');
+					var dropdown = $('<select class="select2" style="width:60%" name="role[]">');
 					var option1 = $('<option value="owner">');
 					var option2 = $('<option value="leader">');
 					var option3 = $('<option value="developer">');

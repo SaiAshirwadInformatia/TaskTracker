@@ -10,9 +10,12 @@ class TT_Controller extends CI_Controller
 
 	protected $status;
 
+	protected $uploadConfig;
+
 	public function __construct($checkLogin = true)
 	{
 		parent::__construct();
+		loadProjectsSession();
 		if($checkLogin){
 			if(!$this->session->userdata('logged')){
 				redirect(base_url('Login'));
@@ -24,6 +27,10 @@ class TT_Controller extends CI_Controller
 		if($this->session->userdata('user')){
 			$this->currentUser = $this->session->userdata('user');
 		}
+
+		$this->uploadConfig['allowed_types'] = 'gif|jpg|png|pdf|zip|docx|odt|txt';
+		$this->uploadConfig['max_size']	= '100';
+
 		$this->paginationConfig = [
 	       'full_tag_open' => '<ul class="pagination">',
 	       'full_tag_close' => '</ul>',

@@ -1,6 +1,16 @@
 <?php 
 $this->load->view('head');
-?>
+        $projects = $this->session->userdata('projects');
+        $currentProject = $this->session->userdata('currentProject');
+        $projectName = '';
+        $projectKey = '';
+        if($currentProject)
+        {
+            $projectName = $currentProject['name'];
+            $projectKey = $currentProject['key'];
+        }
+      ?>
+
 <script>
   tasktracker.nextStatus = <?php echo json_encode($nextStatus) ?>;
 </script>
@@ -23,17 +33,6 @@ $this->load->view('head');
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <?php
-        $projects = $this->session->userdata('projects');
-        $currentProject = $this->session->userdata('currentProject');
-        $projectName = '';
-        $projectKey = '';
-        if($currentProject)
-        {
-            $projectName = $currentProject['name'];
-            $projectKey = $currentProject['key'];
-        }
-      ?>
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
         <li class="dropdown notifications-menu">

@@ -12,8 +12,7 @@ class Site extends CI_Controller {
 		if ( ! empty($_FILES))
 		{
 			$config['upload_path'] = "./assets/uploads";
-			$config['allowed_types'] = 'gif|jpg|png|mp4|ogv|zip';
-
+			$config['allowed_types'] = 'gif|jpg|png|pdf|docx|txt|ogv|zip';
 			$this->load->library('upload');
 
 			$files           = $_FILES;
