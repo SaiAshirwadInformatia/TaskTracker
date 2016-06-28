@@ -141,8 +141,8 @@ class Tasks extends TT_Controller
 		$release_id = $this->input->post('release_id');
 		$assigned_id = $this->input->post('assigned_id');
 		$due_date = $this->input->post('due_date');
-		$attachments = 	
-		if ( ! $this->upload->do_upload($this->input->post('attachments')))
+		//$attachments = 	
+		/*if ( ! $this->upload->do_upload($this->input->post('attachments')))
 		{
 			$data = array('data' => $this->upload->display_errors());
 			var_dump($this->upload->data());
@@ -156,6 +156,7 @@ class Tasks extends TT_Controller
 		var_dump('false');die();
 			$this->load->view('welcome_message', $data);
 		}
+		*/
 		if($title and $type and $release_id and $due_date){
 			$description = $this->input->post('description');
 			$data= 

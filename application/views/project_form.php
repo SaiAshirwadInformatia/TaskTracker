@@ -36,7 +36,7 @@
 							</div>
 							<div class="col-sm-2">
 				                <label>Color</label>
-				                <div class="input-group colorpicker">
+				                <div class="input-group colorpicker1 colorpicker-element">
 				                  <input type="text" class="form-control" name="color" id="color" <?php echo isset($project['color'])?'value="'.$project['color'].'"':'' ?> autocomplete="off">
 				                  <div class="input-group-addon">
 				                    <i style="background-color: rgb(112, 65, 65);"></i>
@@ -91,6 +91,7 @@
 		$('.dateTimePicker').datetimepicker({
 			format: 'YYYY-MM-DD'
 		});
+		$('.colorpicker1').colorpicker();
 		tasktracker.isAvailableValidation({
 			selector: '#name',
 			module: 'projects',
